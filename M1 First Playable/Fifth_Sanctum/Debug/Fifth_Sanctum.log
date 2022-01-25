@@ -1,22 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Fifth_Sanctum.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Enemy.cpp
   Engine.cpp
 C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5,1): warning C4005: 'MOVESPEED': macro redefinition
 C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(6): message : see previous definition of 'MOVESPEED'
-  GameState.cpp
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(6,1): warning C4005: 'MOVESPEED': macro redefinition
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5): message : see previous definition of 'MOVESPEED'
-  Main.cpp
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5,1): warning C4005: 'MOVESPEED': macro redefinition
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(6): message : see previous definition of 'MOVESPEED'
-  Missile.cpp
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.cpp(46,24): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-  Player.cpp
-  StateManager.cpp
-  States.cpp
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(6,1): warning C4005: 'MOVESPEED': macro redefinition
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5): message : see previous definition of 'MOVESPEED'
-  Timer.cpp
-  Generating Code...
-  LINK : C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Debug\Fifth_Sanctum.exe not found or not built by the last incremental link; performing full link
   Fifth_Sanctum.vcxproj -> C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Debug\Fifth_Sanctum.exe
