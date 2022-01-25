@@ -1,0 +1,19 @@
+﻿  Enemy.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(5,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Engine.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Engine.h(8,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  GameState.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\States.h(6,10): fatal error C1083: Cannot open include file: 'SDL_mixer.h': No such file or directory
+  Main.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Main.cpp(11,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Missile.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Player.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Player.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  StateManager.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\States.h(6,10): fatal error C1083: Cannot open include file: 'SDL_mixer.h': No such file or directory
+  States.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\States.h(6,10): fatal error C1083: Cannot open include file: 'SDL_mixer.h': No such file or directory
+  Timer.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Timer.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Generating Code...

@@ -48,7 +48,7 @@ void GameState::Update()
 	{
 		Mix_PlayChannel(-1, m_sfx["boom"], 0);
 	}
-	if (Engine::Instance().KeyDown(SDL_SCANCODE_F)) // Enter.
+	if (Engine::Instance().KeyDown(SDL_SCANCODE_SPACE)) // Enter.
 	{
 		if (!firing)
 		{
