@@ -1,5 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Fifth_Sanctum.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  GameState.cpp
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5,1): warning C4005: 'MOVESPEED': macro redefinition
-C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(6): message : see previous definition of 'MOVESPEED'
+  Enemy.cpp
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(8,1): warning C4005: 'MOVESPEED': macro redefinition
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5): message : see previous definition of 'MOVESPEED'
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.cpp(82,33): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.cpp(83,33): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   Fifth_Sanctum.vcxproj -> C:\Users\Akram\Documents\Winter2022\GAME1014\Fifth-Sanctum\M1 First Playable\Debug\Fifth_Sanctum.exe

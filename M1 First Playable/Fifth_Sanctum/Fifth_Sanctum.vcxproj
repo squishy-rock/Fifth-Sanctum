@@ -170,6 +170,7 @@
   <ItemGroup>
     <Image Include="BG1.png" />
     <Image Include="Enemies.png" />
+    <Image Include="ghost.png" />
     <Image Include="Human.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

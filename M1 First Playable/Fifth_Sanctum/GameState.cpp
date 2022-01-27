@@ -14,10 +14,12 @@ void GameState::Enter()
 	g_pBGTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "BG1.png");
 	g_BG1 = { 0, 0, 1024, 768 };
 	g_pPlayerHumanTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Human.png");
+	g_pEnemyTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "ghost.png");
 	g_pPlayerWeaponTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Enemies.png");
 	g_player = new Player(100, HEIGHT/2);
 	missileDirection = D;
 	g_playerFire.reserve(4);
+	g_enemy.reserve(4);
 	// Load music sfx, add them to map.
 	m_sfx.emplace("shot", Mix_LoadWAV("aud/GunShot5.wav"));
 	m_sfx.emplace("boom", Mix_LoadWAV("aud/boom.wav"));
@@ -27,11 +29,33 @@ void GameState::Enter()
 	//Mix_PlayMusic(m_sounds["track"], -1);
 
 	// Play backGround music
-	Mix_PlayChannel(-1, m_sfx["BGM1"], 0);
+	Mix_PlayChannel(-1, m_sfx["BGM1"], -1);
+
+	//g_enemy.push_back(new Enemy(100 + 100));  // Instead of 68 we could add (g_dst.w/2).
+	//g_playerFire.shrink_to_fit();
+	//
+	//g_enemy[0]->setDestination(g_player->m_dst);
+
+	timerEnemySpawn = new Timer(2000);
 }
 
 void GameState::Update()
 {
+	timerEnemySpawn->update();
+	if (g_enemy.size() < 3)
+	{
+		if (timerEnemySpawn->getSpawn())
+		{
+			timerEnemySpawn->resetSpawn();
+			g_enemy.push_back(new Enemy(100 + 100));  // Instead of 68 we could add (g_dst.w/2).
+			g_playerFire.shrink_to_fit();
+		}
+	}
+	for (unsigned i = 0; i < g_enemy.size(); i++)
+	{
+		g_enemy[i]->setDestination(g_player->m_dst);
+	}
+
 	if (Engine::Instance().KeyDown(SDL_SCANCODE_P))
 	{
 		cout << "Change to PauseState" << endl;
@@ -68,6 +92,28 @@ void GameState::Update()
 		firing = false;
 	}
 
+	for (unsigned i = 0; i < g_playerFire.size(); i++) // For each missile.
+	{
+
+		for (unsigned j = 0; j < g_enemy.size(); j++)
+		{
+			if (SDL_HasIntersection(&g_playerFire[i]->m_dst, &g_enemy[j]->m_dst)) // Collision check. AABB.
+			{
+				/*Mix_PlayChannel(-1, g_pExplosion, 0)*/;
+				// Deallocate missile and enemy.
+				delete g_playerFire[i]; // Deallocates Missile through pointer.
+				g_playerFire[i] = nullptr; // Ensures no dangling pointer.
+				g_playerFire.erase(g_playerFire.begin() + i); // Erase element and resize array.
+				g_playerFire.shrink_to_fit();
+				delete g_enemy[j]; // Deallocates Enemy through pointer.
+				g_enemy[j] = nullptr; // Ensures no dangling pointer.
+				g_enemy.erase(g_enemy.begin() + j); // Erase element and resize array.
+				g_enemy.shrink_to_fit();
+				
+				break;
+			}
+		}
+	}
 
 	switch (g_player->m_state)
 	{
@@ -184,6 +230,15 @@ void GameState::Update()
 		break;
 	}
 	g_player->Update();
+
+	//g_enemy[0]->setDestination(g_player->m_dst);
+
+	for (unsigned i = 0; i < g_enemy.size(); i++)
+	{
+		g_enemy[i]->Update();
+		// g_missiles.at(i)->Update();
+	}
+	
 	//cout << "Updating game..." << endl;
 
 	for (unsigned i = 0; i < g_playerFire.size(); i++)
@@ -226,6 +281,13 @@ void GameState::Render()
 		SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pPlayerWeaponTexture,
 			&(g_playerFire[i]->m_src), &(g_playerFire[i]->m_dst));
 	}
+
+	for (unsigned i = 0; i < g_enemy.size(); i++)
+	{
+		SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pEnemyTexture,
+			&(g_enemy[i]->m_src), &(g_enemy[i]->m_dst));
+	}
+
 	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pPlayerHumanTexture, &g_player->m_src, &g_player->m_dst);
 	// This code below prevents SDL_RenderPresent from running twice in one frame.
 	if (dynamic_cast<GameState*>(STMA::GetStates().back())) // If current state is GameState.
@@ -243,9 +305,18 @@ void GameState::Exit()
 	}
 	g_playerFire.clear(); // Removes all elements. Size = 0.
 	g_playerFire.shrink_to_fit(); // Sets capacity to size.
+	for (unsigned i = 0; i < g_enemy.size(); i++)
+	{
+		delete g_enemy[i]; // Deallocates Missile through pointer.
+		g_enemy[i] = nullptr; // Ensures no dangling pointer.
+	}
+	g_enemy.clear(); // Removes all elements. Size = 0.
+	g_enemy.shrink_to_fit(); // Sets capacity to size.
+	
 	Mix_FreeMusic(m_sounds["track"]);
 	Mix_FreeChunk(m_sfx["shot"]);
 	Mix_FreeChunk(m_sfx["boom"]);
+	Mix_FreeChunk(m_sfx["BGM1"]);
 	SDL_DestroyTexture(g_pBGTexture);
 	SDL_DestroyTexture(g_pPlayerHumanTexture);
 }

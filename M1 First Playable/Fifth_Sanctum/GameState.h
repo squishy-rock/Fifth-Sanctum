@@ -15,16 +15,20 @@ private: // Private properties.
 	SDL_Rect g_BG1;
 	SDL_Texture* g_pBGTexture; // For background.
 	SDL_Texture* g_pPlayerHumanTexture;
+	SDL_Texture* g_pEnemyTexture;
 	SDL_Texture* g_pPlayerWeaponTexture;
 	Player* g_player;
 	vector<Missile*> g_playerFire;
 	stateDir missileDirection;
 
-	//Mix_Chunk* g_pMissile; // death.wav
+	vector<Enemy*> g_enemy;
+	stateDir enemyDir;
+	vector<Missile*> g_enemyMissiles;
 
 	SDL_Event event;
 
 	bool firing;
+	Timer* timerEnemySpawn;
 public:
 	GameState();
 	virtual void Enter();
@@ -32,6 +36,8 @@ public:
 	virtual void Render();
 	virtual void Exit();
 	virtual void Resume();
+
+	
 };
 
 #endif
