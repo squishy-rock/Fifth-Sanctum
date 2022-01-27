@@ -2,7 +2,7 @@
 
 
 Player::Player(int x, int y) :m_src({ 0,0,32,32 }), m_frameCtr(0), m_frameMax(5),
-m_spriteIdx(0), m_spriteMin(0), m_spriteMax(1), m_state(IDLEN) // Initializers happen before body.
+m_spriteIdx(0), m_spriteMin(0), m_spriteMax(1), m_state(IDLE) // Initializers happen before body.
 { // Body considered assignment not initialization.
 	m_dst = { x,y,m_src.w * 2,m_src.h * 2 };
 	m_spriteIdx = m_spriteMin;
@@ -24,6 +24,18 @@ void Player::Update()
 	}
 	// Move.
 	// m_dst.y -= MOVESPEED;
+	if (m_state == MOVED && m_dst.y < HEIGHT - 32 * 2) {
+		m_dst.y += SPEED;
+	}
+	else if (m_state == MOVEU && m_dst.y > 0) {
+		m_dst.y -= SPEED;
+	}
+	else if (m_state == MOVEL && m_dst.x > 0) {
+		m_dst.x -= SPEED;
+	}
+	else if (m_state == MOVER && m_dst.x < WIDTH - 32 * 2) {
+		m_dst.x += SPEED;
+	}
 }
 
 void Player::SetAnimation(state s, unsigned short min, unsigned short max)

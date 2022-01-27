@@ -20,7 +20,7 @@ private: // Private properties.
 	vector<Missile*> g_playerFire;
 	stateDir missileDirection;
 
-	Mix_Chunk* g_pMissile; // death.wav
+	//Mix_Chunk* g_pMissile; // death.wav
 
 	SDL_Event event;
 

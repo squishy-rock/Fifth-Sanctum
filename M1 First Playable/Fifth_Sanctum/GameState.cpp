@@ -16,16 +16,18 @@ void GameState::Enter()
 	g_pPlayerHumanTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Human.png");
 	g_pPlayerWeaponTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Enemies.png");
 	g_player = new Player(100, HEIGHT/2);
-
+	missileDirection = D;
 	g_playerFire.reserve(4);
 	// Load music sfx, add them to map.
 	m_sfx.emplace("shot", Mix_LoadWAV("aud/GunShot5.wav"));
 	m_sfx.emplace("boom", Mix_LoadWAV("aud/boom.wav"));
+	m_sfx.emplace("BGM1", Mix_LoadWAV("aud/BGMusic1.wav"));
 	// Load music track, andd it to map, and play it.
-	m_sounds.emplace("track", Mix_LoadMUS("aud/BackGround1.mp3"));
-	Mix_PlayMusic(m_sounds["track"], -1);
+	//m_sounds.emplace("track", Mix_LoadMUS("aud/BackGround1.mp3"));
+	//Mix_PlayMusic(m_sounds["track"], -1);
 
-	g_pMissile = Mix_LoadWAV("aud/GunShot5.wav");
+	// Play backGround music
+	Mix_PlayChannel(-1, m_sfx["BGM1"], 0);
 }
 
 void GameState::Update()
@@ -35,6 +37,7 @@ void GameState::Update()
 		cout << "Change to PauseState" << endl;
 		// Pause the music track.
 		Mix_PauseMusic();
+		Mix_Pause(-1);
 		STMA::PushState(new PauseState());
 	}
 
@@ -68,7 +71,7 @@ void GameState::Update()
 
 	switch (g_player->m_state)
 	{
-	case IDLEN:
+	case IDLE:
 		// Transition to move animation.
 		if (Engine::Instance().KeyDown(SDL_SCANCODE_W))
 		{
@@ -95,7 +98,7 @@ void GameState::Update()
 		// Transition to idle animation.
 		if (!Engine::Instance().KeyDown(SDL_SCANCODE_W) && !Engine::Instance().KeyDown(SDL_SCANCODE_S) && !Engine::Instance().KeyDown(SDL_SCANCODE_A) && !Engine::Instance().KeyDown(SDL_SCANCODE_D))
 		{
-			g_player->SetAnimation(IDLEN, 0, 1);
+			g_player->SetAnimation(IDLE, 0, 1);
 		}
 		else if (Engine::Instance().KeyDown(SDL_SCANCODE_S))
 		{
@@ -117,7 +120,7 @@ void GameState::Update()
 		// Transition to idle animation.
 		if (!Engine::Instance().KeyDown(SDL_SCANCODE_W) && !Engine::Instance().KeyDown(SDL_SCANCODE_S) && !Engine::Instance().KeyDown(SDL_SCANCODE_A) && !Engine::Instance().KeyDown(SDL_SCANCODE_D))
 		{
-			g_player->SetAnimation(IDLEN, 0, 1);
+			g_player->SetAnimation(IDLE, 0, 1);
 		}
 		else if (Engine::Instance().KeyDown(SDL_SCANCODE_W))
 		{
@@ -139,7 +142,7 @@ void GameState::Update()
 		// Transition to idle animation.
 		if (!Engine::Instance().KeyDown(SDL_SCANCODE_W) && !Engine::Instance().KeyDown(SDL_SCANCODE_S) && !Engine::Instance().KeyDown(SDL_SCANCODE_A) && !Engine::Instance().KeyDown(SDL_SCANCODE_D))
 		{
-			g_player->SetAnimation(IDLEN, 0, 1);
+			g_player->SetAnimation(IDLE, 0, 1);
 		}
 		else if (Engine::Instance().KeyDown(SDL_SCANCODE_W))
 		{
@@ -161,7 +164,7 @@ void GameState::Update()
 		// Transition to idle animation.
 		if (!Engine::Instance().KeyDown(SDL_SCANCODE_W) && !Engine::Instance().KeyDown(SDL_SCANCODE_S) && !Engine::Instance().KeyDown(SDL_SCANCODE_A) && !Engine::Instance().KeyDown(SDL_SCANCODE_D))
 		{
-			g_player->SetAnimation(IDLEN, 0, 1);
+			g_player->SetAnimation(IDLE, 0, 1);
 		}
 		else if (Engine::Instance().KeyDown(SDL_SCANCODE_W))
 		{
@@ -182,19 +185,6 @@ void GameState::Update()
 	}
 	g_player->Update();
 	//cout << "Updating game..." << endl;
-
-	if (Engine::Instance().KeyDown(SDL_SCANCODE_S) && g_player->m_dst.y < HEIGHT - 32 * 2) {
-		g_player->m_dst.y += SPEED;
-	}
-	if (Engine::Instance().KeyDown(SDL_SCANCODE_W) && g_player->m_dst.y > 0) {
-		g_player->m_dst.y -= SPEED;
-	}
-	if (Engine::Instance().KeyDown(SDL_SCANCODE_A) && g_player->m_dst.x > 0) {
-		g_player->m_dst.x -= SPEED;
-	}
-	if (Engine::Instance().KeyDown(SDL_SCANCODE_D) && g_player->m_dst.x < WIDTH - 32 * 2) {
-		g_player->m_dst.x += SPEED;
-	}
 
 	for (unsigned i = 0; i < g_playerFire.size(); i++)
 	{
@@ -256,7 +246,6 @@ void GameState::Exit()
 	Mix_FreeMusic(m_sounds["track"]);
 	Mix_FreeChunk(m_sfx["shot"]);
 	Mix_FreeChunk(m_sfx["boom"]);
-	Mix_FreeChunk(g_pMissile);
 	SDL_DestroyTexture(g_pBGTexture);
 	SDL_DestroyTexture(g_pPlayerHumanTexture);
 }
@@ -266,4 +255,5 @@ void GameState::Resume()
 	cout << "Resuming GameState..." << endl;
 	// Resume music track.
 	Mix_ResumeMusic();
+	Mix_Resume(-1);
 }

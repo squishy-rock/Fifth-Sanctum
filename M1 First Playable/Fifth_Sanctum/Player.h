@@ -2,7 +2,8 @@
 #ifndef _PLAYER_H_ // Portable. Oldschool. Better standard.
 #define _PLAYER_H_
 #include <SDL.h>
-enum state { IDLEN, MOVER, MOVEL, MOVEU, MOVED };
+#include "Engine.h"
+enum state { IDLE, MOVER, MOVEL, MOVEU, MOVED };
 
 
 class Player

@@ -165,6 +165,7 @@
     <Media Include="aud\boom.wav" />
     <Media Include="aud\GunShot5.wav" />
     <Media Include="aud\Thundercats.mp3" />
+    <Media Include="BGMusic1.wav" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG1.png" />
