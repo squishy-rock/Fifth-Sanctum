@@ -48,6 +48,16 @@ PauseState::PauseState(){}
 void PauseState::Enter()
 {
 	cout << "Entering PauseState..." << endl;
+	g_pPauseFont = TTF_OpenFont("Curlz.ttf", 60);
+	g_pPauseSurface = TTF_RenderText_Solid(g_pPauseFont, "Paused! Press R to resume.", { 0,0,255, 255 });
+	g_pPauseTexture = SDL_CreateTextureFromSurface(Engine::Instance().GetRenderer(), g_pPauseSurface);
+	g_pPauseRect.x = 225;
+	g_pPauseRect.y = 128;
+	g_pPauseRect.w = 300;
+	g_pPauseRect.h = 300;
+	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pPauseTexture, NULL, &g_pPauseRect);
+	SDL_RenderFillRect(Engine::Instance().GetRenderer(), &g_pPauseRect);
+
 }
 
 void PauseState::Update()
@@ -65,12 +75,15 @@ void PauseState::Render()
 	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 255, 0, 0, 128);
 	SDL_Rect rect = { 255, 128, 512, 512 };
 	SDL_RenderFillRect(Engine::Instance().GetRenderer(), &rect);
+	
 	State::Render();
 }
 
 void PauseState::Exit()
 {
 	cout << "Exiting PauseState..." << endl;
+	SDL_FreeSurface(g_pPauseSurface);
+	SDL_DestroyTexture(g_pPauseTexture);
 }
 
 //GameState::GameState(){}

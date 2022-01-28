@@ -5,6 +5,7 @@
 #include <string>
 #include "SDL_mixer.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include "Player.h"
 #include "Missile.h"
 #include <vector>
@@ -43,6 +44,11 @@ public:
 
 class PauseState : public State
 {
+private:
+	SDL_Texture* g_pPauseTexture;
+	SDL_Surface* g_pPauseSurface;
+	SDL_Rect g_pPauseRect;
+	TTF_Font* g_pPauseFont;
 public:
 	PauseState();
 	virtual void Enter();

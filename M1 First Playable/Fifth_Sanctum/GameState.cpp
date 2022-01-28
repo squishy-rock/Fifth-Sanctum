@@ -16,7 +16,7 @@ void GameState::Enter()
 	g_pPlayerHumanTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Human.png");
 	g_pEnemyTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "ghost.png");
 	g_pPlayerWeaponTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Enemies.png");
-	g_player = new Player(100, HEIGHT/2);
+	g_player = new Player(100, HEIGHT / 2);
 	missileDirection = D;
 	g_playerFire.reserve(4);
 	g_enemy.reserve(4);
@@ -37,6 +37,16 @@ void GameState::Enter()
 	//g_enemy[0]->setDestination(g_player->m_dst);
 
 	timerEnemySpawn = new Timer(2000);
+
+	//Get font and put tutorial message and screen
+	font = TTF_OpenFont("Curlz.TTF", 60);
+	color = { 255, 255,255 };
+	g_pTutorialSurface = TTF_RenderText_Solid(font, "Use WASD to move, spacebar to shoot, and P to Pause.", color);
+	g_pTutorialTexture = SDL_CreateTextureFromSurface(Engine::Instance().GetRenderer(), g_pTutorialSurface);
+	g_TutorialBox = { 50,50, 500, 150 };
+	SDL_FreeSurface(g_pTutorialSurface);
+	SDL_DestroyTexture(g_pTutorialTexture);
+	TTF_CloseFont(font);
 }
 
 void GameState::Update()
@@ -51,6 +61,7 @@ void GameState::Update()
 			g_playerFire.shrink_to_fit();
 		}
 	}
+
 	for (unsigned i = 0; i < g_enemy.size(); i++)
 	{
 		g_enemy[i]->setDestination(g_player->m_dst);
@@ -288,6 +299,7 @@ void GameState::Render()
 			&(g_enemy[i]->m_src), &(g_enemy[i]->m_dst));
 	}
 
+	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pTutorialTexture, NULL, &g_TutorialBox);
 	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pPlayerHumanTexture, &g_player->m_src, &g_player->m_dst);
 	// This code below prevents SDL_RenderPresent from running twice in one frame.
 	if (dynamic_cast<GameState*>(STMA::GetStates().back())) // If current state is GameState.
@@ -317,6 +329,7 @@ void GameState::Exit()
 	Mix_FreeChunk(m_sfx["shot"]);
 	Mix_FreeChunk(m_sfx["boom"]);
 	Mix_FreeChunk(m_sfx["BGM1"]);
+	
 	SDL_DestroyTexture(g_pBGTexture);
 	SDL_DestroyTexture(g_pPlayerHumanTexture);
 }
