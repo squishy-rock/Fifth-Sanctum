@@ -23,13 +23,13 @@ void GameState::Enter()
 	// Load music sfx, add them to map.
 	m_sfx.emplace("shot", Mix_LoadWAV("aud/GunShot5.wav"));
 	m_sfx.emplace("boom", Mix_LoadWAV("aud/boom.wav"));
-	m_sfx.emplace("BGM1", Mix_LoadWAV("aud/BGMusic1.wav"));
 	// Load music track, andd it to map, and play it.
+	m_sounds.emplace("mainBGM", Mix_LoadMUS("aud/mainBGM.mp3"));
 	//m_sounds.emplace("track", Mix_LoadMUS("aud/BackGround1.mp3"));
-	//Mix_PlayMusic(m_sounds["track"], -1);
+	Mix_PlayMusic(m_sounds["mainBGM"], -1);
 
 	// Play backGround music
-	Mix_PlayChannel(-1, m_sfx["BGM1"], -1);
+	/*Mix_PlayChannel(-1, m_sfx["BGM1"], -1);*/
 
 	//g_enemy.push_back(new Enemy(100 + 100));  // Instead of 68 we could add (g_dst.w/2).
 	//g_playerFire.shrink_to_fit();
@@ -313,10 +313,10 @@ void GameState::Exit()
 	g_enemy.clear(); // Removes all elements. Size = 0.
 	g_enemy.shrink_to_fit(); // Sets capacity to size.
 	
-	Mix_FreeMusic(m_sounds["track"]);
+	Mix_FreeMusic(m_sounds["track"]); 
+	Mix_FreeMusic(m_sounds["mainBGM"]);
 	Mix_FreeChunk(m_sfx["shot"]);
 	Mix_FreeChunk(m_sfx["boom"]);
-	Mix_FreeChunk(m_sfx["BGM1"]);
 	SDL_DestroyTexture(g_pBGTexture);
 	SDL_DestroyTexture(g_pPlayerHumanTexture);
 }

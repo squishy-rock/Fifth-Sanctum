@@ -2,4 +2,8 @@
   Engine.cpp
 C:\Users\serim\source\repos\Fifth-Sanctum\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5,1): warning C4005: 'MOVESPEED': macro redefinition
 C:\Users\serim\source\repos\Fifth-Sanctum\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(8): message : see previous definition of 'MOVESPEED'
+  GameState.cpp
+C:\Users\serim\source\repos\Fifth-Sanctum\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Missile.h(5,1): warning C4005: 'MOVESPEED': macro redefinition
+C:\Users\serim\source\repos\Fifth-Sanctum\Fifth-Sanctum\M1 First Playable\Fifth_Sanctum\Enemy.h(8): message : see previous definition of 'MOVESPEED'
+  Generating Code...
   Fifth_Sanctum.vcxproj -> C:\Users\serim\source\repos\Fifth-Sanctum\Fifth-Sanctum\M1 First Playable\Debug\Fifth_Sanctum.exe

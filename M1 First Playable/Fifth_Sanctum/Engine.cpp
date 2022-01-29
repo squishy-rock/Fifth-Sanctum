@@ -29,7 +29,8 @@ int Engine::Init(const char* title, int xPos, int yPos, int width, int height, i
 					// Configure mixer.
 					Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048);
 					Mix_AllocateChannels(16);
-					
+					Mix_VolumeMusic(16);
+					Mix_Volume(-1, 16);
 				}
 			}
 			else return false; // Renderer creation failed.
