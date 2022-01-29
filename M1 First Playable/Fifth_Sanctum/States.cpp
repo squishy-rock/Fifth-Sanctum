@@ -16,8 +16,9 @@ void TitleState::Enter()
 {
 	cout << "Entering TitleState..." << endl;
 	// Load music track, add it to map, and play it.
-	m_sounds.emplace("track", Mix_LoadMUS("aud/Thundercats.mp3"));
-	Mix_PlayMusic(m_sounds["track"], -1);
+	m_sounds.emplace("title", Mix_LoadMUS("aud/titleBGM.mp3"));
+	Mix_PlayMusic(m_sounds["title"], -1);
+	title = IMG_LoadTexture(Engine::Instance().GetRenderer(), "title.png");
 }
 
 void TitleState::Update()
@@ -31,8 +32,9 @@ void TitleState::Update()
 
 void TitleState::Render()
 {
-	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 0, 0, 255, 255);
+	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 0, 0, 0, 255);
 	SDL_RenderClear(Engine::Instance().GetRenderer());
+	SDL_RenderCopy(Engine::Instance().GetRenderer(), title, NULL, NULL);
 	State::Render();
 }
 
@@ -41,6 +43,7 @@ void TitleState::Exit()
 	cout << "Exiting TitleState..." << endl;
 	// call Mix_FreeMusic on your music track.
 	Mix_FreeMusic(m_sounds["track"]);
+	SDL_DestroyTexture(title);
 }
 
 PauseState::PauseState(){}

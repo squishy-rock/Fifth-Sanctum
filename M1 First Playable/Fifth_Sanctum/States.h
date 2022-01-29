@@ -32,6 +32,7 @@ class TitleState : public State
 private: // Private properties.
 	// map for music track goes here.
 	map<string, Mix_Music*> m_sounds;
+	SDL_Texture* title;
 	
 public:
 	TitleState();

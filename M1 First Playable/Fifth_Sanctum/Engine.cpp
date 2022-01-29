@@ -40,7 +40,7 @@ int Engine::Init(const char* title, int xPos, int yPos, int width, int height, i
 	m_fps = (Uint32)round(1.0 / (double)FPS * 1000); // Converts FPS into milliseconds, e.g. 16.67
 	m_keystates = SDL_GetKeyboardState(nullptr);
 	//STMA::ChangeState(new TitleState());
-	STMA::ChangeState(new GameState());
+	STMA::ChangeState(new TitleState());
 	cout << "Initialization successful!" << endl;
 	m_running = true;
 	return true;
