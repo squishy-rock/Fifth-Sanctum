@@ -37,6 +37,7 @@ void GameState::Enter()
 	//g_enemy[0]->setDestination(g_player->m_dst);
 
 	timerEnemySpawn = new Timer(2000);
+	
 }
 
 void GameState::Update()
@@ -272,23 +273,30 @@ void GameState::Update()
 
 void GameState::Render()
 {
-	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 0, 255, 0, 255);
+
+	//SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 0, 255, 0, 255);
 	SDL_RenderClear(Engine::Instance().GetRenderer());
+
+	// BackGround Rendering
 	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pBGTexture, NULL, &g_BG1);
 	
+	// Player missile Rendering
 	for (unsigned i = 0; i < g_playerFire.size(); i++)
 	{
 		SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pPlayerWeaponTexture,
 			&(g_playerFire[i]->m_src), &(g_playerFire[i]->m_dst));
 	}
 
+	// Enemy Rendering
 	for (unsigned i = 0; i < g_enemy.size(); i++)
 	{
 		SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pEnemyTexture,
 			&(g_enemy[i]->m_src), &(g_enemy[i]->m_dst));
 	}
 
+	// Player Rendering
 	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pPlayerHumanTexture, &g_player->m_src, &g_player->m_dst);
+
 	// This code below prevents SDL_RenderPresent from running twice in one frame.
 	if (dynamic_cast<GameState*>(STMA::GetStates().back())) // If current state is GameState.
 		State::Render();

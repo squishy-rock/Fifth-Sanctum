@@ -15,6 +15,7 @@ private:
 		m_spriteIdx, // Which sprite to display.
 		m_spriteMin, // Starting sprite index of animation.
 		m_spriteMax; // Number of sprites in the animation.
+	SDL_Rect playableArea;
 public:
 	state m_state; // State control value for animation.
 	SDL_Rect m_src, m_dst;

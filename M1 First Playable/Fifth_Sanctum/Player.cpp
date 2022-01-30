@@ -7,6 +7,7 @@ m_spriteIdx(0), m_spriteMin(0), m_spriteMax(1), m_state(IDLE) // Initializers ha
 	m_dst = { x,y,m_src.w * 2,m_src.h * 2 };
 	m_spriteIdx = m_spriteMin;
 	colume = 0;
+	playableArea = { 100, 265, 830, 400 };
 }
 
 void Player::Update()
@@ -24,16 +25,16 @@ void Player::Update()
 	}
 	// Move.
 	// m_dst.y -= MOVESPEED;
-	if (m_state == MOVED && m_dst.y < HEIGHT - 32 * 2) {
+	if (m_state == MOVED && m_dst.y < playableArea.y + playableArea.h - 32 * 2) {
 		m_dst.y += SPEED;
 	}
-	else if (m_state == MOVEU && m_dst.y > 0) {
+	else if (m_state == MOVEU && m_dst.y > playableArea.y - 32 * 2) {
 		m_dst.y -= SPEED;
 	}
-	else if (m_state == MOVEL && m_dst.x > 0) {
+	else if (m_state == MOVEL && m_dst.x > playableArea.x) {
 		m_dst.x -= SPEED;
 	}
-	else if (m_state == MOVER && m_dst.x < WIDTH - 32 * 2) {
+	else if (m_state == MOVER && m_dst.x < playableArea.x + playableArea.w - 32 * 2) {
 		m_dst.x += SPEED;
 	}
 }

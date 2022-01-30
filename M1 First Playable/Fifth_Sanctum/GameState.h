@@ -29,6 +29,7 @@ private: // Private properties.
 
 	bool firing;
 	Timer* timerEnemySpawn;
+
 public:
 	GameState();
 	virtual void Enter();
