@@ -39,7 +39,9 @@ void GameState::Enter()
 	//g_enemy[0]->setDestination(g_player->m_dst);
 
 	timerEnemySpawn = new Timer(3000);
-	SDL_Rect playableArea = { 100, 265, 830, 400 };
+
+	// Making vector of random location for enemy spawn
+	playableArea = { 100, 265, 830, 400 };
 	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x, playableArea.y});
 	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x + playableArea.w - 64, playableArea.y });
 	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x, playableArea.y + playableArea.h - 64 });
@@ -256,11 +258,26 @@ void GameState::Update()
 		// g_missiles.at(i)->Update();
 	}
 
+	//// Deallocate missiles that go off screen.
+	//for (unsigned i = 0; i < g_playerFire.size(); i++)
+	//{
+	//	// cout << g_missiles[i]->m_dst.y << " and " << -g_missiles[i]->m_dst.h << endl;
+	//	if (g_playerFire[i]->m_dst.y <= -g_playerFire[i]->m_dst.h || g_playerFire[i]->m_dst.y > HEIGHT || g_playerFire[i]->m_dst.x <= -g_playerFire[i]->m_dst.w || g_playerFire[i]->m_dst.x > WIDTH) // -g_missiles[i]->m_dst.h means the entire object off screen
+	//	{
+	//		delete g_playerFire[i]; // Deallocates Missile through pointer.
+	//		g_playerFire[i] = nullptr; // Ensures no dangling pointer.
+	//		g_playerFire.erase(g_playerFire.begin() + i); // Erase element and resize array.
+	//		g_playerFire.shrink_to_fit();
+	//		// Options:
+	//		break;
+	//	}
+	//}
+	
 	// Deallocate missiles that go off screen.
 	for (unsigned i = 0; i < g_playerFire.size(); i++)
 	{
 		// cout << g_missiles[i]->m_dst.y << " and " << -g_missiles[i]->m_dst.h << endl;
-		if (g_playerFire[i]->m_dst.y <= -g_playerFire[i]->m_dst.h || g_playerFire[i]->m_dst.y > HEIGHT || g_playerFire[i]->m_dst.x <= -g_playerFire[i]->m_dst.w || g_playerFire[i]->m_dst.x > WIDTH) // -g_missiles[i]->m_dst.h means the entire object off screen
+		if (g_playerFire[i]->m_dst.y <= playableArea.y || g_playerFire[i]->m_dst.y > playableArea.y + playableArea.h || g_playerFire[i]->m_dst.x <= playableArea.x || g_playerFire[i]->m_dst.x > playableArea.x + playableArea.w) // -g_missiles[i]->m_dst.h means the entire object off screen
 		{
 			delete g_playerFire[i]; // Deallocates Missile through pointer.
 			g_playerFire[i] = nullptr; // Ensures no dangling pointer.
@@ -270,6 +287,7 @@ void GameState::Update()
 			break;
 		}
 	}
+
 	// Pause 'X' key and change state to new EndState.
 	if (Engine::Instance().KeyDown(SDL_SCANCODE_X))
 	{

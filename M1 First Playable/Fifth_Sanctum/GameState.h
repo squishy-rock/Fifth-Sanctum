@@ -34,6 +34,7 @@ private: // Private properties.
 	Timer* timerEnemySpawn;
 
 	vector<SDL_Point*> g_pEnemySpawnLocation;
+	SDL_Rect playableArea;
 
 public:
 	GameState();
