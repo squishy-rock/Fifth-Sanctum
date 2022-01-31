@@ -13,6 +13,8 @@ void GameState::Enter()
 	// Load sprites.
 	g_pBGTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "BG1.png");
 	g_BG1 = { 0, 0, 1024, 768 };
+	g_pInstructionTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "GSInstruction.png");
+	g_Instruct = { 0, HEIGHT - 50, 1024, 32 };
 	g_pPlayerHumanTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Human.png");
 	g_pEnemyTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "ghost.png");
 	g_pPlayerWeaponTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "Enemies.png");
@@ -36,8 +38,12 @@ void GameState::Enter()
 	//
 	//g_enemy[0]->setDestination(g_player->m_dst);
 
-	timerEnemySpawn = new Timer(2000);
-	
+	timerEnemySpawn = new Timer(3000);
+	SDL_Rect playableArea = { 100, 265, 830, 400 };
+	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x, playableArea.y});
+	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x + playableArea.w - 64, playableArea.y });
+	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x, playableArea.y + playableArea.h - 64 });
+	g_pEnemySpawnLocation.push_back(new SDL_Point{ playableArea.x + playableArea.w - 64, playableArea.y + playableArea.h - 64});
 }
 
 void GameState::Update()
@@ -47,8 +53,10 @@ void GameState::Update()
 	{
 		if (timerEnemySpawn->getSpawn())
 		{
+			int randomNum = rand() % 4;
 			timerEnemySpawn->resetSpawn();
-			g_enemy.push_back(new Enemy(100 + 100));  // Instead of 68 we could add (g_dst.w/2).
+			//g_enemy.push_back(new Enemy(100 , 100));  // Instead of 68 we could add (g_dst.w/2).
+			g_enemy.push_back(new Enemy(g_pEnemySpawnLocation[randomNum]->x, g_pEnemySpawnLocation[randomNum]->y));
 			g_playerFire.shrink_to_fit();
 		}
 	}
@@ -279,6 +287,9 @@ void GameState::Render()
 
 	// BackGround Rendering
 	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pBGTexture, NULL, &g_BG1);
+
+	// Instruction Rendering
+	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pInstructionTexture, NULL, &g_Instruct);
 	
 	// Player missile Rendering
 	for (unsigned i = 0; i < g_playerFire.size(); i++)
@@ -327,6 +338,7 @@ void GameState::Exit()
 	Mix_FreeChunk(m_sfx["boom"]);
 	SDL_DestroyTexture(g_pBGTexture);
 	SDL_DestroyTexture(g_pPlayerHumanTexture);
+	SDL_DestroyTexture(g_pInstructionTexture);
 }
 
 void GameState::Resume()

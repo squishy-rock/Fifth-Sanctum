@@ -19,6 +19,8 @@ void TitleState::Enter()
 	m_sounds.emplace("title", Mix_LoadMUS("aud/titleBGM.mp3"));
 	Mix_PlayMusic(m_sounds["title"], -1);
 	title = IMG_LoadTexture(Engine::Instance().GetRenderer(), "title.png");
+	g_pInstructionTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "TSInstruction.png");
+	g_Instruct = { 0, HEIGHT/2, 1024, 32 };
 }
 
 void TitleState::Update()
@@ -35,6 +37,7 @@ void TitleState::Render()
 	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 0, 0, 0, 255);
 	SDL_RenderClear(Engine::Instance().GetRenderer());
 	SDL_RenderCopy(Engine::Instance().GetRenderer(), title, NULL, NULL);
+	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pInstructionTexture, NULL, &g_Instruct);
 	State::Render();
 }
 
@@ -44,6 +47,7 @@ void TitleState::Exit()
 	// call Mix_FreeMusic on your music track.
 	Mix_FreeMusic(m_sounds["track"]);
 	SDL_DestroyTexture(title);
+	SDL_DestroyTexture(g_pInstructionTexture);
 }
 
 PauseState::PauseState(){}
@@ -352,6 +356,8 @@ EndState::EndState(){}
 void EndState::Enter()
 {
 	cout << "Entering EndState..." << endl;
+	g_pInstructionTexture = IMG_LoadTexture(Engine::Instance().GetRenderer(), "ESInstruction.png");
+	g_Instruct = { 0, HEIGHT / 2, 1024, 32 };
 }
 
 void EndState::Update()
@@ -368,11 +374,13 @@ void EndState::Render()
 {
 	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 100, 64, 125, 25);
 	SDL_RenderClear(Engine::Instance().GetRenderer());
+	SDL_RenderCopy(Engine::Instance().GetRenderer(), g_pInstructionTexture, NULL, &g_Instruct);
 	State::Render();
 }
 
 void EndState::Exit()
 {
 	cout << "Exiting EndState..." << endl;
+	SDL_DestroyTexture(g_pInstructionTexture);
 }
 

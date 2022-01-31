@@ -99,5 +99,14 @@
     <Image Include="ghost.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="GSInstruction.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TSInstruction.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ESInstruction.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -17,6 +17,9 @@ private: // Private properties.
 	SDL_Texture* g_pPlayerHumanTexture;
 	SDL_Texture* g_pEnemyTexture;
 	SDL_Texture* g_pPlayerWeaponTexture;
+
+	SDL_Texture* g_pInstructionTexture;
+	SDL_Rect g_Instruct;
 	Player* g_player;
 	vector<Missile*> g_playerFire;
 	stateDir missileDirection;
@@ -29,6 +32,8 @@ private: // Private properties.
 
 	bool firing;
 	Timer* timerEnemySpawn;
+
+	vector<SDL_Point*> g_pEnemySpawnLocation;
 
 public:
 	GameState();

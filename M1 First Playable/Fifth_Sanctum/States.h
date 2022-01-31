@@ -33,7 +33,8 @@ private: // Private properties.
 	// map for music track goes here.
 	map<string, Mix_Music*> m_sounds;
 	SDL_Texture* title;
-	
+	SDL_Texture* g_pInstructionTexture;
+	SDL_Rect g_Instruct;
 public:
 	TitleState();
 	virtual void Enter();
@@ -83,6 +84,9 @@ public:
 // Add EndState here just like the others.
 class EndState : public State
 {
+private:
+	SDL_Texture* g_pInstructionTexture;
+	SDL_Rect g_Instruct;
 public:
 	EndState();
 	virtual void Enter();
