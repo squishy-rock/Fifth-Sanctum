@@ -25,6 +25,7 @@ void PlayScene::draw()
 void PlayScene::update()
 {
 	updateDisplayList();
+
 }
 
 void PlayScene::clean()
@@ -36,62 +37,36 @@ void PlayScene::handleEvents()
 {
 	EventManager::Instance().update();
 
-	// handle player movement with GameController
-	if (SDL_NumJoysticks() > 0)
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
-		if (EventManager::Instance().getGameController(0) != nullptr)
-		{
-			const auto deadZone = 10000;
-			if (EventManager::Instance().getGameController(0)->LEFT_STICK_X > deadZone)
-			{
-				m_pPlayer->setAnimationState(PLAYER_RUN_RIGHT);
-				m_playerFacingRight = true;
-			}
-			else if (EventManager::Instance().getGameController(0)->LEFT_STICK_X < -deadZone)
-			{
-				m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
-				m_playerFacingRight = false;
-			}
-			else
-			{
-				if (m_playerFacingRight)
-				{
-					m_pPlayer->setAnimationState(PLAYER_IDLE_RIGHT);
-				}
-				else
-				{
-					m_pPlayer->setAnimationState(PLAYER_IDLE_LEFT);
-				}
-			}
-		}
+		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(-3.0f, 0.0f);
+		setLastHumanDirection(PLAYER_RUN_LEFT);
+	}
+	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
+	{
+		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(3.0f, 0.0f);
+		setLastHumanDirection(PLAYER_RUN_RIGHT);
 	}
 
-
-	// handle player movement if no Game Controllers found
-	if (SDL_NumJoysticks() < 1)
+	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
 	{
-		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
-		{
-			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
-			m_playerFacingRight = false;
-		}
-		else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
-		{
-			m_pPlayer->setAnimationState(PLAYER_RUN_RIGHT);
-			m_playerFacingRight = true;
-		}
-		else
-		{
-			if (m_playerFacingRight)
-			{
-				m_pPlayer->setAnimationState(PLAYER_IDLE_RIGHT);
-			}
-			else
-			{
-				m_pPlayer->setAnimationState(PLAYER_IDLE_LEFT);
-			}
-		}
+		m_pHuman->setAnimationState(PLAYER_RUN_UP);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, -3.0f);
+		setLastHumanDirection(PLAYER_RUN_UP);
 	}
+	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
+	{
+		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, 3.0f);
+		setLastHumanDirection(PLAYER_RUN_DOWN);
+	}
+	else
+	{
+		m_pHuman->setAnimationState(getLastHumanDirection());
+	}
+
 	
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))
@@ -115,18 +90,13 @@ void PlayScene::start()
 	// Set GUI Title
 	m_guiTitle = "Play Scene";
 	
-	// Plane Sprite
-	m_pPlaneSprite = new Plane();
-	addChild(m_pPlaneSprite);
-
-	// Player Sprite
-	m_pPlayer = new Player();
-	addChild(m_pPlayer);
-	m_playerFacingRight = true;
-
+	// Human Sprite
+	m_pHuman = new Human();
+	addChild(m_pHuman);
+	
 	// Back Button
 	m_pBackButton = new Button("../Assets/textures/backButton.png", "backButton", BACK_BUTTON);
-	m_pBackButton->getTransform()->position = glm::vec2(300.0f, 400.0f);
+	m_pBackButton->getTransform()->position = glm::vec2(300.0f, HEIGHT * 0.9f);
 	m_pBackButton->addEventListener(CLICK, [&]()-> void
 	{
 		m_pBackButton->setActive(false);
@@ -146,7 +116,7 @@ void PlayScene::start()
 
 	// Next Button
 	m_pNextButton = new Button("../Assets/textures/nextButton.png", "nextButton", NEXT_BUTTON);
-	m_pNextButton->getTransform()->position = glm::vec2(500.0f, 400.0f);
+	m_pNextButton->getTransform()->position = glm::vec2(500.0f, HEIGHT * 0.9f);
 	m_pNextButton->addEventListener(CLICK, [&]()-> void
 	{
 		m_pNextButton->setActive(false);
@@ -164,12 +134,6 @@ void PlayScene::start()
 	});
 
 	addChild(m_pNextButton);
-
-	/* Instructions Label */
-	m_pInstructionsLabel = new Label("Press the backtick (`) character to toggle Debug View", "Consolas");
-	m_pInstructionsLabel->getTransform()->position = glm::vec2(Config::SCREEN_WIDTH * 0.5f, 500.0f);
-
-	addChild(m_pInstructionsLabel);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
@@ -201,4 +165,22 @@ void PlayScene::GUI_Function() const
 	}
 	
 	ImGui::End();
+}
+
+void PlayScene::setLastHumanDirection(const PlayerAnimationState new_state)
+{
+	if (new_state == PLAYER_RUN_LEFT)
+		New_state = PLAYER_IDLE_LEFT;
+	if (new_state == PLAYER_RUN_RIGHT)
+		New_state = PLAYER_IDLE_RIGHT;
+	if (new_state == PLAYER_RUN_UP)
+		New_state = PLAYER_IDLE_UP;
+	if (new_state == PLAYER_RUN_DOWN)
+		New_state = PLAYER_IDLE_DOWN;
+
+}
+
+PlayerAnimationState PlayScene::getLastHumanDirection()
+{
+	return New_state;
 }

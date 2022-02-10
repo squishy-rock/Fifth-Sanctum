@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Plane.h"
 #include "Player.h"
+#include "Human.h"
 #include "Button.h"
 #include "Label.h"
 
@@ -20,6 +21,7 @@ public:
 	virtual void clean() override;
 	virtual void handleEvents() override;
 	virtual void start() override;
+
 private:
 	// IMGUI Function
 	void GUI_Function() const;
@@ -29,12 +31,18 @@ private:
 
 	Plane* m_pPlaneSprite;
 	Player* m_pPlayer;
+	Human* m_pHuman;
 	bool m_playerFacingRight;
 
 	// UI Items
 	Button* m_pBackButton;
 	Button* m_pNextButton;
 	Label* m_pInstructionsLabel;
+
+	//Setting last direction
+	void setLastHumanDirection(const PlayerAnimationState new_state);
+	PlayerAnimationState getLastHumanDirection();
+	PlayerAnimationState New_state;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
