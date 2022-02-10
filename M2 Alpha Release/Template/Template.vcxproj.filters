@@ -138,6 +138,9 @@
     <ClCompile Include="..\src\Human.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Ghost.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\StartScene.h">
@@ -282,6 +285,9 @@
       <Filter>IMGUI</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Human.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Ghost.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
   </ItemGroup>

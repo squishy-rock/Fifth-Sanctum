@@ -40,27 +40,31 @@ void PlayScene::handleEvents()
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
 		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(-3.0f, 0.0f);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(-PLAYERSPEED, 0.0f);
 		setLastHumanDirection(PLAYER_RUN_LEFT);
+		m_pGhost->getTransform()->position.x -= PLAYERSPEED;
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 	{
 		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(3.0f, 0.0f);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(PLAYERSPEED, 0.0f);
 		setLastHumanDirection(PLAYER_RUN_RIGHT);
+		m_pGhost->getTransform()->position.x += PLAYERSPEED;
 	}
 
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
 	{
 		m_pHuman->setAnimationState(PLAYER_RUN_UP);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, -3.0f);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, -PLAYERSPEED);
 		setLastHumanDirection(PLAYER_RUN_UP);
+		m_pGhost->getTransform()->position.y -= PLAYERSPEED;
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
 		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, 3.0f);
+		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, PLAYERSPEED);
 		setLastHumanDirection(PLAYER_RUN_DOWN);
+		m_pGhost->getTransform()->position.y += PLAYERSPEED;
 	}
 	else
 	{
@@ -93,7 +97,7 @@ void PlayScene::start()
 	// Human Sprite
 	m_pHuman = new Human();
 	addChild(m_pHuman);
-	
+
 	// Back Button
 	m_pBackButton = new Button("../Assets/textures/backButton.png", "backButton", BACK_BUTTON);
 	m_pBackButton->getTransform()->position = glm::vec2(300.0f, HEIGHT * 0.9f);
@@ -134,6 +138,11 @@ void PlayScene::start()
 	});
 
 	addChild(m_pNextButton);
+
+	// Ghost 
+	m_pGhost = new Ghost();
+	m_pGhost->getTransform()->position = m_pHuman->getTransform()->position;
+	addChild(m_pGhost);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }

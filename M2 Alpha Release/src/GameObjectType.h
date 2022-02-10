@@ -9,6 +9,7 @@ enum GameObjectType {
 	OBSTACLE,
 	SHIP,
 	TARGET,
+	GHOST,
 	PLAYER,
 	HUMAN,
 	PLANE,

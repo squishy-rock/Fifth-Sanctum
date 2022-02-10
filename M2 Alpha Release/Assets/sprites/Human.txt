@@ -1,7 +1,8 @@
 human-idle-down-0 0 0 32 32
 human-idle-left-0 48 0 32 32
 human-idle-up-0 96 0 32 32
-human-idle-right-0 144 0 32 32 0 0 32 32
+human-idle-right-0 144 0 32 32
+human-run-down-0 0 0 32 32
 human-run-down-1 0 48 32 32
 human-run-down-2 0 96 32 32
 human-run-down-3 0 144 32 32

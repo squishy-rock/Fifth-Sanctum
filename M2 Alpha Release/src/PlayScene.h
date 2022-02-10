@@ -6,6 +6,7 @@
 #include "Plane.h"
 #include "Player.h"
 #include "Human.h"
+#include "Ghost.h"
 #include "Button.h"
 #include "Label.h"
 
@@ -32,6 +33,7 @@ private:
 	Plane* m_pPlaneSprite;
 	Player* m_pPlayer;
 	Human* m_pHuman;
+	Ghost* m_pGhost;
 	bool m_playerFacingRight;
 
 	// UI Items
@@ -40,9 +42,9 @@ private:
 	Label* m_pInstructionsLabel;
 
 	//Setting last direction
-	void setLastHumanDirection(const PlayerAnimationState new_state);
 	PlayerAnimationState getLastHumanDirection();
 	PlayerAnimationState New_state;
+	void setLastHumanDirection(const PlayerAnimationState new_state);
 };
 
 #endif /* defined (__PLAY_SCENE__) */
