@@ -17,7 +17,7 @@ int main(int argc, char* args[])
 	AllocConsole();
 	freopen("CON", "w", stdout);
 
-	TheGame::Instance().init("SDLEngine v0.27", 100, 100, WIDTH, HEIGHT, false);
+	TheGame::Instance().init("FIFTH SANCTUM", 100, 100, WIDTH, HEIGHT, false);
 
 	while (TheGame::Instance().isRunning())
 	{

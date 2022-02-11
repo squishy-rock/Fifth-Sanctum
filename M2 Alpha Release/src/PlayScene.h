@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Human.h"
 #include "Ghost.h"
+#include "Level.h"
 #include "Button.h"
 #include "Label.h"
 
@@ -34,6 +35,8 @@ private:
 	Player* m_pPlayer;
 	Human* m_pHuman;
 	Ghost* m_pGhost;
+	Level* m_pLevel;
+
 	bool m_playerFacingRight;
 
 	// UI Items
@@ -41,10 +44,6 @@ private:
 	Button* m_pNextButton;
 	Label* m_pInstructionsLabel;
 
-	//Setting last direction
-	PlayerAnimationState getLastHumanDirection();
-	PlayerAnimationState New_state;
-	void setLastHumanDirection(const PlayerAnimationState new_state);
 };
 
 #endif /* defined (__PLAY_SCENE__) */

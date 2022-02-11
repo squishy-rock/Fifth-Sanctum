@@ -10,6 +10,7 @@ enum GameObjectType {
 	SHIP,
 	TARGET,
 	GHOST,
+	LEVEL,
 	PLAYER,
 	HUMAN,
 	PLANE,

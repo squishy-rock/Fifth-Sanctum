@@ -97,6 +97,57 @@ bool CollisionManager::AABBCheck(GameObject* object1, GameObject* object2)
 	return false;
 }
 
+bool CollisionManager::AABBCheck(SDL_Rect object1, SDL_Rect object2)
+{
+	// prepare relevant variables
+	/*const auto p1 = object1->getTransform()->position;
+	const auto p2 = object2->getTransform()->position;
+	const float p1Width = object1->getWidth();
+	const float p1Height = object1->getHeight();
+	const float p2Width = object2->getWidth();
+	const float p2Height = object2->getHeight();*/
+	SDL_Rect p1 = object1;
+	SDL_Rect p2 = object2;
+	p2.x = p2.x - p2.w / 2;
+	p2.y = p2.y - p2.h / 2;
+	if (
+		p1.x < p2.x + p2.w &&
+		p1.x + p1.w > p2.x &&
+		p1.y < p2.y + p2.h &&
+		p1.y + p1.h > p2.y
+		)
+	{
+		/*if (!object2->getRigidBody()->isColliding) {
+
+			object2->getRigidBody()->isColliding = true;
+
+			switch (object2->getType()) {
+			case TARGET:
+				std::cout << "Collision with Target!" << std::endl;
+				SoundManager::Instance().playSound("yay", 0);
+				break;
+			case OBSTACLE:
+				std::cout << "Collision with Obstacle!" << std::endl;
+				SoundManager::Instance().playSound("yay", 0);
+				break;
+			default:
+
+				break;
+			}
+
+			return true;
+		}*/
+		return true;
+	}
+	else
+	{
+		//object2->getRigidBody()->isColliding = false;
+		return false;
+	}
+
+	return false;
+}
+
 bool CollisionManager::lineLineCheck(const glm::vec2 line1_start, const glm::vec2 line1_end, const glm::vec2 line2_start, const glm::vec2 line2_end)
 {
 	const auto x1 = line1_start.x;
@@ -366,6 +417,7 @@ bool CollisionManager::pointRectCheck(const glm::vec2 point, const glm::vec2 rec
 	}
 	return false;
 }
+
 
 // assumptions - the list of objects are stored so that they are facing the target and the target is loaded last
 bool CollisionManager::LOSCheck(Agent* agent, glm::vec2 end_point, const std::vector<DisplayObject*>& objects, DisplayObject* target)

@@ -39,36 +39,60 @@ void PlayScene::handleEvents()
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
+		if(!CollisionManager::AABBCheck(m_pHuman->leftSenRect,SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
+		//if(!CollisionManager::lineRectCheck(m_pHuman->leftSensorStart, m_pHuman->leftSensorEnd, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		//if (!CollisionManager::pointRectCheck(m_pHuman->leftSensor, glm::vec2{m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y}, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		{
+			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(-PLAYERSPEED, 0.0f);
+			//m_pGhost->getTransform()->position.x -= PLAYERSPEED;
+			m_pLevel->getTransform()->position.x += PLAYERSPEED;
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(-PLAYERSPEED, 0.0f);
-		setLastHumanDirection(PLAYER_RUN_LEFT);
-		m_pGhost->getTransform()->position.x -= PLAYERSPEED;
+		m_pHuman->setLastHumanDirection(PLAYER_RUN_LEFT);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 	{
+		if (!CollisionManager::AABBCheck(m_pHuman->rightSenRect, SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
+		//if (!CollisionManager::lineRectCheck(m_pHuman->rightSensorStart, m_pHuman->rightSensorEnd, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		//if (!CollisionManager::pointRectCheck(m_pHuman->rightSensor, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		{
+			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(PLAYERSPEED, 0.0f);
+			//m_pGhost->getTransform()->position.x += PLAYERSPEED;
+			m_pLevel->getTransform()->position.x -= PLAYERSPEED;
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(PLAYERSPEED, 0.0f);
-		setLastHumanDirection(PLAYER_RUN_RIGHT);
-		m_pGhost->getTransform()->position.x += PLAYERSPEED;
+		m_pHuman->setLastHumanDirection(PLAYER_RUN_RIGHT);
 	}
 
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
 	{
+		if (!CollisionManager::AABBCheck(m_pHuman->upSenRect, SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
+		//if (!CollisionManager::lineRectCheck(m_pHuman->upSensorStart, m_pHuman->upSensorEnd, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		//if (!CollisionManager::pointRectCheck(m_pHuman->upSensor, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		{
+			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, -PLAYERSPEED);
+			//m_pGhost->getTransform()->position.y -= PLAYERSPEED;
+			m_pLevel->getTransform()->position.y += PLAYERSPEED;
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_UP);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, -PLAYERSPEED);
-		setLastHumanDirection(PLAYER_RUN_UP);
-		m_pGhost->getTransform()->position.y -= PLAYERSPEED;
+		m_pHuman->setLastHumanDirection(PLAYER_RUN_UP);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
+		if (!CollisionManager::AABBCheck(m_pHuman->downSenRect, SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
+		//if (!CollisionManager::lineRectCheck(m_pHuman->downSensorStart, m_pHuman->downSensorEnd, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		//if (!CollisionManager::pointRectCheck(m_pHuman->downSensor, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
+		{
+			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, PLAYERSPEED);
+			//m_pGhost->getTransform()->position.y += PLAYERSPEED;
+			m_pLevel->getTransform()->position.y -= PLAYERSPEED;
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
-		m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, PLAYERSPEED);
-		setLastHumanDirection(PLAYER_RUN_DOWN);
-		m_pGhost->getTransform()->position.y += PLAYERSPEED;
+		m_pHuman->setLastHumanDirection(PLAYER_RUN_DOWN);
 	}
 	else
 	{
-		m_pHuman->setAnimationState(getLastHumanDirection());
+		m_pHuman->setAnimationState(m_pHuman->getLastHumanDirection());
 	}
 
 	
@@ -94,6 +118,10 @@ void PlayScene::start()
 	// Set GUI Title
 	m_guiTitle = "Play Scene";
 	
+	// Game Level
+	m_pLevel = new Level();
+	addChild(m_pLevel);
+
 	// Human Sprite
 	m_pHuman = new Human();
 	addChild(m_pHuman);
@@ -176,20 +204,3 @@ void PlayScene::GUI_Function() const
 	ImGui::End();
 }
 
-void PlayScene::setLastHumanDirection(const PlayerAnimationState new_state)
-{
-	if (new_state == PLAYER_RUN_LEFT)
-		New_state = PLAYER_IDLE_LEFT;
-	if (new_state == PLAYER_RUN_RIGHT)
-		New_state = PLAYER_IDLE_RIGHT;
-	if (new_state == PLAYER_RUN_UP)
-		New_state = PLAYER_IDLE_UP;
-	if (new_state == PLAYER_RUN_DOWN)
-		New_state = PLAYER_IDLE_DOWN;
-
-}
-
-PlayerAnimationState PlayScene::getLastHumanDirection()
-{
-	return New_state;
-}

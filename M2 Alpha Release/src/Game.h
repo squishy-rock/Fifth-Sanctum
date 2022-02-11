@@ -24,7 +24,7 @@
 
 #define WIDTH 1024
 #define HEIGHT 756
-#define PLAYERSPEED 3.0f
+#define PLAYERSPEED 2.0f
 class Game
 {
 public:
