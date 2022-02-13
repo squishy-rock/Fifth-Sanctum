@@ -10,6 +10,8 @@
 #include "Level.h"
 #include "Button.h"
 #include "Label.h"
+#include "HumanLife.h"
+#include <vector>
 
 class PlayScene : public Scene
 {
@@ -36,6 +38,8 @@ private:
 	Human* m_pHuman;
 	Ghost* m_pGhost;
 	Level* m_pLevel;
+
+	HumanLife* m_HumanLife;
 
 	bool m_playerFacingRight;
 

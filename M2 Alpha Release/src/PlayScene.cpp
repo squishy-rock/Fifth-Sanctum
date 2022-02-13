@@ -111,6 +111,13 @@ void PlayScene::handleEvents()
 	{
 		TheGame::Instance().changeSceneState(END_SCENE);
 	}
+
+	// To check Human lives
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_L))
+	{
+		m_HumanLife->setHumanLife(m_HumanLife->getHumanLife() - 1);
+		SDL_Delay(100);
+	}
 }
 
 void PlayScene::start()
@@ -172,6 +179,10 @@ void PlayScene::start()
 	m_pGhost->getTransform()->position = m_pHuman->getTransform()->position;
 	addChild(m_pGhost);
 
+	//Life
+	m_HumanLife = new HumanLife();
+	addChild(m_HumanLife);
+
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
 
@@ -203,4 +214,3 @@ void PlayScene::GUI_Function() const
 	
 	ImGui::End();
 }
-

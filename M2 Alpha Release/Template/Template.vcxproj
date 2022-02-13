@@ -167,6 +167,7 @@
     <ClCompile Include="..\src\CollisionManager.cpp" />
     <ClCompile Include="..\src\Ghost.cpp" />
     <ClCompile Include="..\src\Human.cpp" />
+    <ClCompile Include="..\src\HumanLife.cpp" />
     <ClCompile Include="..\src\ImGuiWindowFrame.cpp" />
     <ClCompile Include="..\src\Level.cpp" />
     <ClCompile Include="..\src\Obstacle.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="..\src\Config.h" />
     <ClInclude Include="..\src\Ghost.h" />
     <ClInclude Include="..\src\Human.h" />
+    <ClInclude Include="..\src\HumanLife.h" />
     <ClInclude Include="..\src\ImGuiWindowFrame.h" />
     <ClInclude Include="..\src\Level.h" />
     <ClInclude Include="..\src\Obstacle.h" />
