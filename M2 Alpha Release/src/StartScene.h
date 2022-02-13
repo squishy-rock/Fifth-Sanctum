@@ -6,6 +6,7 @@
 #include "Label.h"
 #include "ship.h"
 #include "Button.h"
+#include "SoundManager.h"
 
 class StartScene final : public Scene
 {
@@ -25,8 +26,11 @@ private:
 	Label* m_pInstructionsLabel{};
 
 	Ship* m_pShip{};
-
+	
 	Button* m_pStartButton;
+
+	Mix_Chunk* m_startButtonSFX;
+	Mix_Music* m_titleTheme;
 };
 
 #endif /* defined (__START_SCENE__) */

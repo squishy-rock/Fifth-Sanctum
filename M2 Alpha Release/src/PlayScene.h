@@ -12,6 +12,7 @@
 #include "Label.h"
 #include "HumanLife.h"
 #include <vector>
+#include <map>
 
 class PlayScene : public Scene
 {
@@ -47,6 +48,8 @@ private:
 	Button* m_pBackButton;
 	Button* m_pNextButton;
 	Label* m_pInstructionsLabel;
+
+	
 
 };
 

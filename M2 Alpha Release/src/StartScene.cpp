@@ -24,6 +24,8 @@ void StartScene::update()
 
 void StartScene::clean()
 {
+	Mix_FreeChunk(m_startButtonSFX);
+	Mix_FreeMusic(m_titleTheme);
 	removeAllChildren();
 }
 
@@ -34,11 +36,13 @@ void StartScene::handleEvents()
 	// Keyboard Events
 	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
+		
 		TheGame::Instance().quit();
 	}
 
 	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
 	{
+		Mix_PlayChannel(-1, m_startButtonSFX, 0);
 		TheGame::Instance().changeSceneState(PLAY_SCENE);
 	}
 }
@@ -79,6 +83,10 @@ void StartScene::start()
 		m_pStartButton->setAlpha(255);
 	});
 	addChild(m_pStartButton);
+
+	m_titleTheme = Mix_LoadMUS("../Assets/audio/DarkTheme.ogg");
+	m_startButtonSFX = Mix_LoadWAV("../Assets/audio/Menu1A.wav");
+	Mix_PlayMusic(m_titleTheme, -1);
 
 	ImGuiWindowFrame::Instance().setDefaultGUIFunction();
 }

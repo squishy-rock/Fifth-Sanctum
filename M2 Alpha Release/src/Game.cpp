@@ -72,8 +72,21 @@ bool Game::init(const char* title, const int x, const int y, const int width, co
 				printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 				return false;
 			}
-
+			
+			if (Mix_Init(MIX_INIT_OGG || MIX_INIT_OGG) != 0)
+			{
+				Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 4096);
+				Mix_AllocateChannels(16);
+				std::cout << "Audio Init Success!";
+			}
+			else
+			{
+				std::cout << "Audio Init Failure";
+				return false;
+			}
 			start();
+
+			
 
 		}
 		else
@@ -212,7 +225,7 @@ void Game::clean() const
 	ImGuiWindowFrame::Instance().Clean();
 
 	TTF_Quit();
-
+	Mix_Quit();
 	SDL_Quit();
 }
 
