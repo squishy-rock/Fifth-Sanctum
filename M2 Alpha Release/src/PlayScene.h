@@ -11,8 +11,10 @@
 #include "Button.h"
 #include "Label.h"
 #include "HumanLife.h"
+#include "SoundManager.h"
 #include <vector>
 #include <map>
+#include <string>
 
 class PlayScene : public Scene
 {
@@ -49,8 +51,9 @@ private:
 	Button* m_pNextButton;
 	Label* m_pInstructionsLabel;
 
-	
-
+	//Music and Sound
+	Mix_Music* m_pPlaySceneMusic;
+	Mix_Chunk* m_pGunSound;
 };
 
 #endif /* defined (__PLAY_SCENE__) */

@@ -30,6 +30,8 @@ void PlayScene::update()
 
 void PlayScene::clean()
 {
+	Mix_FreeChunk(m_pGunSound);
+	Mix_FreeMusic(m_pPlaySceneMusic);
 	removeAllChildren();
 }
 
@@ -118,6 +120,12 @@ void PlayScene::handleEvents()
 		m_HumanLife->setHumanLife(m_HumanLife->getHumanLife() - 1);
 		SDL_Delay(100);
 	}
+
+	//Shooting
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_SPACE))
+	{
+		Mix_PlayChannel(-1, m_pGunSound, 0);
+	}
 }
 
 void PlayScene::start()
@@ -182,6 +190,10 @@ void PlayScene::start()
 	//Life
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife);
+
+	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
+	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
+	Mix_PlayMusic(m_pPlaySceneMusic,-1);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
