@@ -46,11 +46,6 @@ private:
 
 	bool m_playerFacingRight;
 
-	// UI Items
-	Button* m_pBackButton;
-	Button* m_pNextButton;
-	Label* m_pInstructionsLabel;
-
 	//Music and Sound
 	Mix_Music* m_pPlaySceneMusic;
 	Mix_Chunk* m_pGunSound;
