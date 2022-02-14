@@ -25,26 +25,16 @@ public:
 	PlayerAnimationState getLastHumanDirection();
 	void setLastHumanDirection(const PlayerAnimationState new_state);
 
-	// 4 directional Sensors
+	// 4 sides Sensors
 	glm::vec2 upSensor;
 	glm::vec2 downSensor;
 	glm::vec2 rightSensor;
 	glm::vec2 leftSensor;
-	
-	glm::vec2 upSensorStart;
-	glm::vec2 downSensorStart;
-	glm::vec2 rightSensorStart;
-	glm::vec2 leftSensorStart;
 
-	glm::vec2 upSensorEnd;
-	glm::vec2 downSensorEnd;
-	glm::vec2 rightSensorEnd;
-	glm::vec2 leftSensorEnd;
-
-	SDL_Rect upSenRect;
-	SDL_Rect downSenRect;
-	SDL_Rect rightSenRect;
-	SDL_Rect leftSenRect;
+	SDL_Rect* upSenRect;
+	SDL_Rect* downSenRect;
+	SDL_Rect* rightSenRect;
+	SDL_Rect* leftSenRect;
 
 private:
 	void m_buildAnimations();

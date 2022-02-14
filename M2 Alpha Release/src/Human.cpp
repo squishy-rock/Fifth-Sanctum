@@ -26,25 +26,15 @@ Human::Human() : m_currentAnimationState(PLAYER_IDLE_RIGHT)
 	m_buildAnimations();
 
 	// set sensors positions
-	upSensor = {int(getTransform()->position.x), int(getTransform()->position.y) - getHeight() };
+	/*upSensor = {int(getTransform()->position.x), int(getTransform()->position.y) - getHeight() };
 	downSensor = { int(getTransform()->position.x), int(getTransform()->position.y) + getHeight() };
 	rightSensor = { int(getTransform()->position.x) + getWidth(), int(getTransform()->position.y)};
-	leftSensor = { int(getTransform()->position.x) - getWidth(), int(getTransform()->position.y)};
+	leftSensor = { int(getTransform()->position.x) - getWidth(), int(getTransform()->position.y)};*/
 
-	upSensorStart = { getTransform()->position.x - getWidth()/2, getTransform()->position.y - getHeight()/2};
-	downSensorStart = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y + getHeight()/2};
-	rightSensorStart = { getTransform()->position.x + getWidth()/2, getTransform()->position.y - getHeight() / 2 };
-	leftSensorStart = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y - getHeight() / 2 };
-
-	upSensorEnd = { getTransform()->position.x + getWidth()/2, getTransform()->position.y - getHeight() / 2 };
-	downSensorEnd = { getTransform()->position.x + getWidth()/2, getTransform()->position.y + getHeight()/2 };
-	rightSensorEnd = { getTransform()->position.x + getWidth()/2, getTransform()->position.y + getHeight()/2 };
-	leftSensorEnd = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y + getHeight() / 2 };
-
-	upSenRect = { int(getTransform()->position.x) - getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2 - 5, getWidth(), 5};
-	downSenRect = { int(getTransform()->position.x) - getWidth() / 2, int(getTransform()->position.y) + getHeight() / 2, getWidth(), 5 };
-	rightSenRect = { int(getTransform()->position.x) + getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight()};
-	leftSenRect = { int(getTransform()->position.x) - getWidth() / 2 - 5, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };
+	upSenRect = new SDL_Rect { int(getTransform()->position.x) - getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2 - 5, getWidth(), 5};
+	downSenRect = new SDL_Rect { int(getTransform()->position.x) - getWidth() / 2, int(getTransform()->position.y) + getHeight() / 2, getWidth(), 5 };
+	rightSenRect = new SDL_Rect { int(getTransform()->position.x) + getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight()};
+	leftSenRect = new SDL_Rect { int(getTransform()->position.x) - getWidth() / 2 - 5, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };
 
 	
 }
@@ -55,25 +45,7 @@ Human::~Human()
 void Human::draw()
 {
 	// set sensors positions
-	upSensor = { int(getTransform()->position.x), int(getTransform()->position.y) - getHeight() };
-	downSensor = { int(getTransform()->position.x), int(getTransform()->position.y) + getHeight() };
-	rightSensor = { int(getTransform()->position.x) + getWidth(), int(getTransform()->position.y) };
-	leftSensor = { int(getTransform()->position.x) - getWidth(), int(getTransform()->position.y) };
-
-	upSensorStart = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y - getHeight() / 2 };
-	downSensorStart = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y + getHeight() / 2 };
-	rightSensorStart = { getTransform()->position.x + getWidth() / 2, getTransform()->position.y - getHeight() / 2 };
-	leftSensorStart = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y - getHeight() / 2 };
-
-	upSensorEnd = { getTransform()->position.x + getWidth() / 2, getTransform()->position.y - getHeight() / 2 };
-	downSensorEnd = { getTransform()->position.x + getWidth() / 2, getTransform()->position.y + getHeight() / 2 };
-	rightSensorEnd = { getTransform()->position.x + getWidth() / 2, getTransform()->position.y + getHeight() / 2 };
-	leftSensorEnd = { getTransform()->position.x - getWidth() / 2, getTransform()->position.y + getHeight() / 2 };
-
-	upSenRect = { int(getTransform()->position.x) - getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2 - 5, getWidth(), 5 };
-	downSenRect = { int(getTransform()->position.x) - getWidth() / 2, int(getTransform()->position.y) + getHeight() / 2, getWidth(), 5 };
-	rightSenRect = { int(getTransform()->position.x) + getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };
-	leftSenRect = { int(getTransform()->position.x) - getWidth() / 2 - 5, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };
+	
 
 	// alias for x and y
 	const auto x = getTransform()->position.x;
