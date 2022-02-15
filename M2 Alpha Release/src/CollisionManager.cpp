@@ -97,46 +97,19 @@ bool CollisionManager::AABBCheck(GameObject* object1, GameObject* object2)
 	return false;
 }
 
-bool CollisionManager::AABBCheck(SDL_Rect object1, SDL_Rect object2)
+bool CollisionManager::AABBCheck(SDL_Rect* object1, SDL_Rect* object2)
 {
-	// prepare relevant variables
-	/*const auto p1 = object1->getTransform()->position;
-	const auto p2 = object2->getTransform()->position;
-	const float p1Width = object1->getWidth();
-	const float p1Height = object1->getHeight();
-	const float p2Width = object2->getWidth();
-	const float p2Height = object2->getHeight();*/
-	SDL_Rect p1 = object1;
-	SDL_Rect p2 = object2;
-	p2.x = p2.x - p2.w / 2;
-	p2.y = p2.y - p2.h / 2;
+	SDL_Rect* p1 = object1;
+	SDL_Rect* p2 = object2;
+	//p2->x = p2->x - p2->w / 2;
+	//p2->y = p2->y - p2->h / 2;
 	if (
-		p1.x < p2.x + p2.w &&
-		p1.x + p1.w > p2.x &&
-		p1.y < p2.y + p2.h &&
-		p1.y + p1.h > p2.y
+		p1->x < p2->x + p2->w &&
+		p1->x + p1->w > p2->x &&
+		p1->y < p2->y + p2->h &&
+		p1->y + p1->h > p2->y
 		)
 	{
-		/*if (!object2->getRigidBody()->isColliding) {
-
-			object2->getRigidBody()->isColliding = true;
-
-			switch (object2->getType()) {
-			case TARGET:
-				std::cout << "Collision with Target!" << std::endl;
-				SoundManager::Instance().playSound("yay", 0);
-				break;
-			case OBSTACLE:
-				std::cout << "Collision with Obstacle!" << std::endl;
-				SoundManager::Instance().playSound("yay", 0);
-				break;
-			default:
-
-				break;
-			}
-
-			return true;
-		}*/
 		return true;
 	}
 	else

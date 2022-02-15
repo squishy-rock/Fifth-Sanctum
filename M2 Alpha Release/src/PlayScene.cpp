@@ -20,6 +20,7 @@ void PlayScene::draw()
 {
 	drawDisplayList();
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
+	Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);
 }
 
 void PlayScene::update()
@@ -33,6 +34,13 @@ void PlayScene::clean()
 	Mix_FreeChunk(m_pGunSound);
 	Mix_FreeMusic(m_pPlaySceneMusic);
 	removeAllChildren();
+	for (unsigned i = 0; i < tileLocation.size(); i++)
+	{
+		delete tileLocation[i]; 
+		tileLocation[i] = nullptr; 
+	}
+	tileLocation.clear(); 
+	tileLocation.shrink_to_fit(); 
 }
 
 void PlayScene::handleEvents()
@@ -41,50 +49,58 @@ void PlayScene::handleEvents()
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
-		//if(!CollisionManager::AABBCheck(m_pHuman->leftSenRect,SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
-		//{
-			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(-PLAYERSPEED, 0.0f);
-			//m_pGhost->getTransform()->position.x -= PLAYERSPEED;
+		if (!checkLeftSensor())
+		{
 			m_pLevel->getTransform()->position.x += PLAYERSPEED;
-		//}
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->x += PLAYERSPEED;
+			}
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_LEFT);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 	{
-		//if (!CollisionManager::AABBCheck(m_pHuman->rightSenRect, SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
-		//{
-			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(PLAYERSPEED, 0.0f);
-			//m_pGhost->getTransform()->position.x += PLAYERSPEED;
+		if (!checkRightSensor())
+		{
 			m_pLevel->getTransform()->position.x -= PLAYERSPEED;
-		//}
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->x -= PLAYERSPEED;
+			}
+
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_RIGHT);
 	}
 
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
 	{
-		//if (!CollisionManager::AABBCheck(m_pHuman->upSenRect, SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
-		//{
-			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, -PLAYERSPEED);
-			//m_pGhost->getTransform()->position.y -= PLAYERSPEED;
+		if(!checkUpSensor())
+		{
 			m_pLevel->getTransform()->position.y += PLAYERSPEED;
-		//}
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->y += PLAYERSPEED;
+			}
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_UP);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_UP);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
-		//if (!CollisionManager::AABBCheck(m_pHuman->downSenRect, SDL_Rect{ int(m_pNextButton->getTransform()->position.x), int(m_pNextButton->getTransform()->position.y), m_pNextButton->getWidth(), m_pNextButton->getHeight() }))
-		//if (!CollisionManager::lineRectCheck(m_pHuman->downSensorStart, m_pHuman->downSensorEnd, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
-		//if (!CollisionManager::pointRectCheck(m_pHuman->downSensor, glm::vec2{ m_pNextButton->getTransform()->position.x, m_pNextButton->getTransform()->position.y }, m_pNextButton->getWidth(), m_pNextButton->getHeight()))
-		//{
-			//m_pHuman->getTransform()->position = m_pHuman->getTransform()->position + glm::vec2(0.0f, PLAYERSPEED);
-			//m_pGhost->getTransform()->position.y += PLAYERSPEED;
+		if (!checkDownSensor())
+		{
 			m_pLevel->getTransform()->position.y -= PLAYERSPEED;
-		//}
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->y -= PLAYERSPEED;
+			}
+		}
 		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_DOWN);
+		std::cout << tileLocation[1]->x << "  " << tileLocation[1]->y << std::endl;
 	}
 	else
 	{
@@ -124,12 +140,15 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+
 	// Set GUI Title
 	m_guiTitle = "Play Scene";
 	
 	// Game Level
 	m_pLevel = new Level();
 	addChild(m_pLevel);
+
+	initTileLocation();
 
 	// Human Sprite
 	m_pHuman = new Human();
@@ -149,6 +168,69 @@ void PlayScene::start()
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
+}
+
+bool PlayScene::checkUpSensor()
+{
+	for (SDL_Rect* r : tileLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, r))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PlayScene::checkDownSensor()
+{
+	for (SDL_Rect* r : tileLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, r))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PlayScene::checkRightSensor()
+{
+	for (SDL_Rect* r : tileLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, r))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PlayScene::checkLeftSensor()
+{
+	for (SDL_Rect* r : tileLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, r))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void PlayScene::initTileLocation()
+{
+	int xLocation = m_pLevel->getTransform()->position.x - m_pLevel->getWidth() / 2;
+	int yLocation = m_pLevel->getTransform()->position.y - m_pLevel->getHeight() / 2;
+	int xLocOnMap[] = {10, 11, 12, 13, 14, 15}; // we need to add all the location of the walls on the map
+	int yLocOnMap[] = {78, 78, 78, 78, 78, 78 }; // we need to add all the location of the walls on the map
+	
+	for (int i = 0; i < sizeof(xLocOnMap); i++)
+	{
+		tileLocation.push_back(new SDL_Rect{ xLocOnMap[i] * 32 - xLocation, yLocOnMap[i] * 32 + yLocation, 32,32});
+	}
+	std::cout << tileLocation[1]->x << "  " << tileLocation[1]->y << std::endl;
+
 }
 
 void PlayScene::GUI_Function() const

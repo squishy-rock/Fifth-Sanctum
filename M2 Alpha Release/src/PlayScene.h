@@ -29,6 +29,13 @@ public:
 	virtual void handleEvents() override;
 	virtual void start() override;
 
+	bool checkUpSensor();
+	bool checkDownSensor();
+	bool checkRightSensor();
+	bool checkLeftSensor();
+
+	void initTileLocation();
+
 private:
 	// IMGUI Function
 	void GUI_Function() const;
@@ -49,6 +56,8 @@ private:
 	//Music and Sound
 	Mix_Music* m_pPlaySceneMusic;
 	Mix_Chunk* m_pGunSound;
+
+	std::vector<SDL_Rect*> tileLocation;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
