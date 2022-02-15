@@ -100,7 +100,6 @@ void PlayScene::handleEvents()
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_DOWN);
-		std::cout << tileLocation[1]->x << "  " << tileLocation[1]->y << std::endl;
 	}
 	else
 	{
@@ -225,6 +224,11 @@ void PlayScene::initTileLocation()
 	int xLocOnMap[] = {10, 11, 12, 13, 14, 15}; // we need to add all the location of the walls on the map
 	int yLocOnMap[] = {78, 78, 78, 78, 78, 78 }; // we need to add all the location of the walls on the map
 	
+	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 11 * 32 + yLocation, 32 * 80, 32 });  // up side wall
+	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 90 * 32 + yLocation,32 * 80, 32 });  // down side wall
+	tileLocation.push_back(new SDL_Rect{ 90 * 32 - xLocation, 12 * 32 + yLocation, 32,32 * 80 });  // right side wall
+	tileLocation.push_back(new SDL_Rect{ 9 * 32 - xLocation, 12 * 32 + yLocation, 32,32 * 80 });  // left side wall
+
 	for (int i = 0; i < sizeof(xLocOnMap); i++)
 	{
 		tileLocation.push_back(new SDL_Rect{ xLocOnMap[i] * 32 - xLocation, yLocOnMap[i] * 32 + yLocation, 32,32});
