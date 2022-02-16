@@ -229,11 +229,75 @@ void PlayScene::initTileLocation()
 	tileLocation.push_back(new SDL_Rect{ 90 * 32 - xLocation, 12 * 32 + yLocation, 32,32 * 80 });  // right side wall
 	tileLocation.push_back(new SDL_Rect{ 9 * 32 - xLocation, 12 * 32 + yLocation, 32,32 * 80 });  // left side wall
 
-	for (int i = 0; i < sizeof(xLocOnMap); i++)
+	// First horizontal wall from bottom
+	for (int i = 10; i <= 89; i++)
+	{
+		if (i != 31 && i != 32 && i != 33 && i != 34 && i != 52 && i != 53 && i != 54 && i != 55 && i != 83 && i != 84 && i != 85 && i != 86)
+		{
+			localLocation.push_back(SDL_Point{ i, 78 });
+			localLocation.push_back(SDL_Point{ i, 76 });
+		}
+	}
+
+	// Secont horizontal wall from bottom
+	for (int i = 10; i <= 89; i++)
+	{
+		if (i != 14 && i != 15 && i != 16 && i != 17 && i != 57 && i != 58 && i != 59 && i != 60 && i != 81 && i != 82 && i != 83 && i != 84)
+		{
+			localLocation.push_back(SDL_Point{ i, 65 });
+			localLocation.push_back(SDL_Point{ i, 63 });
+		}
+	}
+
+	// Third horizontal wall from bottom
+	for (int i = 10; i <= 89; i++)
+	{
+		if (i != 49 && i != 50 && i != 51 && i != 52 && i != 66 && i != 67 && i != 68 && i != 69)
+		{
+			localLocation.push_back(SDL_Point{ i, 56 });
+			localLocation.push_back(SDL_Point{ i, 58 });
+		}
+	}
+
+	// Forth horizontal wall from bottom
+	for (int i = 10; i <= 89; i++)
+	{
+		if (i != 11 && i != 12 && i != 13 && i != 14 && i != 23 && i != 24 && i != 25 && i != 26 && i != 36 && i != 37 && i != 38 && i != 39 && i != 82 && i != 83 && i != 84 && i != 85)
+		{
+			localLocation.push_back(SDL_Point{ i, 42 });
+			localLocation.push_back(SDL_Point{ i, 44 });
+		}
+	}
+
+	// Fifth horizontal wall from bottom
+	for (int i = 10; i <= 89; i++)
+	{
+		if (i != 23 && i != 24 && i != 25 && i != 26 && i != 57 && i != 58 && i != 59 && i != 60 && i != 78 && i != 79 && i != 80 && i != 81)
+		{
+			localLocation.push_back(SDL_Point{ i, 30 });
+			localLocation.push_back(SDL_Point{ i, 32 });
+		}
+	}
+
+	// Sixth horizontal wall from bottom
+	for (int i = 10; i <= 89; i++)
+	{
+		if (i != 30 && i != 31 && i != 32 && i != 33 && i != 49 && i != 50 && i != 51 && i != 52 && i != 82 && i != 83 && i != 84 && i != 85)
+		{
+			localLocation.push_back(SDL_Point{ i, 23 });
+			localLocation.push_back(SDL_Point{ i, 25 });
+		}
+	}
+
+	for (int i = 0; i < localLocation.size(); i++)
+	{
+		tileLocation.push_back(new SDL_Rect{ localLocation[i].x * 32 - xLocation, localLocation[i].y * 32 + yLocation, 32,32 });
+	}
+
+	/*for (int i = 0; i < sizeof(xLocOnMap); i++)
 	{
 		tileLocation.push_back(new SDL_Rect{ xLocOnMap[i] * 32 - xLocation, yLocOnMap[i] * 32 + yLocation, 32,32});
-	}
-	std::cout << tileLocation[1]->x << "  " << tileLocation[1]->y << std::endl;
+	}*/
 
 }
 

@@ -58,6 +58,8 @@ private:
 	Mix_Chunk* m_pGunSound;
 
 	std::vector<SDL_Rect*> tileLocation;
+
+	std::vector<SDL_Point> localLocation;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
