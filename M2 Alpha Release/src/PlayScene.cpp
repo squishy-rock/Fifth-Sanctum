@@ -289,6 +289,16 @@ void PlayScene::initTileLocation()
 		}
 	}
 
+	SDL_Point H_L[] = { {30, 77}, {35, 77}, {51, 77}, {56, 77}, {82, 77}, {87, 77}, {13, 64}, {18, 64}, {56, 64}, 
+						{61, 64}, {80, 64}, {85, 64}, {48, 57}, {53, 57}, {65, 57}, {70, 57}, {10, 43}, {15, 43}, 
+						{22, 43}, {27, 43}, {35, 43}, {40, 43}, {81, 43}, {86, 43}, {22, 31}, {27, 31}, {56, 31}, 
+						{61, 31}, {77, 31}, {82, 31}, {29, 24}, {34, 24}, {48, 24}, {53, 24}, {81, 24}, {86, 24} };
+
+	for (int i = 0; i < sizeof(H_L); i++)
+	{
+		localLocation.push_back(H_L[i]);
+	}
+
 	for (int i = 0; i < localLocation.size(); i++)
 	{
 		tileLocation.push_back(new SDL_Rect{ localLocation[i].x * 32 - xLocation, localLocation[i].y * 32 + yLocation, 32,32 });
