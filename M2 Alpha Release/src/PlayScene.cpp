@@ -21,6 +21,12 @@ void PlayScene::draw()
 	drawDisplayList();
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
 	Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);
+
+	//////////// this is to draw rect for all collider object
+	//for (int i = 0; i < localLocation.size(); i++)
+	//{
+		//Util::DrawRect(glm::vec2{ tileLocation[i]->x, tileLocation[i]->y }, tileLocation[i]->w, tileLocation[i]->h);
+	//}
 }
 
 void PlayScene::update()
