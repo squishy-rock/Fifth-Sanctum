@@ -36,11 +36,14 @@ public:
 
 	void initTileLocation();
 
+	bool m_getGridColliderEnabled() const;
+	void m_setGridColliderEnabled(bool state);
+
 private:
 	// IMGUI Function
-	void GUI_Function() const;
+	void GUI_Function();
 	std::string m_guiTitle;
-	
+	bool m_isGridColliderEnabled;
 	glm::vec2 m_mousePosition;
 
 	Plane* m_pPlaneSprite;
@@ -48,6 +51,9 @@ private:
 	Human* m_pHuman;
 	Ghost* m_pGhost;
 	Level* m_pLevel;
+
+	
+	
 
 	HumanLife* m_HumanLife;
 

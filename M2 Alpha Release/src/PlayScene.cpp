@@ -21,12 +21,14 @@ void PlayScene::draw()
 	drawDisplayList();
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
 	Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);
-
-	//////////// this is to draw rect for all collider object
-	//for (int i = 0; i < localLocation.size(); i++)
-	//{
-		//Util::DrawRect(glm::vec2{ tileLocation[i]->x, tileLocation[i]->y }, tileLocation[i]->w, tileLocation[i]->h);
-	//}
+	if (m_getGridColliderEnabled())
+	{
+		//////////// this is to draw rect for all collider object
+		for (int i = 0; i < localLocation.size(); i++)
+		{
+			Util::DrawRect(glm::vec2{ tileLocation[i]->x, tileLocation[i]->y }, tileLocation[i]->w, tileLocation[i]->h);
+		}
+	}
 }
 
 void PlayScene::update()
@@ -145,6 +147,7 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+	m_setGridColliderEnabled(false);
 
 	// Set GUI Title
 	m_guiTitle = "Play Scene";
@@ -241,6 +244,7 @@ void PlayScene::initTileLocation()
 		if (i != 31 && i != 32 && i != 33 && i != 34 && i != 52 && i != 53 && i != 54 && i != 55 && i != 83 && i != 84 && i != 85 && i != 86)
 		{
 			localLocation.push_back(SDL_Point{ i, 78 });
+			localLocation.push_back(SDL_Point{ i, 77 });
 			localLocation.push_back(SDL_Point{ i, 76 });
 		}
 	}
@@ -251,6 +255,7 @@ void PlayScene::initTileLocation()
 		if (i != 14 && i != 15 && i != 16 && i != 17 && i != 57 && i != 58 && i != 59 && i != 60 && i != 81 && i != 82 && i != 83 && i != 84)
 		{
 			localLocation.push_back(SDL_Point{ i, 65 });
+			localLocation.push_back(SDL_Point{ i, 64 });
 			localLocation.push_back(SDL_Point{ i, 63 });
 		}
 	}
@@ -261,6 +266,7 @@ void PlayScene::initTileLocation()
 		if (i != 49 && i != 50 && i != 51 && i != 52 && i != 66 && i != 67 && i != 68 && i != 69)
 		{
 			localLocation.push_back(SDL_Point{ i, 56 });
+			localLocation.push_back(SDL_Point{ i, 57 });
 			localLocation.push_back(SDL_Point{ i, 58 });
 		}
 	}
@@ -271,6 +277,7 @@ void PlayScene::initTileLocation()
 		if (i != 11 && i != 12 && i != 13 && i != 14 && i != 23 && i != 24 && i != 25 && i != 26 && i != 36 && i != 37 && i != 38 && i != 39 && i != 82 && i != 83 && i != 84 && i != 85)
 		{
 			localLocation.push_back(SDL_Point{ i, 42 });
+			localLocation.push_back(SDL_Point{ i, 43 });
 			localLocation.push_back(SDL_Point{ i, 44 });
 		}
 	}
@@ -281,6 +288,7 @@ void PlayScene::initTileLocation()
 		if (i != 23 && i != 24 && i != 25 && i != 26 && i != 57 && i != 58 && i != 59 && i != 60 && i != 78 && i != 79 && i != 80 && i != 81)
 		{
 			localLocation.push_back(SDL_Point{ i, 30 });
+			localLocation.push_back(SDL_Point{ i, 31 });
 			localLocation.push_back(SDL_Point{ i, 32 });
 		}
 	}
@@ -291,11 +299,69 @@ void PlayScene::initTileLocation()
 		if (i != 30 && i != 31 && i != 32 && i != 33 && i != 49 && i != 50 && i != 51 && i != 52 && i != 82 && i != 83 && i != 84 && i != 85)
 		{
 			localLocation.push_back(SDL_Point{ i, 23 });
+			localLocation.push_back(SDL_Point{ i, 24 });
 			localLocation.push_back(SDL_Point{ i, 25 });
 		}
 	}
 
-	SDL_Point H_L[] = { {30, 77}, {35, 77}, {51, 77}, {56, 77}, {82, 77}, {87, 77}, {13, 64}, {18, 64}, {56, 64}, 
+	// First group of vertical walls 
+	for (int i = 79; i <= 89; i++)
+	{
+		localLocation.push_back(SDL_Point{ 41, i });
+		localLocation.push_back(SDL_Point{ 78, i });
+		if (i != 84 && i != 85 && i != 86 && i != 87)
+		{
+			localLocation.push_back(SDL_Point{ 60, i });
+			localLocation.push_back(SDL_Point{ 25, i });
+		}
+	}
+
+	// Second group of vertical walls 
+	for (int i = 66; i <= 75; i++)
+	{
+		localLocation.push_back(SDL_Point{ 49, i });
+		localLocation.push_back(SDL_Point{ 70, i });
+		if (i != 70 && i != 71 && i != 72 && i != 73)
+		{
+			localLocation.push_back(SDL_Point{ 25, i });
+		}
+	}
+
+	// Third group of vertical walls 
+	for (int i = 45; i <= 55; i++)
+	{
+		localLocation.push_back(SDL_Point{ 60, i });
+		localLocation.push_back(SDL_Point{ 76, i });
+		if (i != 49 && i != 50 && i != 51 && i != 52)
+		{
+			localLocation.push_back(SDL_Point{ 31, i });
+			localLocation.push_back(SDL_Point{ 44, i });
+		}
+	}
+
+	// Forth group of vertical walls 
+	for (int i = 33; i <= 41; i++)
+	{
+		localLocation.push_back(SDL_Point{ 18, i });
+		localLocation.push_back(SDL_Point{ 31, i });
+		localLocation.push_back(SDL_Point{ 50, i });
+		localLocation.push_back(SDL_Point{ 68, i });
+		
+	}
+
+	// Fifth group of vertical walls 
+	for (int i = 12; i <= 22; i++)
+	{
+		localLocation.push_back(SDL_Point{ 41, i });
+		localLocation.push_back(SDL_Point{ 61, i });
+		if (i != 16 && i != 17 && i != 18 && i != 19)
+		{
+			localLocation.push_back(SDL_Point{ 24, i });
+			localLocation.push_back(SDL_Point{ 77, i });
+		}
+	}
+
+	/*SDL_Point H_L[] = { {30, 77}, {35, 77}, {51, 77}, {56, 77}, {82, 77}, {87, 77}, {13, 64}, {18, 64}, {56, 64}, 
 						{61, 64}, {80, 64}, {85, 64}, {48, 57}, {53, 57}, {65, 57}, {70, 57}, {10, 43}, {15, 43}, 
 						{22, 43}, {27, 43}, {35, 43}, {40, 43}, {81, 43}, {86, 43}, {22, 31}, {27, 31}, {56, 31}, 
 						{61, 31}, {77, 31}, {82, 31}, {29, 24}, {34, 24}, {48, 24}, {53, 24}, {81, 24}, {86, 24} };
@@ -303,7 +369,7 @@ void PlayScene::initTileLocation()
 	for (int i = 0; i < sizeof(H_L); i++)
 	{
 		localLocation.push_back(H_L[i]);
-	}
+	}*/
 
 	for (int i = 0; i < localLocation.size(); i++)
 	{
@@ -317,7 +383,17 @@ void PlayScene::initTileLocation()
 
 }
 
-void PlayScene::GUI_Function() const
+bool PlayScene::m_getGridColliderEnabled() const
+{
+	return m_isGridColliderEnabled;
+}
+
+void PlayScene::m_setGridColliderEnabled(const bool state)
+{
+	m_isGridColliderEnabled = state;
+}
+
+void PlayScene::GUI_Function()
 {
 	// Always open with a NewFrame
 	ImGui::NewFrame();
@@ -334,6 +410,14 @@ void PlayScene::GUI_Function() const
 
 	ImGui::Separator();
 
+	static bool toggle_grid = false;
+	if (ImGui::Checkbox("Toggle Grid", &toggle_grid))
+	{
+		m_setGridColliderEnabled(toggle_grid);
+	}
+
+	ImGui::Separator();
+
 	static float float3[3] = { 0.0f, 1.0f, 1.5f };
 	if(ImGui::SliderFloat3("My Slider", float3, 0.0f, 2.0f))
 	{
@@ -343,5 +427,8 @@ void PlayScene::GUI_Function() const
 		std::cout << "---------------------------\n";
 	}
 	
+	
 	ImGui::End();
 }
+
+
