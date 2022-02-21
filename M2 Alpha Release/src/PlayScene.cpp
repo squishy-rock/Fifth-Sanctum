@@ -28,6 +28,11 @@ void PlayScene::draw()
 		{
 			Util::DrawRect(glm::vec2{ tileLocation[i]->x, tileLocation[i]->y }, tileLocation[i]->w, tileLocation[i]->h);
 		}
+		
+		Util::DrawRect(glm::vec2{ m_pHuman->upSenRect->x, m_pHuman->upSenRect->y }, m_pHuman->upSenRect->w, m_pHuman->upSenRect->h);
+		Util::DrawRect(glm::vec2{ m_pHuman->downSenRect->x, m_pHuman->downSenRect->y }, m_pHuman->downSenRect->w, m_pHuman->downSenRect->h);
+		Util::DrawRect(glm::vec2{ m_pHuman->rightSenRect->x, m_pHuman->rightSenRect->y }, m_pHuman->rightSenRect->w, m_pHuman->rightSenRect->h);
+		Util::DrawRect(glm::vec2{ m_pHuman->leftSenRect->x, m_pHuman->leftSenRect->y }, m_pHuman->leftSenRect->w, m_pHuman->leftSenRect->h);
 	}
 }
 
@@ -350,7 +355,7 @@ void PlayScene::initTileLocation()
 	}
 
 	// Fifth group of vertical walls 
-	for (int i = 12; i <= 22; i++)
+	for (int i = 12; i <= 23; i++)
 	{
 		localLocation.push_back(SDL_Point{ 41, i });
 		localLocation.push_back(SDL_Point{ 61, i });
