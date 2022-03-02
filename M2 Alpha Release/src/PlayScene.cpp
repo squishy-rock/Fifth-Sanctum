@@ -38,15 +38,48 @@ void PlayScene::draw()
 
 void PlayScene::update()
 {
+	if (m_pPlayerFire.size() > 0)
+	{
+		for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
+		{
+			SDL_Rect temp = { int(m_pPlayerFire[i]->getTransform()->position.x), int(m_pPlayerFire[i]->getTransform()->position.y),
+									m_pPlayerFire[i]->getWidth(), m_pPlayerFire[i]->getHeight() };
+			for (SDL_Rect* r : tileLocation)
+			{
+				if (CollisionManager::AABBCheck(&temp, r))
+				{
+					std::cout << "gooooooo" << std::endl;
+					removeChild(m_pPlayerFire[i]);
+					//delete m_pPlayerFire[i];  // this line causing error
+					m_pPlayerFire[i] = nullptr;
+					m_pPlayerFire.erase(m_pPlayerFire.begin() + i);
+					m_pPlayerFire.shrink_to_fit();
+
+					break;
+				}
+			}
+		}
+		
+
+	}
 	updateDisplayList();
 
 }
 
 void PlayScene::clean()
 {
+	for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
+	{
+		//delete m_pPlayerFire[i];
+		m_pPlayerFire[i] = nullptr;
+	}
+	m_pPlayerFire.clear();
+	m_pPlayerFire.shrink_to_fit();
+
 	Mix_FreeChunk(m_pGunSound);
 	Mix_FreeMusic(m_pPlaySceneMusic);
 	removeAllChildren();
+
 	for (unsigned i = 0; i < tileLocation.size(); i++)
 	{
 		delete tileLocation[i]; 
@@ -69,6 +102,10 @@ void PlayScene::handleEvents()
 			{
 				tileLocation[i]->x += PLAYERSPEED;
 			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.x += PLAYERSPEED;
+			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_LEFT);
@@ -82,7 +119,10 @@ void PlayScene::handleEvents()
 			{
 				tileLocation[i]->x -= PLAYERSPEED;
 			}
-
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.x -= PLAYERSPEED;
+			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_RIGHT);
@@ -97,6 +137,10 @@ void PlayScene::handleEvents()
 			{
 				tileLocation[i]->y += PLAYERSPEED;
 			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.y += PLAYERSPEED;
+			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_UP);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_UP);
@@ -109,6 +153,10 @@ void PlayScene::handleEvents()
 			for (int i = 0; i < tileLocation.size(); i++)
 			{
 				tileLocation[i]->y -= PLAYERSPEED;
+			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.y -= PLAYERSPEED;
 			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
@@ -146,7 +194,19 @@ void PlayScene::handleEvents()
 	//Shooting
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_SPACE))
 	{
-		Mix_PlayChannel(-1, m_pGunSound, 0);
+		if (!firing)
+		{
+			Mix_PlayChannel(-1, m_pGunSound, 0);
+			//m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y), MRIGHT));
+			m_pPlayerFire.push_back(new Weap(WIDTH/2, HEIGHT/2, m_pHuman->getLastHumanDirection()));
+			m_pPlayerFire.shrink_to_fit();
+			addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
+			firing = true;
+		}
+	}
+	else
+	{
+		firing = false;
 	}
 }
 
@@ -159,26 +219,31 @@ void PlayScene::start()
 	
 	// Game Level
 	m_pLevel = new Level();
-	addChild(m_pLevel);
+	addChild(m_pLevel, 0, 0);
 
 	initTileLocation();
 
+	m_pPlayerFire.reserve(4);
+
 	// Human Sprite
 	m_pHuman = new Human();
-	addChild(m_pHuman);
+	addChild(m_pHuman, 1, 1);
 
 	// Ghost 
 	m_pGhost = new Ghost();
 	m_pGhost->getTransform()->position = m_pHuman->getTransform()->position;
-	addChild(m_pGhost);
+	m_pGhost->setLayerIndex(0);
+	addChild(m_pGhost, 2, 0);  // addChild( GameObject, layerIndex, OrderIndex) 
 
 	//Life
 	m_HumanLife = new HumanLife();
-	addChild(m_HumanLife);
+	addChild(m_HumanLife, 3, 0);
 
 	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
+
+	//w = new Weapon1(100, 200, MRIGHT);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }

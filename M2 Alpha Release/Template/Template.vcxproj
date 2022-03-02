@@ -194,6 +194,9 @@
     <ClCompile Include="..\src\Target.cpp" />
     <ClCompile Include="..\src\TextureManager.cpp" />
     <ClCompile Include="..\src\Util.cpp" />
+    <ClCompile Include="..\src\Weap.cpp" />
+    <ClCompile Include="..\src\Weapon.cpp" />
+    <ClCompile Include="..\src\Weapon1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\IMGUI\imconfig.h" />
@@ -209,6 +212,7 @@
     <ClInclude Include="..\src\CollisionManager.h" />
     <ClInclude Include="..\src\CollisionShape.h" />
     <ClInclude Include="..\src\Config.h" />
+    <ClInclude Include="..\src\Direction.h" />
     <ClInclude Include="..\src\Ghost.h" />
     <ClInclude Include="..\src\Human.h" />
     <ClInclude Include="..\src\HumanLife.h" />
@@ -247,6 +251,9 @@
     <ClInclude Include="..\src\TextureManager.h" />
     <ClInclude Include="..\src\Transform.h" />
     <ClInclude Include="..\src\Util.h" />
+    <ClInclude Include="..\src\Weap.h" />
+    <ClInclude Include="..\src\Weapon.h" />
+    <ClInclude Include="..\src\Weapon1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

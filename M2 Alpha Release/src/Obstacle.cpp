@@ -1,6 +1,5 @@
 #include "Obstacle.h"
-
-
+ 
 #include "SoundManager.h"
 #include "TextureManager.h"
 

@@ -1,7 +1,9 @@
 #pragma once
 #ifndef __PLAY_SCENE__
 #define __PLAY_SCENE__
-
+#include "Obstacle.h"
+#include "Weapon1.h"
+#include "Weap.h"
 #include "Scene.h"
 #include "Plane.h"
 #include "Player.h"
@@ -15,6 +17,7 @@
 #include <vector>
 #include <map>
 #include <string>
+
 
 class PlayScene : public Scene
 {
@@ -46,14 +49,15 @@ private:
 	bool m_isGridColliderEnabled;
 	glm::vec2 m_mousePosition;
 
+	std::vector <Weap*> m_pPlayerFire;
+
 	Plane* m_pPlaneSprite;
 	Player* m_pPlayer;
 	Human* m_pHuman;
 	Ghost* m_pGhost;
 	Level* m_pLevel;
 
-	
-	
+	bool firing = false;
 
 	HumanLife* m_HumanLife;
 
@@ -64,8 +68,9 @@ private:
 	Mix_Chunk* m_pGunSound;
 
 	std::vector<SDL_Rect*> tileLocation;
-
 	std::vector<SDL_Point> localLocation;
+
+	
 };
 
 #endif /* defined (__PLAY_SCENE__) */
