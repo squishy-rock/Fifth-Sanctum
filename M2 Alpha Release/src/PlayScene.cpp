@@ -235,9 +235,9 @@ void PlayScene::start()
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
 
-	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
+	/*m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
-	Mix_PlayMusic(m_pPlaySceneMusic,-1);
+	Mix_PlayMusic(m_pPlaySceneMusic,-1);*/
 
 	//w = new Weapon1(100, 200, MRIGHT);
 

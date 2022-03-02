@@ -4,7 +4,7 @@
 
 Ghost::Ghost()
 {
-	TextureManager::Instance().load("../Assets/textures/ghost3.png", "ghost");
+	TextureManager::Instance().load("../Assets/textures/ghost5.png", "ghost");
 
 	const auto size = TextureManager::Instance().getTextureSize("ghost");
 	setWidth(size.x);
