@@ -109,102 +109,37 @@ void PlayScene::handleEvents()
 {
 	EventManager::Instance().update();
 
+	////////////// Player Movement [WASD] //////////////////////
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
-		if (!checkLeftSensor())
-		{
-			m_pLevel->getTransform()->position.x += PLAYERSPEED;
-			for (int i = 0; i < tileLocation.size(); i++)
-			{
-				tileLocation[i]->x += PLAYERSPEED;
-			}
-			for (Weap* w : m_pPlayerFire)
-			{
-				w->getTransform()->position.x += PLAYERSPEED;
-			}
-			for (Enemy* e : m_pEnemy)
-			{
-				e->getTransform()->position.x += PLAYERSPEED;
-			}
-		}
-		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
-		m_pHuman->setLastHumanDirection(PLAYER_RUN_LEFT);
+		CameraMovement(PLAYER_RUN_LEFT);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 	{
-		if (!checkRightSensor())
-		{
-			m_pLevel->getTransform()->position.x -= PLAYERSPEED;
-			for (int i = 0; i < tileLocation.size(); i++)
-			{
-				tileLocation[i]->x -= PLAYERSPEED;
-			}
-			for (Weap* w : m_pPlayerFire)
-			{
-				w->getTransform()->position.x -= PLAYERSPEED;
-			}
-			for (Enemy* e : m_pEnemy)
-			{
-				e->getTransform()->position.x -= PLAYERSPEED;
-			}
-		}
-		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
-		m_pHuman->setLastHumanDirection(PLAYER_RUN_RIGHT);
+		CameraMovement(PLAYER_RUN_RIGHT);
 	}
 
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
 	{
-		if(!checkUpSensor())
-		{
-			m_pLevel->getTransform()->position.y += PLAYERSPEED;
-			for (int i = 0; i < tileLocation.size(); i++)
-			{
-				tileLocation[i]->y += PLAYERSPEED;
-			}
-			for (Weap* w : m_pPlayerFire)
-			{
-				w->getTransform()->position.y += PLAYERSPEED;
-			}
-			for (Enemy* e : m_pEnemy)
-			{
-				e->getTransform()->position.y += PLAYERSPEED;
-			}
-		}
-		m_pHuman->setAnimationState(PLAYER_RUN_UP);
-		m_pHuman->setLastHumanDirection(PLAYER_RUN_UP);
+		CameraMovement(PLAYER_RUN_UP);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
-		if (!checkDownSensor())
-		{
-			m_pLevel->getTransform()->position.y -= PLAYERSPEED;
-			for (int i = 0; i < tileLocation.size(); i++)
-			{
-				tileLocation[i]->y -= PLAYERSPEED;
-			}
-			for (Weap* w : m_pPlayerFire)
-			{
-				w->getTransform()->position.y -= PLAYERSPEED;
-			}
-			for (Enemy* e : m_pEnemy)
-			{
-				e->getTransform()->position.y -= PLAYERSPEED;
-			}
-		}
-		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
-		m_pHuman->setLastHumanDirection(PLAYER_RUN_DOWN);
+		CameraMovement(PLAYER_RUN_DOWN);
 	}
 	else
 	{
 		m_pHuman->setAnimationState(m_pHuman->getLastHumanDirection());
 	}
-
+	/////////////////////////////////////////////////////////////
+	
 	
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance().quit();
 	}
+
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
 	{
@@ -223,23 +158,16 @@ void PlayScene::handleEvents()
 		SDL_Delay(100);
 	}
 
-	//Shooting
+	////////////// SHOOTING //////////////////////
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_SPACE))
 	{
-		if (!firing)
-		{
-			Mix_PlayChannel(-1, m_pGunSound, 0);
-			//m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y), MRIGHT));
-			m_pPlayerFire.push_back(new Weap(WIDTH/2, HEIGHT/2, m_pHuman->getLastHumanDirection()));
-			m_pPlayerFire.shrink_to_fit();
-			addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
-			firing = true;
-		}
+		Shooting();
 	}
 	else
 	{
 		firing = false;
 	}
+	//////////////////////////////////////////////
 }
 
 void PlayScene::start()
@@ -279,6 +207,107 @@ void PlayScene::start()
 	//w = new Weapon1(100, 200, MRIGHT);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
+}
+
+void PlayScene::CameraMovement(PlayerAnimationState p)
+{
+	m_pHuman->setAnimationState(p);
+	m_pHuman->setLastHumanDirection(p);
+
+	if (p == PLAYER_RUN_LEFT)
+	{
+		if (!checkLeftSensor())
+		{
+			m_pLevel->getTransform()->position.x += PLAYERSPEED;
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->x += PLAYERSPEED;
+			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.x += PLAYERSPEED;
+			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.x += PLAYERSPEED;
+			}
+		}
+	}
+
+	if (p == PLAYER_RUN_RIGHT)
+	{
+		if (!checkRightSensor())
+		{
+			m_pLevel->getTransform()->position.x -= PLAYERSPEED;
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->x -= PLAYERSPEED;
+			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.x -= PLAYERSPEED;
+			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.x -= PLAYERSPEED;
+			}
+		}
+	}
+
+	if (p == PLAYER_RUN_UP)
+	{
+		if (!checkUpSensor())
+		{
+			m_pLevel->getTransform()->position.y += PLAYERSPEED;
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->y += PLAYERSPEED;
+			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.y += PLAYERSPEED;
+			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.y += PLAYERSPEED;
+			}
+		}
+	}
+
+	if (p == PLAYER_RUN_DOWN)
+	{
+		if (!checkDownSensor())
+		{
+			m_pLevel->getTransform()->position.y -= PLAYERSPEED;
+			for (int i = 0; i < tileLocation.size(); i++)
+			{
+				tileLocation[i]->y -= PLAYERSPEED;
+			}
+			for (Weap* w : m_pPlayerFire)
+			{
+				w->getTransform()->position.y -= PLAYERSPEED;
+			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.y -= PLAYERSPEED;
+			}
+		}
+	}
+
+	
+}
+
+void PlayScene::Shooting()
+{
+	if (!firing)
+	{
+		Mix_PlayChannel(-1, m_pGunSound, 0);
+		m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y) + 8, m_pHuman->getLastHumanDirection()));
+		//m_pPlayerFire.push_back(new Weap(WIDTH / 2, HEIGHT / 2, m_pHuman->getLastHumanDirection()));
+		m_pPlayerFire.shrink_to_fit();
+		addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
+		firing = true;
+	}
 }
 
 bool PlayScene::checkUpSensor()
@@ -464,26 +493,10 @@ void PlayScene::initTileLocation()
 		}
 	}
 
-	/*SDL_Point H_L[] = { {30, 77}, {35, 77}, {51, 77}, {56, 77}, {82, 77}, {87, 77}, {13, 64}, {18, 64}, {56, 64}, 
-						{61, 64}, {80, 64}, {85, 64}, {48, 57}, {53, 57}, {65, 57}, {70, 57}, {10, 43}, {15, 43}, 
-						{22, 43}, {27, 43}, {35, 43}, {40, 43}, {81, 43}, {86, 43}, {22, 31}, {27, 31}, {56, 31}, 
-						{61, 31}, {77, 31}, {82, 31}, {29, 24}, {34, 24}, {48, 24}, {53, 24}, {81, 24}, {86, 24} };
-
-	for (int i = 0; i < sizeof(H_L); i++)
-	{
-		localLocation.push_back(H_L[i]);
-	}*/
-
 	for (int i = 0; i < localLocation.size(); i++)
 	{
 		tileLocation.push_back(new SDL_Rect{ localLocation[i].x * 32 - xLocation, localLocation[i].y * 32 + yLocation, 32,32 });
 	}
-
-	/*for (int i = 0; i < sizeof(xLocOnMap); i++)
-	{
-		tileLocation.push_back(new SDL_Rect{ xLocOnMap[i] * 32 - xLocation, yLocOnMap[i] * 32 + yLocation, 32,32});
-	}*/
-
 }
 
 bool PlayScene::m_getGridColliderEnabled() const

@@ -86,6 +86,7 @@ void Enemy::draw()
 
 void Enemy::update()
 {
+	//getTransform()->position.y += 1;
 }
 
 void Enemy::clean()

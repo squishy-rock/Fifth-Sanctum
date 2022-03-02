@@ -33,6 +33,9 @@ public:
 	virtual void handleEvents() override;
 	virtual void start() override;
 
+	void CameraMovement(PlayerAnimationState p);
+	void Shooting();
+
 	bool checkUpSensor();
 	bool checkDownSensor();
 	bool checkRightSensor();
