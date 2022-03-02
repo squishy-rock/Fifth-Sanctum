@@ -488,6 +488,14 @@ void PlayScene::GUI_Function()
 
 	ImGui::Separator();
 
+	static bool GhostMode = false;
+	if (ImGui::Checkbox("Ghost Mode", &GhostMode))
+	{
+		m_pGhost->setEnabled(GhostMode);
+	}
+
+	ImGui::Separator();
+
 	static float float3[3] = { 0.0f, 1.0f, 1.5f };
 	if(ImGui::SliderFloat3("My Slider", float3, 0.0f, 2.0f))
 	{
