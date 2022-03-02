@@ -2,12 +2,13 @@
 #ifndef __SPRITE__
 #define __SPRITE__
 
+#include "Agent.h"
 #include "DisplayObject.h"
 #include "Animation.h"
 #include <unordered_map>
 #include "SpriteSheet.h"
 
-class Sprite : public DisplayObject
+class Sprite : public Agent
 {
 public:
 	Sprite();

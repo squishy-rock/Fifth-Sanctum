@@ -31,7 +31,10 @@ Enemy::Enemy() : m_currentAnimationState(PLAYER_IDLE_RIGHT)
 	rightSenRect = new SDL_Rect{ int(getTransform()->position.x) + getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };
 	leftSenRect = new SDL_Rect{ int(getTransform()->position.x) - getWidth() / 2 - 5, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };*/
 
-
+	// starting motion properties
+	m_maxSpeed = 1.0f; // a maximum number of pixels moved per frame
+	m_turnRate = 5.0f; // a maximum number of degrees to turn each time-step
+	m_accelerationRate = 2.0f; // a maximum number of pixels to add to the velocity each frame
 }
 
 Enemy::~Enemy()
@@ -87,11 +90,103 @@ void Enemy::draw()
 void Enemy::update()
 {
 	//getTransform()->position.y += 1;
+	m_move();
 }
 
 void Enemy::clean()
 {
 }
+
+float Enemy::getMaxSpeed() const
+{
+	return m_maxSpeed;
+}
+
+float Enemy::getTurnRate() const
+{
+	return m_turnRate;
+}
+
+float Enemy::getAccelerationRate() const
+{
+	return m_accelerationRate;
+}
+
+glm::vec2 Enemy::getDesiredVelocity() const
+{
+	return m_desiredVelocity;
+}
+
+void Enemy::setMaxSpeed(const float speed)
+{
+	m_maxSpeed = speed;
+}
+
+void Enemy::setTurnRate(const float angle)
+{
+	m_turnRate = angle;
+}
+
+void Enemy::setAccelerationRate(const float rate)
+{
+	m_accelerationRate = rate;
+}
+
+void Enemy::setDesiredVelocity(const glm::vec2 target_position)
+{
+	m_desiredVelocity = Util::normalize(target_position - getTransform()->position);
+}
+
+void Enemy::Seek()
+{
+
+	setDesiredVelocity(getTargetPosition());
+
+	const glm::vec2 steering_direction = getDesiredVelocity() - getCurrentDirection();
+
+	LookWhereYoureGoing(steering_direction);
+
+	getRigidBody()->acceleration = getCurrentDirection() * getAccelerationRate();
+}
+
+void Enemy::LookWhereYoureGoing(const glm::vec2 target_direction)
+{
+	float target_rotation = Util::signedAngle(getCurrentDirection(), target_direction) - 90;
+	//std::cout << target_rotation;
+
+	const float turn_sensitivity = 3.0f;
+
+	if (getCollisionWhisker()[0])
+	{
+		target_rotation += getTurnRate() * turn_sensitivity; // turn towards the right
+
+	}
+	else if (getCollisionWhisker()[2]) // if right whisker is colliding
+	{
+		target_rotation -= getTurnRate() * turn_sensitivity; // turn towards the left
+
+	}
+	if (getCollisionWhisker()[3])
+	{
+		target_rotation += getTurnRate() * turn_sensitivity; // turn towards the right
+
+	}
+	else if (getCollisionWhisker()[4]) // if right whisker is colliding
+	{
+		target_rotation -= getTurnRate() * turn_sensitivity; // turn towards the left
+
+	}
+
+	//std::cout << "      " << target_rotation << std::endl;
+
+	// smoothing function that changes the heading of the spaceship slowly to align with the target
+	setCurrentHeading(Util::lerpUnclamped(getCurrentHeading(), getCurrentHeading() + target_rotation,
+		getTurnRate() * TheGame::Instance().getDeltaTime()));
+
+	// updates the angle of the each of the whiskers 
+	updateWhiskers(getWhiskerAngle());
+}
+
 
 void Enemy::setAnimationState(const PlayerAnimationState new_state)
 {
@@ -177,4 +272,35 @@ void Enemy::m_buildAnimations()
 	runLeftAnimation.frames.push_back(getSpriteSheet()->getFrame("enemy-run-left-5"));
 	setAnimation(runLeftAnimation);
 
+}
+
+void Enemy::m_move()
+{
+	Seek();
+
+	//                                   final Position     position term    velocity term     acceleration term
+	// kinematic equation for motion --> Pf            =      Pi     +     Vi*(time)    +   (0.5)*Ai*(time * time)
+
+	const float dt = TheGame::Instance().getDeltaTime();
+
+	// compute the position term
+	const glm::vec2 initial_position = getTransform()->position;
+
+	// compute the velocity term
+	const glm::vec2 velocity_term = getRigidBody()->velocity * dt;
+
+	// compute the acceleration term
+	const glm::vec2 acceleration_term = getRigidBody()->acceleration * 0.5f;// *dt;
+
+
+	// compute the new position
+	glm::vec2 final_position = initial_position + velocity_term + acceleration_term;
+
+	getTransform()->position = final_position;
+
+	// add our acceleration to velocity
+	getRigidBody()->velocity += getRigidBody()->acceleration;
+
+	// clamp our velocity at max speed
+	getRigidBody()->velocity = Util::clamp(getRigidBody()->velocity, getMaxSpeed());
 }
