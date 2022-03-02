@@ -14,6 +14,7 @@ enum GameObjectType {
 	LEVEL,
 	PLAYER,
 	HUMAN,
+	ENEMY,
 	PLANE,
 	START_BUTTON,
 	RESTART_BUTTON,

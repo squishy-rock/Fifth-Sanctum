@@ -1,6 +1,7 @@
 #pragma once
 #ifndef __PLAY_SCENE__
 #define __PLAY_SCENE__
+#include "Enemy.h"
 #include "Obstacle.h"
 #include "Weapon1.h"
 #include "Weap.h"
@@ -70,6 +71,7 @@ private:
 	std::vector<SDL_Rect*> tileLocation;
 	std::vector<SDL_Point> localLocation;
 
+	std::vector<Enemy*> m_pEnemy;
 	
 };
 

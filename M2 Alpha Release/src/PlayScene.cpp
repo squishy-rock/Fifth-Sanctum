@@ -48,6 +48,14 @@ void PlayScene::update()
 			{
 				if (CollisionManager::AABBCheck(&temp, r))
 				{
+					// Adding Enemy for test
+					m_pEnemy.push_back(new Enemy());
+					m_pEnemy.shrink_to_fit();
+					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = m_pPlayerFire[i]->getTransform()->position;
+					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+
 					std::cout << "gooooooo" << std::endl;
 					removeChild(m_pPlayerFire[i]);
 					//delete m_pPlayerFire[i];  // this line causing error
@@ -75,6 +83,14 @@ void PlayScene::clean()
 	}
 	m_pPlayerFire.clear();
 	m_pPlayerFire.shrink_to_fit();
+
+	for (unsigned i = 0; i < m_pEnemy.size(); i++)
+	{
+		delete m_pPlayerFire[i];
+		m_pEnemy[i] = nullptr;
+	}
+	m_pEnemy.clear();
+	m_pEnemy.shrink_to_fit();
 
 	Mix_FreeChunk(m_pGunSound);
 	Mix_FreeMusic(m_pPlaySceneMusic);
@@ -106,6 +122,10 @@ void PlayScene::handleEvents()
 			{
 				w->getTransform()->position.x += PLAYERSPEED;
 			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.x += PLAYERSPEED;
+			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_LEFT);
@@ -122,6 +142,10 @@ void PlayScene::handleEvents()
 			for (Weap* w : m_pPlayerFire)
 			{
 				w->getTransform()->position.x -= PLAYERSPEED;
+			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.x -= PLAYERSPEED;
 			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
@@ -141,6 +165,10 @@ void PlayScene::handleEvents()
 			{
 				w->getTransform()->position.y += PLAYERSPEED;
 			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.y += PLAYERSPEED;
+			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_UP);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_UP);
@@ -157,6 +185,10 @@ void PlayScene::handleEvents()
 			for (Weap* w : m_pPlayerFire)
 			{
 				w->getTransform()->position.y -= PLAYERSPEED;
+			}
+			for (Enemy* e : m_pEnemy)
+			{
+				e->getTransform()->position.y -= PLAYERSPEED;
 			}
 		}
 		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
@@ -224,6 +256,7 @@ void PlayScene::start()
 	initTileLocation();
 
 	m_pPlayerFire.reserve(4);
+	m_pEnemy.reserve(4);
 
 	// Human Sprite
 	m_pHuman = new Human();
