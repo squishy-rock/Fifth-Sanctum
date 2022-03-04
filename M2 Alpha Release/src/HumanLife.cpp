@@ -1,4 +1,7 @@
 #include "HumanLife.h"
+
+#include <Windows.h>
+
 #include "TextureManager.h"
 #include "Human.h"
 
@@ -56,8 +59,9 @@ void HumanLife::draw()
 
 void HumanLife::update()
 {
-	m_move();
-	m_checkBounds();
+
+	hitCount++;
+
 }
 
 void HumanLife::clean()
@@ -66,7 +70,7 @@ void HumanLife::clean()
 
 void HumanLife::m_move()
 {
-	getTransform()->position = getTransform()->position + getRigidBody()->velocity * 5.0f;
+	
 }
 
 void HumanLife::m_checkBounds()
@@ -75,4 +79,14 @@ void HumanLife::m_checkBounds()
 
 void HumanLife::m_reset()
 {
+}
+
+void HumanLife::m_hit()   // for invincible time
+{
+	if (hitCount++ >= maxCount)
+	{
+		setHumanLife(getHumanLife() - 1);
+		maxCount = 180;
+		hitCount = 0;
+	}
 }

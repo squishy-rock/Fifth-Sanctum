@@ -3,6 +3,7 @@
 #include "EventManager.h"
 
 // required for IMGUI
+
 #include "imgui.h"
 #include "imgui_sdl.h"
 #include "Renderer.h"
@@ -105,6 +106,33 @@ void PlayScene::update()
 		
 
 	}
+
+	// Player VS Enemies collision
+	if (m_pEnemy.size() > 0)
+	{
+		for (unsigned i = 0; i < m_pEnemy.size(); i++)
+		{
+			SDL_Rect tempH = { int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y),
+						m_pHuman->getWidth(), m_pHuman->getHeight() };
+			SDL_Rect tempE = { int(m_pEnemy[i]->getTransform()->position.x), int(m_pEnemy[i]->getTransform()->position.y),
+						m_pEnemy[i]->getWidth(), m_pEnemy[i]->getHeight() };
+
+			if (CollisionManager::AABBCheck(&tempH, &tempE))
+			{
+				if (HumanLife::getHumanLife() <= 0)
+				{
+					TheGame::Instance().changeSceneState(END_SCENE);
+				}
+				HumanLife::m_hit();
+				m_pHuman->SetIsColliding(true);
+				m_pHuman->Hit();
+			}
+			else
+			{
+				m_pHuman->SetIsColliding(false);
+			}
+		}
+	}
 	updateDisplayList();
 
 }
@@ -121,7 +149,7 @@ void PlayScene::clean()
 
 	for (unsigned i = 0; i < m_pEnemy.size(); i++)
 	{
-		delete m_pPlayerFire[i];
+		/*delete m_pEnemy[i];*/
 		m_pEnemy[i] = nullptr;
 	}
 	m_pEnemy.clear();

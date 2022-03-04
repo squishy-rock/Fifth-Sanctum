@@ -31,7 +31,8 @@ Human::Human() : m_currentAnimationState(PLAYER_IDLE_RIGHT)
 	rightSenRect = new SDL_Rect { int(getTransform()->position.x) + getWidth() / 2, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight()};
 	leftSenRect = new SDL_Rect { int(getTransform()->position.x) - getWidth() / 2 - 5, int(getTransform()->position.y) - getHeight() / 2, 5, getHeight() };
 
-	
+	// For collision
+	SetTint(255);
 }
 
 Human::~Human()
@@ -39,6 +40,7 @@ Human::~Human()
 
 void Human::draw()
 {
+	TextureManager::Instance().setColour("spritesheet", m_tint, m_tint, m_tint);
 	// alias for x and y
 	const auto x = getTransform()->position.x;
 	const auto y = getTransform()->position.y;
@@ -86,6 +88,7 @@ void Human::draw()
 
 void Human::update()
 {
+
 }
 
 void Human::clean()
@@ -112,6 +115,21 @@ void Human::setLastHumanDirection(const PlayerAnimationState new_state)
 		lastHumanDirection = PLAYER_IDLE_UP;
 	if (new_state == PLAYER_RUN_DOWN)
 		lastHumanDirection = PLAYER_IDLE_DOWN;
+}
+
+void Human::Hit()
+{
+	SetTint(255);
+	if (GetIsColliding() == true && hitCount++ == maxCount)
+	{
+		SetTint(32);
+		maxCount = 12;
+		hitCount = 0;
+	}
+	else
+	{
+		SetTint(255);
+	}
 }
 
 void Human::m_buildAnimations()

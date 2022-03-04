@@ -31,11 +31,25 @@ public:
 	SDL_Rect* rightSenRect;
 	SDL_Rect* leftSenRect;
 
+	// For collision
+	void SetIsColliding(bool b) { isColliding = b; }
+	bool GetIsColliding() { return isColliding; }
+	int GetTint() { return m_tint; }
+	void SetTint(int t) { m_tint = t; }
+	void Hit();
+
+
 private:
 	void m_buildAnimations();
 
 	PlayerAnimationState m_currentAnimationState;
 	PlayerAnimationState lastHumanDirection;
+
+	// For collision
+	bool isColliding = false;
+	int m_tint;
+	int hitCount;
+	int maxCount;
 };
 
 #endif /* defined (__HUMAN__) */
