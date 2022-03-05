@@ -65,6 +65,8 @@ private:
 
 	HumanLife* m_HumanLife;
 
+	int count = 0, maxCount = 180;
+
 	bool m_playerFacingRight;
 
 	//Music and Sound

@@ -20,6 +20,9 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
+	TextureManager::Instance().load("../Assets/textures/box.png", "box");
+	TextureManager::Instance().draw("box", tileLocation[0]->x, tileLocation[0]->y, 0, 255, false);
+
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
 	Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);
 	if (m_getGridColliderEnabled())
@@ -71,6 +74,7 @@ void PlayScene::draw()
 
 void PlayScene::update()
 {
+	count++;
 	if (m_pPlayerFire.size() > 0)
 	{
 		for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
@@ -133,6 +137,38 @@ void PlayScene::update()
 			}
 		}
 	}
+
+	// PlayerFire VS Enemies
+	if (m_pEnemy.size() > 0 && m_pPlayerFire.size() > 0)
+	{
+		for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
+		{
+			for (unsigned j = 0; j < m_pEnemy.size(); j++)
+			{
+				SDL_Rect tempF = { int(m_pPlayerFire[i]->getTransform()->position.x), int(m_pPlayerFire[i]->getTransform()->position.y),
+						m_pPlayerFire[i]->getWidth(), m_pPlayerFire[i]->getHeight() };
+				SDL_Rect tempE = { int(m_pEnemy[j]->getTransform()->position.x)-16, int(m_pEnemy[j]->getTransform()->position.y),
+							m_pEnemy[j]->getWidth()/2, m_pEnemy[j]->getHeight()/2 };
+
+				if (CollisionManager::AABBCheck(&tempF, &tempE))
+				{
+					removeChild(m_pEnemy[j]);
+					m_pEnemy[j] = nullptr;
+					m_pEnemy.erase(m_pEnemy.begin() + j);
+					m_pEnemy.shrink_to_fit();
+
+					removeChild(m_pPlayerFire[i]);
+					m_pPlayerFire[i] = nullptr;
+					m_pPlayerFire.erase(m_pPlayerFire.begin() + i);
+					m_pPlayerFire.shrink_to_fit();
+
+					break;
+				}
+			}
+
+		}
+	}
+
 	updateDisplayList();
 
 }
@@ -379,6 +415,22 @@ bool PlayScene::checkUpSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, r))
 		{
+			if (r == tileLocation[0] && count >= maxCount)
+			{
+				m_pEnemy.push_back(new Enemy());
+				m_pEnemy.shrink_to_fit();
+				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
+				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+
+				std::cout << "gooooooo" << std::endl;
+				count = 0;
+			}
 			return true;
 		}
 	}
@@ -391,6 +443,22 @@ bool PlayScene::checkDownSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, r))
 		{
+			if (r == tileLocation[0] && count >= maxCount)
+			{
+				m_pEnemy.push_back(new Enemy());
+				m_pEnemy.shrink_to_fit();
+				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
+				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+
+				std::cout << "gooooooo" << std::endl;
+				count = 0;
+			}
 			return true;
 		}
 	}
@@ -403,6 +471,22 @@ bool PlayScene::checkRightSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, r))
 		{
+			if (r == tileLocation[0] && count >= maxCount)
+			{
+				m_pEnemy.push_back(new Enemy());
+				m_pEnemy.shrink_to_fit();
+				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
+				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+
+				std::cout << "gooooooo" << std::endl;
+				count = 0;
+			}
 			return true;
 		}
 	}
@@ -415,6 +499,22 @@ bool PlayScene::checkLeftSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, r))
 		{
+			if (r == tileLocation[0] && count >= maxCount)
+			{
+				m_pEnemy.push_back(new Enemy());
+				m_pEnemy.shrink_to_fit();
+				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
+				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
+				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+
+				std::cout << "gooooooo" << std::endl;
+				count = 0;
+			}
 			return true;
 		}
 	}
@@ -427,6 +527,9 @@ void PlayScene::initTileLocation()
 	int yLocation = m_pLevel->getTransform()->position.y - m_pLevel->getHeight() / 2;
 	int xLocOnMap[] = {10, 11, 12, 13, 14, 15}; // we need to add all the location of the walls on the map
 	int yLocOnMap[] = {78, 78, 78, 78, 78, 78 }; // we need to add all the location of the walls on the map
+
+	//Event Tiles
+	tileLocation.push_back(new SDL_Rect{ 20 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
 	
 	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 11 * 32 + yLocation, 32 * 80, 32 });  // up side wall
 	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 90 * 32 + yLocation,32 * 80, 32 });  // down side wall
