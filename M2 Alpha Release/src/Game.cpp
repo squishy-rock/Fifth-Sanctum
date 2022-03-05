@@ -223,7 +223,7 @@ void Game::clean() const
 	// Clean Up for IMGUI
 	//ImGui::DestroyContext();
 	ImGuiWindowFrame::Instance().Clean();
-
+	SoundManager::Instance().quit();
 	TTF_Quit();
 	Mix_Quit();
 	SDL_Quit();
