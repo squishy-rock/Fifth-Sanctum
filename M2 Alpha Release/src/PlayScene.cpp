@@ -208,22 +208,21 @@ void PlayScene::handleEvents()
 	EventManager::Instance().update();
 
 	////////////// Player Movement [WASD] //////////////////////
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
+	{
+	CameraMovement(PLAYER_RUN_UP);
+	}
+	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
 		CameraMovement(PLAYER_RUN_LEFT);
-	}
-	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
-	{
-		CameraMovement(PLAYER_RUN_RIGHT);
-	}
-
-	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
-	{
-		CameraMovement(PLAYER_RUN_UP);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
 		CameraMovement(PLAYER_RUN_DOWN);
+	}
+	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
+	{
+		CameraMovement(PLAYER_RUN_RIGHT);
 	}
 	else
 	{
