@@ -38,37 +38,37 @@ void PlayScene::draw()
 		Util::DrawRect(glm::vec2{ m_pHuman->rightSenRect->x, m_pHuman->rightSenRect->y }, m_pHuman->rightSenRect->w, m_pHuman->rightSenRect->h);
 		Util::DrawRect(glm::vec2{ m_pHuman->leftSenRect->x, m_pHuman->leftSenRect->y }, m_pHuman->leftSenRect->w, m_pHuman->leftSenRect->h);
 
-		for (Enemy* e : m_pEnemy)
-		{
-			for (SDL_Rect* box : tileLocation)
-			{
-				// Draw Whiskers
-				Util::DrawLine(e->getTransform()->position, e->getLeftLOSEndPoint(), e->getLineColour(0));
-				Util::DrawLine(e->getTransform()->position, e->getMiddleLOSEndPoint(), e->getLineColour(1));
-				Util::DrawLine(e->getTransform()->position, e->getRightLOSEndPoint(), e->getLineColour(2));
-				Util::DrawLine(e->getTransform()->position, e->getLeft2LOSEndPoint(), e->getLineColour(3));
-				Util::DrawLine(e->getTransform()->position, e->getRight2LOSEndPoint(), e->getLineColour(4));
+		//for (Enemy* e : m_pEnemy)
+		//{
+		//	for (SDL_Rect* box : tileLocation)
+		//	{
+		//		// Draw Whiskers
+		//		Util::DrawLine(e->getTransform()->position, e->getLeftLOSEndPoint(), e->getLineColour(0));
+		//		Util::DrawLine(e->getTransform()->position, e->getMiddleLOSEndPoint(), e->getLineColour(1));
+		//		Util::DrawLine(e->getTransform()->position, e->getRightLOSEndPoint(), e->getLineColour(2));
+		//		Util::DrawLine(e->getTransform()->position, e->getLeft2LOSEndPoint(), e->getLineColour(3));
+		//		Util::DrawLine(e->getTransform()->position, e->getRight2LOSEndPoint(), e->getLineColour(4));
 
-				// obstacle dimention information / aliases
-				const auto boxWidth = box->w;
-				const int halfBoxWidth = boxWidth;// *0.5f;
-				const auto boxHeight = box->h;
-				const int halfBoxHeight = boxHeight;// *0.5f;
-				const auto boxStart = glm::vec2{ box->x, box->y };// -glm::vec2(halfBoxWidth, halfBoxHeight);
+		//		// obstacle dimention information / aliases
+		//		const auto boxWidth = box->w;
+		//		const int halfBoxWidth = boxWidth;// *0.5f;
+		//		const auto boxHeight = box->h;
+		//		const int halfBoxHeight = boxHeight;// *0.5f;
+		//		const auto boxStart = glm::vec2{ box->x, box->y };// -glm::vec2(halfBoxWidth, halfBoxHeight);
 
-				// check every whisker to see if it is colliding with the obstacle
-				e->getCollisionWhisker()[0] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeftLOSEndPoint(), glm::vec2{box->x, box->y}, box->w, box->h);
-				e->getCollisionWhisker()[1] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getMiddleLOSEndPoint(), boxStart, boxWidth, boxHeight);
-				e->getCollisionWhisker()[2] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRightLOSEndPoint(), boxStart, boxWidth, boxHeight);
-				e->getCollisionWhisker()[3] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeft2LOSEndPoint(), boxStart, boxWidth, boxHeight);
-				e->getCollisionWhisker()[4] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRight2LOSEndPoint(), boxStart, boxWidth, boxHeight);
-				//std::cout << e->getCollisionWhisker()[0] << std::endl;
-				for (int i = 0; i < 5; ++i)
-				{
-					e->setLineColour(i, (e->getCollisionWhisker()[i]) ? glm::vec4(1, 0, 0, 1) : glm::vec4(0, 1, 0, 1));
-				}
-			}
-		}
+		//		// check every whisker to see if it is colliding with the obstacle
+		//		e->getCollisionWhisker()[0] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeftLOSEndPoint(), glm::vec2{box->x, box->y}, box->w, box->h);
+		//		e->getCollisionWhisker()[1] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getMiddleLOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		e->getCollisionWhisker()[2] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRightLOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		e->getCollisionWhisker()[3] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeft2LOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		e->getCollisionWhisker()[4] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRight2LOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		//std::cout << e->getCollisionWhisker()[0] << std::endl;
+		//		for (int i = 0; i < 5; ++i)
+		//		{
+		//			e->setLineColour(i, (e->getCollisionWhisker()[i]) ? glm::vec4(1, 0, 0, 1) : glm::vec4(0, 1, 0, 1));
+		//		}
+		//	}
+		//}
 	}
 }
 
@@ -96,7 +96,6 @@ void PlayScene::update()
 					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 
-					std::cout << "gooooooo" << std::endl;
 					removeChild(m_pPlayerFire[i]);
 					//delete m_pPlayerFire[i];  // this line causing error
 					m_pPlayerFire[i] = nullptr;
@@ -299,11 +298,9 @@ void PlayScene::start()
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
 
-	/*m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
+	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
-	Mix_PlayMusic(m_pPlaySceneMusic,-1);*/
-
-	//w = new Weapon1(100, 200, MRIGHT);
+	Mix_PlayMusic(m_pPlaySceneMusic,-1);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
@@ -402,7 +399,6 @@ void PlayScene::Shooting()
 	{
 		Mix_PlayChannel(-1, m_pGunSound, 0);
 		m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y) + 8, m_pHuman->getLastHumanDirection()));
-		//m_pPlayerFire.push_back(new Weap(WIDTH / 2, HEIGHT / 2, m_pHuman->getLastHumanDirection()));
 		m_pPlayerFire.shrink_to_fit();
 		addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
 		firing = true;
