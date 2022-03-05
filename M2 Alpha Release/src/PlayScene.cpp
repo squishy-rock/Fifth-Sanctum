@@ -208,21 +208,23 @@ void PlayScene::handleEvents()
 	EventManager::Instance().update();
 
 	////////////// Player Movement [WASD] //////////////////////
+	bool isSprint = EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT);
+
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
 	{
-	CameraMovement(PLAYER_RUN_UP);
+	CameraMovement(PLAYER_RUN_UP, isSprint);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
 	{
-		CameraMovement(PLAYER_RUN_LEFT);
+		CameraMovement(PLAYER_RUN_LEFT, isSprint);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
 	{
-		CameraMovement(PLAYER_RUN_DOWN);
+		CameraMovement(PLAYER_RUN_DOWN, isSprint);
 	}
 	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 	{
-		CameraMovement(PLAYER_RUN_RIGHT);
+		CameraMovement(PLAYER_RUN_RIGHT, isSprint);
 	}
 	else
 	{
@@ -304,27 +306,36 @@ void PlayScene::start()
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
 
-void PlayScene::CameraMovement(PlayerAnimationState p)
+void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 {
 	m_pHuman->setAnimationState(p);
 	m_pHuman->setLastHumanDirection(p);
 
+	double speed = PLAYERSPEED;
+	if (isSprint)
+	{
+		speed = speed * 2;
+	}
+	else
+	{
+		speed = PLAYERSPEED;
+	}
 	if (p == PLAYER_RUN_LEFT)
 	{
 		if (!checkLeftSensor())
 		{
-			m_pLevel->getTransform()->position.x += PLAYERSPEED;
+			m_pLevel->getTransform()->position.x += speed;
 			for (int i = 0; i < tileLocation.size(); i++)
 			{
-				tileLocation[i]->x += PLAYERSPEED;
+				tileLocation[i]->x += speed;
 			}
 			for (Weap* w : m_pPlayerFire)
 			{
-				w->getTransform()->position.x += PLAYERSPEED;
+				w->getTransform()->position.x += speed;
 			}
 			for (Enemy* e : m_pEnemy)
 			{
-				e->getTransform()->position.x += PLAYERSPEED;
+				e->getTransform()->position.x += speed;
 			}
 		}
 	}
@@ -333,18 +344,18 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 	{
 		if (!checkRightSensor())
 		{
-			m_pLevel->getTransform()->position.x -= PLAYERSPEED;
+			m_pLevel->getTransform()->position.x -= speed;
 			for (int i = 0; i < tileLocation.size(); i++)
 			{
-				tileLocation[i]->x -= PLAYERSPEED;
+				tileLocation[i]->x -= speed;
 			}
 			for (Weap* w : m_pPlayerFire)
 			{
-				w->getTransform()->position.x -= PLAYERSPEED;
+				w->getTransform()->position.x -= speed;
 			}
 			for (Enemy* e : m_pEnemy)
 			{
-				e->getTransform()->position.x -= PLAYERSPEED;
+				e->getTransform()->position.x -= speed;
 			}
 		}
 	}
@@ -353,18 +364,18 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 	{
 		if (!checkUpSensor())
 		{
-			m_pLevel->getTransform()->position.y += PLAYERSPEED;
+			m_pLevel->getTransform()->position.y += speed;
 			for (int i = 0; i < tileLocation.size(); i++)
 			{
-				tileLocation[i]->y += PLAYERSPEED;
+				tileLocation[i]->y += speed;
 			}
 			for (Weap* w : m_pPlayerFire)
 			{
-				w->getTransform()->position.y += PLAYERSPEED;
+				w->getTransform()->position.y += speed;
 			}
 			for (Enemy* e : m_pEnemy)
 			{
-				e->getTransform()->position.y += PLAYERSPEED;
+				e->getTransform()->position.y += speed;
 			}
 		}
 	}
@@ -373,23 +384,21 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 	{
 		if (!checkDownSensor())
 		{
-			m_pLevel->getTransform()->position.y -= PLAYERSPEED;
+			m_pLevel->getTransform()->position.y -= speed;
 			for (int i = 0; i < tileLocation.size(); i++)
 			{
-				tileLocation[i]->y -= PLAYERSPEED;
+				tileLocation[i]->y -= speed;
 			}
 			for (Weap* w : m_pPlayerFire)
 			{
-				w->getTransform()->position.y -= PLAYERSPEED;
+				w->getTransform()->position.y -= speed;
 			}
 			for (Enemy* e : m_pEnemy)
 			{
-				e->getTransform()->position.y -= PLAYERSPEED;
+				e->getTransform()->position.y -= speed;
 			}
 		}
 	}
-
-	
 }
 
 void PlayScene::Shooting()
