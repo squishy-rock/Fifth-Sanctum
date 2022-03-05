@@ -20,11 +20,15 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
-	TextureManager::Instance().load("../Assets/textures/box.png", "box");
+	for (int i = 0; i < m_pDiamond.size(); i++)
+	{
+		m_pDiamond[i]->draw();
+	}
 	TextureManager::Instance().draw("box", tileLocation[0]->x, tileLocation[0]->y, 0, 255, false);
+	TextureManager::Instance().draw("box", tileLocation[1]->x, tileLocation[1]->y, 0, 255, false);
 
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
-	Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);
+	/*Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);*/
 	if (m_getGridColliderEnabled())
 	{
 		//////////// this is to draw rect for all collider object
@@ -169,6 +173,27 @@ void PlayScene::update()
 		}
 	}
 
+	// Human VS Diamond
+	if (m_pDiamond.size() > 0)
+	{
+		for (unsigned i = 0; i < m_pDiamond.size(); i++)
+		{
+			SDL_Rect tempH = { int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y),
+						m_pHuman->getWidth(), m_pHuman->getHeight() };
+			SDL_Rect tempD = { int(m_pDiamond[i]->getTransform()->position.x)+16, int(m_pDiamond[i]->getTransform()->position.y)+16,
+						m_pDiamond[i]->getWidth(), m_pDiamond[i]->getHeight() };
+
+			if (CollisionManager::AABBCheck(&tempH, &tempD))
+			{
+				SoundManager::Instance().playSound("diamond", 0, -1);
+				m_pDiamond[i] = nullptr;
+				m_pDiamond.erase(m_pDiamond.begin() + i);
+				m_pDiamond.shrink_to_fit();
+			}
+
+		}
+	}
+
 	updateDisplayList();
 
 }
@@ -299,6 +324,10 @@ void PlayScene::start()
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
 
+	// For event
+	TextureManager::Instance().load("../Assets/textures/box.png", "box");
+	SoundManager::Instance().load("../Assets/audio/coin.wav", "diamond", SOUND_SFX);
+
 	/*m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);*/
@@ -330,6 +359,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 			{
 				e->getTransform()->position.x += PLAYERSPEED;
 			}
+			for (Diamond* d : m_pDiamond)
+			{
+				d->getTransform()->position.x += PLAYERSPEED;
+			}
 		}
 	}
 
@@ -349,6 +382,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 			for (Enemy* e : m_pEnemy)
 			{
 				e->getTransform()->position.x -= PLAYERSPEED;
+			}
+			for (Diamond* d : m_pDiamond)
+			{
+				d->getTransform()->position.x -= PLAYERSPEED;
 			}
 		}
 	}
@@ -370,6 +407,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 			{
 				e->getTransform()->position.y += PLAYERSPEED;
 			}
+			for (Diamond* d : m_pDiamond)
+			{
+				d->getTransform()->position.y += PLAYERSPEED;
+			}
 		}
 	}
 
@@ -389,6 +430,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p)
 			for (Enemy* e : m_pEnemy)
 			{
 				e->getTransform()->position.y -= PLAYERSPEED;
+			}
+			for (Diamond* d : m_pDiamond)
+			{
+				d->getTransform()->position.y -= PLAYERSPEED;
 			}
 		}
 	}
@@ -431,6 +476,12 @@ bool PlayScene::checkUpSensor()
 				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
+
+			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
+			{
+				const SDL_Rect temp = { tileLocation[1]->x, tileLocation[1]->y - 32, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -458,6 +509,12 @@ bool PlayScene::checkDownSensor()
 
 				std::cout << "gooooooo" << std::endl;
 				count = 0;
+			}
+
+			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
+			{
+				const SDL_Rect temp = { tileLocation[1]->x, tileLocation[1]->y + 32, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
 			}
 			return true;
 		}
@@ -487,6 +544,12 @@ bool PlayScene::checkRightSensor()
 				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
+
+			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
+			{
+				const SDL_Rect temp = { tileLocation[1]->x + 32, tileLocation[1]->y, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -515,6 +578,12 @@ bool PlayScene::checkLeftSensor()
 				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
+
+			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
+			{
+				const SDL_Rect temp = { tileLocation[1]->x - 32, tileLocation[1]->y, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -530,6 +599,7 @@ void PlayScene::initTileLocation()
 
 	//Event Tiles
 	tileLocation.push_back(new SDL_Rect{ 20 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
+	tileLocation.push_back(new SDL_Rect{ 14 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
 	
 	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 11 * 32 + yLocation, 32 * 80, 32 });  // up side wall
 	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 90 * 32 + yLocation,32 * 80, 32 });  // down side wall

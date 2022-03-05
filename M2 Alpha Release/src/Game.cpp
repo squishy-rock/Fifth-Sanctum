@@ -100,7 +100,7 @@ bool Game::init(const char* title, const int x, const int y, const int width, co
 		std::cout << "SDL init failure" << std::endl;
 		return false; //SDL could not intialize
 	}
-
+	SoundManager::Instance().setSoundVolume(16);
 	std::cout << "init success" << std::endl;
 	m_bRunning = true; // everything initialized successfully - start the main loop
 

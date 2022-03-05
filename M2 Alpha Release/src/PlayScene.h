@@ -15,6 +15,7 @@
 #include "Label.h"
 #include "HumanLife.h"
 #include "SoundManager.h"
+#include "Diamond.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -65,6 +66,7 @@ private:
 
 	HumanLife* m_HumanLife;
 
+	// For spawn time
 	int count = 0, maxCount = 180;
 
 	bool m_playerFacingRight;
@@ -77,6 +79,7 @@ private:
 	std::vector<SDL_Point> localLocation;
 
 	std::vector<Enemy*> m_pEnemy;
+	std::vector<Diamond*> m_pDiamond;
 	
 };
 
