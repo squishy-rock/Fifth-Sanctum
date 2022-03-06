@@ -17,6 +17,7 @@
 #include "StartScene.h"
 #include "PlayScene.h"
 #include "EndScene.h"
+#include "PauseScene.h"
 
 #include "Config.h"
 
@@ -73,7 +74,7 @@ private:
 	// scene variables
 	Scene* m_currentScene;
 	SceneState m_currentSceneState;
-
+	Scene* m_holdingScene;
 	// storage structures
 	std::shared_ptr<SDL_Window> m_pWindow;
 };

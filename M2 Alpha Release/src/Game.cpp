@@ -147,7 +147,22 @@ void Game::setDeltaTime(const float time)
 
 void Game::changeSceneState(const SceneState new_state)
 {
-	if (new_state != m_currentSceneState) {
+	if (new_state == PAUSE_SCENE && m_currentSceneState == PLAY_SCENE)
+	{
+		m_currentSceneState = PAUSE_SCENE;
+		m_holdingScene = nullptr;
+		m_holdingScene = m_currentScene;
+		m_currentScene = nullptr;
+		m_currentScene = new PauseScene();
+
+	}
+	else if (new_state == PLAY_SCENE && m_currentSceneState == PAUSE_SCENE)
+	{
+		m_currentScene = m_holdingScene;
+		m_currentSceneState = PLAY_SCENE;
+	}
+	else if (new_state != m_currentSceneState) 
+	{
 
 		// scene clean up
 		if (m_currentSceneState != NO_SCENE)

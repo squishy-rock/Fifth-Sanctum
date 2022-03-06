@@ -285,6 +285,11 @@ void PlayScene::handleEvents()
 		TheGame::Instance().changeSceneState(END_SCENE);
 	}
 
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_P))
+	{
+		TheGame::Instance().changeSceneState(PAUSE_SCENE);
+	}
+
 	// To check Human lives
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_L))
 	{

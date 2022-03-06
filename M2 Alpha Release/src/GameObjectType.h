@@ -22,6 +22,8 @@ enum GameObjectType {
 	NEXT_BUTTON,
 	NUM_OF_TYPES,
 	LIFE,
+	RESUME_BUTTON,
+	QUIT_BUTTON,
 	ITEM
 };
 #endif /* defined (__GAME_OBJECT_TYPE__) */
