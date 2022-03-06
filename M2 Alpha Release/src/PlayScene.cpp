@@ -511,7 +511,6 @@ bool PlayScene::checkUpSensor()
 				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 
-				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
 
@@ -523,6 +522,17 @@ bool PlayScene::checkUpSensor()
 			return true;
 		}
 	}
+
+	for (SDL_Rect* bed : bedLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, bed))
+		{
+			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32};
+			m_pDiamond.push_back(new Diamond(temp));
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -545,7 +555,6 @@ bool PlayScene::checkDownSensor()
 				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 
-				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
 
@@ -554,6 +563,16 @@ bool PlayScene::checkDownSensor()
 				const SDL_Rect temp = { tileLocation[1]->x, tileLocation[1]->y + 32, 32,32 };
 				m_pDiamond.push_back(new Diamond(temp));
 			}
+			return true;
+		}
+	}
+
+	for (SDL_Rect* bed : bedLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, bed))
+		{
+			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
+			m_pDiamond.push_back(new Diamond(temp));
 			return true;
 		}
 	}
@@ -579,7 +598,6 @@ bool PlayScene::checkRightSensor()
 				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 
-				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
 
@@ -588,6 +606,16 @@ bool PlayScene::checkRightSensor()
 				const SDL_Rect temp = { tileLocation[1]->x + 32, tileLocation[1]->y, 32,32 };
 				m_pDiamond.push_back(new Diamond(temp));
 			}
+			return true;
+		}
+	}
+
+	for (SDL_Rect* bed : bedLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, bed))
+		{
+			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
+			m_pDiamond.push_back(new Diamond(temp));
 			return true;
 		}
 	}
@@ -613,7 +641,6 @@ bool PlayScene::checkLeftSensor()
 				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 
-				std::cout << "gooooooo" << std::endl;
 				count = 0;
 			}
 
@@ -622,6 +649,16 @@ bool PlayScene::checkLeftSensor()
 				const SDL_Rect temp = { tileLocation[1]->x - 32, tileLocation[1]->y, 32,32 };
 				m_pDiamond.push_back(new Diamond(temp));
 			}
+			return true;
+		}
+	}
+
+	for (SDL_Rect* bed : bedLocation)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, bed))
+		{
+			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
+			m_pDiamond.push_back(new Diamond(temp));
 			return true;
 		}
 	}
