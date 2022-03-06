@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Label.h"
 #include "Button.h"
+#include "Background.h"
 
 class EndScene final : public Scene
 {
@@ -21,7 +22,10 @@ public:
 
 private:
 	Label* m_label{};
+	Label* m_restartLabel{};
+	
 
+	Background* m_pEndBackground{};
 	Button* m_pRestartButton;
 };
 

@@ -49,13 +49,21 @@ void EndScene::handleEvents()
 void EndScene::start()
 {
 	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_label = new Label("END SCENE", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
+	m_label = new Label("GAME OVER", "Dock51", 80, blue, glm::vec2(500.0f, 40.0f));
 	m_label->setParent(this);
 	addChild(m_label);
+	
+	m_restartLabel = new Label("Or press 1 to restart", "Consolas", 20, blue, glm::vec2(500.0f, 500.0f));
+	m_restartLabel->setParent(this);
+	addChild(m_restartLabel);
+
+
+	m_pEndBackground = new Background();
+	addChild(m_pEndBackground, 0, 0);
 
 	// Restart Button
 	m_pRestartButton = new Button("../Assets/textures/restartButton.png", "restartButton", RESTART_BUTTON);
-	m_pRestartButton->getTransform()->position = glm::vec2(400.0f, 400.0f);
+	m_pRestartButton->getTransform()->position = glm::vec2(500.0f, 400.0f);
 	m_pRestartButton->addEventListener(CLICK, [&]()-> void
 	{
 		m_pRestartButton->setActive(false);
