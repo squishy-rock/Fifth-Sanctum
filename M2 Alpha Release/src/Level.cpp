@@ -4,7 +4,7 @@
 
 Level::Level()
 {
-	TextureManager::Instance().load("../Assets/textures/levelDesign2.png", "Level");
+	TextureManager::Instance().load("../Assets/textures/levelDesign3.png", "Level");
 
 	const auto size = TextureManager::Instance().getTextureSize("Level");
 	setWidth(size.x);

@@ -39,42 +39,49 @@ void PlayScene::draw()
 			Util::DrawRect(glm::vec2{ tileLocation[i]->x, tileLocation[i]->y }, tileLocation[i]->w, tileLocation[i]->h);
 		}
 		
+		/////////// this is to draw the player sensors 
 		Util::DrawRect(glm::vec2{ m_pHuman->upSenRect->x, m_pHuman->upSenRect->y }, m_pHuman->upSenRect->w, m_pHuman->upSenRect->h);
 		Util::DrawRect(glm::vec2{ m_pHuman->downSenRect->x, m_pHuman->downSenRect->y }, m_pHuman->downSenRect->w, m_pHuman->downSenRect->h);
 		Util::DrawRect(glm::vec2{ m_pHuman->rightSenRect->x, m_pHuman->rightSenRect->y }, m_pHuman->rightSenRect->w, m_pHuman->rightSenRect->h);
 		Util::DrawRect(glm::vec2{ m_pHuman->leftSenRect->x, m_pHuman->leftSenRect->y }, m_pHuman->leftSenRect->w, m_pHuman->leftSenRect->h);
 
-		for (Enemy* e : m_pEnemy)
+		//////////// this is to draw rect for all bed collider
+		for (SDL_Rect* bed: bedLocation)
 		{
-			for (SDL_Rect* box : tileLocation)
-			{
-				// Draw Whiskers
-				Util::DrawLine(e->getTransform()->position, e->getLeftLOSEndPoint(), e->getLineColour(0));
-				Util::DrawLine(e->getTransform()->position, e->getMiddleLOSEndPoint(), e->getLineColour(1));
-				Util::DrawLine(e->getTransform()->position, e->getRightLOSEndPoint(), e->getLineColour(2));
-				Util::DrawLine(e->getTransform()->position, e->getLeft2LOSEndPoint(), e->getLineColour(3));
-				Util::DrawLine(e->getTransform()->position, e->getRight2LOSEndPoint(), e->getLineColour(4));
-
-				// obstacle dimention information / aliases
-				const auto boxWidth = box->w;
-				const int halfBoxWidth = boxWidth;// *0.5f;
-				const auto boxHeight = box->h;
-				const int halfBoxHeight = boxHeight;// *0.5f;
-				const auto boxStart = glm::vec2{ box->x, box->y };// -glm::vec2(halfBoxWidth, halfBoxHeight);
-
-				// check every whisker to see if it is colliding with the obstacle
-				e->getCollisionWhisker()[0] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeftLOSEndPoint(), glm::vec2{box->x, box->y}, box->w, box->h);
-				e->getCollisionWhisker()[1] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getMiddleLOSEndPoint(), boxStart, boxWidth, boxHeight);
-				e->getCollisionWhisker()[2] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRightLOSEndPoint(), boxStart, boxWidth, boxHeight);
-				e->getCollisionWhisker()[3] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeft2LOSEndPoint(), boxStart, boxWidth, boxHeight);
-				e->getCollisionWhisker()[4] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRight2LOSEndPoint(), boxStart, boxWidth, boxHeight);
-				//std::cout << e->getCollisionWhisker()[0] << std::endl;
-				for (int i = 0; i < 5; ++i)
-				{
-					e->setLineColour(i, (e->getCollisionWhisker()[i]) ? glm::vec4(1, 0, 0, 1) : glm::vec4(0, 1, 0, 1));
-				}
-			}
+			Util::DrawRect(glm::vec2{ bed->x, bed->y }, bed->w, bed->h);
 		}
+
+		//for (Enemy* e : m_pEnemy)
+		//{
+		//	for (SDL_Rect* box : tileLocation)
+		//	{
+		//		// Draw Whiskers
+		//		Util::DrawLine(e->getTransform()->position, e->getLeftLOSEndPoint(), e->getLineColour(0));
+		//		Util::DrawLine(e->getTransform()->position, e->getMiddleLOSEndPoint(), e->getLineColour(1));
+		//		Util::DrawLine(e->getTransform()->position, e->getRightLOSEndPoint(), e->getLineColour(2));
+		//		Util::DrawLine(e->getTransform()->position, e->getLeft2LOSEndPoint(), e->getLineColour(3));
+		//		Util::DrawLine(e->getTransform()->position, e->getRight2LOSEndPoint(), e->getLineColour(4));
+
+		//		// obstacle dimention information / aliases
+		//		const auto boxWidth = box->w;
+		//		const int halfBoxWidth = boxWidth;// *0.5f;
+		//		const auto boxHeight = box->h;
+		//		const int halfBoxHeight = boxHeight;// *0.5f;
+		//		const auto boxStart = glm::vec2{ box->x, box->y };// -glm::vec2(halfBoxWidth, halfBoxHeight);
+
+		//		// check every whisker to see if it is colliding with the obstacle
+		//		e->getCollisionWhisker()[0] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeftLOSEndPoint(), glm::vec2{box->x, box->y}, box->w, box->h);
+		//		e->getCollisionWhisker()[1] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getMiddleLOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		e->getCollisionWhisker()[2] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRightLOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		e->getCollisionWhisker()[3] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeft2LOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		e->getCollisionWhisker()[4] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRight2LOSEndPoint(), boxStart, boxWidth, boxHeight);
+		//		//std::cout << e->getCollisionWhisker()[0] << std::endl;
+		//		for (int i = 0; i < 5; ++i)
+		//		{
+		//			e->setLineColour(i, (e->getCollisionWhisker()[i]) ? glm::vec4(1, 0, 0, 1) : glm::vec4(0, 1, 0, 1));
+		//		}
+		//	}
+		//}
 	}
 }
 
@@ -378,6 +385,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.x += speed;
 			}
+			for (SDL_Rect* bed : bedLocation)
+			{
+				bed->x += speed;
+			}
 		}
 	}
 
@@ -401,6 +412,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (Diamond* d : m_pDiamond)
 			{
 				d->getTransform()->position.x -= speed;
+			}
+			for (SDL_Rect* bed : bedLocation)
+			{
+				bed->x -= speed;
 			}
 		}
 	}
@@ -426,6 +441,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y += speed;
 			}
+			for (SDL_Rect* bed : bedLocation)
+			{
+				bed->y += speed;
+			}
 		}
 	}
 
@@ -449,6 +468,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (Diamond* d : m_pDiamond)
 			{
 				d->getTransform()->position.y -= speed;
+			}
+			for (SDL_Rect* bed : bedLocation)
+			{
+				bed->y -= speed;
 			}
 		}
 	}
@@ -747,6 +770,20 @@ void PlayScene::initTileLocation()
 	for (int i = 0; i < localLocation.size(); i++)
 	{
 		tileLocation.push_back(new SDL_Rect{ localLocation[i].x * 32 - xLocation, localLocation[i].y * 32 + yLocation, 32,32 });
+	}
+
+	// these lines to locate the bed starting location
+	bedPointLocation.push_back(SDL_Point{ 15, 79 });
+	bedPointLocation.push_back(SDL_Point{ 68, 79 });
+	bedPointLocation.push_back(SDL_Point{ 38, 66 });
+	bedPointLocation.push_back(SDL_Point{ 67, 45 });
+	bedPointLocation.push_back(SDL_Point{ 68, 12 });
+	bedPointLocation.push_back(SDL_Point{ 50, 12 });
+	bedPointLocation.push_back(SDL_Point{ 31, 12 });
+
+	for (SDL_Point bed : bedPointLocation)
+	{
+		bedLocation.push_back(new SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 });
 	}
 }
 

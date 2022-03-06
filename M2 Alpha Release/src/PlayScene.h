@@ -77,6 +77,8 @@ private:
 
 	std::vector<SDL_Rect*> tileLocation;
 	std::vector<SDL_Point> localLocation;
+	std::vector<SDL_Rect*> bedLocation;
+	std::vector<SDL_Point> bedPointLocation;
 
 	std::vector<Enemy*> m_pEnemy;
 	std::vector<Diamond*> m_pDiamond;
