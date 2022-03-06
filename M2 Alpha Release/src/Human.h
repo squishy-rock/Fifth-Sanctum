@@ -38,6 +38,8 @@ public:
 	void SetTint(int t) { m_tint = t; }
 	void Hit();
 
+	void setAnimationSpeed(float s);
+
 
 private:
 	void m_buildAnimations();
@@ -50,6 +52,7 @@ private:
 	int m_tint;
 	int hitCount;
 	int maxCount;
+	float animationSpeed;
 };
 
 #endif /* defined (__HUMAN__) */

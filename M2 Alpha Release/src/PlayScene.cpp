@@ -315,6 +315,7 @@ void PlayScene::start()
 
 	// Human Sprite
 	m_pHuman = new Human();
+	m_pHuman->setAnimationSpeed(0.3);
 	addChild(m_pHuman, 1, 1);
 
 	// Ghost 
@@ -349,10 +350,12 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 	if (isSprint)
 	{
 		speed = speed * 2;
+		m_pHuman->setAnimationSpeed(0.5);
 	}
 	else
 	{
 		speed = PLAYERSPEED;
+		m_pHuman->setAnimationSpeed(0.3);
 	}
 	if (p == PLAYER_RUN_LEFT)
 	{

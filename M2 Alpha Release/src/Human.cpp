@@ -50,35 +50,35 @@ void Human::draw()
 	{
 	case PLAYER_IDLE_RIGHT:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("idleRight"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_IDLE_LEFT:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("idleLeft"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_IDLE_UP:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("idleUp"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_IDLE_DOWN:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("idleDown"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_RUN_DOWN:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("runDown"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_RUN_UP:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("runUp"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_RUN_RIGHT:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("runRight"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	case PLAYER_RUN_LEFT:
 		TextureManager::Instance().playAnimation("spritesheet", getAnimation("runLeft"),
-			x, y, AnimaSpeed, 0, 255, true);
+			x, y, animationSpeed, 0, 255, true);
 		break;
 	default:
 		break;
@@ -130,6 +130,11 @@ void Human::Hit()
 	{
 		SetTint(255);
 	}
+}
+
+void Human::setAnimationSpeed(float s)
+{
+	animationSpeed = s;
 }
 
 void Human::m_buildAnimations()
