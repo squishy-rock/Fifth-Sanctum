@@ -292,10 +292,12 @@ void PlayScene::handleEvents()
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 		if (!CheckKeyList('D'))keyList.push_back('D');
 
+	/* Debug
 	if (keyList.size() > 0)
 		std::cout << keyList.size() << (char)keyList[keyList.size() - 1] << std::endl;
 	else
 		std::cout << keyList.size() << std::endl;
+	*/
 
 	char key = keyList.size() > 0 ? ((char)keyList[keyList.size() - 1]) : 0;
 
