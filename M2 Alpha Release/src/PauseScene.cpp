@@ -68,12 +68,32 @@ void PauseScene::start()
 	addChild(m_label);
 
 	// Resume Button
-	m_pRestartButton = new Button("../Assets/textures/resumeButton.png", "resumeButton", RESUME_BUTTON);
+	m_pResumeButton = new Button("../Assets/textures/resumeButton2.png", "resumeButton", RESUME_BUTTON);
+	m_pResumeButton->getTransform()->position = glm::vec2(WIDTH / 2, 340.0f);
+	m_pResumeButton->addEventListener(CLICK, [&]()-> void
+		{
+			m_pResumeButton->setActive(false);
+			TheGame::Instance().changeSceneState(PLAY_SCENE);
+		});
+
+	m_pResumeButton->addEventListener(MOUSE_OVER, [&]()->void
+		{
+			m_pResumeButton->setAlpha(128);
+		});
+
+	m_pResumeButton->addEventListener(MOUSE_OUT, [&]()->void
+		{
+			m_pResumeButton->setAlpha(255);
+		});
+	addChild(m_pResumeButton);
+
+	// Restart Button
+	m_pRestartButton = new Button("../Assets/textures/restartButton2.png", "restartButton", RESUME_BUTTON);
 	m_pRestartButton->getTransform()->position = glm::vec2( WIDTH/2, 400.0f);
 	m_pRestartButton->addEventListener(CLICK, [&]()-> void
 		{
 			m_pRestartButton->setActive(false);
-			TheGame::Instance().changeSceneState(PLAY_SCENE);
+			TheGame::Instance().changeSceneState(START_SCENE);
 		});
 
 	m_pRestartButton->addEventListener(MOUSE_OVER, [&]()->void
@@ -88,7 +108,7 @@ void PauseScene::start()
 	addChild(m_pRestartButton);
 
 	// Quit Button
-	m_pQuitButton = new Button("../Assets/textures/quitButton.png", "quitButton", QUIT_BUTTON);
+	m_pQuitButton = new Button("../Assets/textures/quitButton2.png", "quitButton", QUIT_BUTTON);
 	m_pQuitButton->getTransform()->position = glm::vec2(WIDTH / 2, 460.0f);
 	m_pQuitButton->addEventListener(CLICK, [&]()-> void
 		{

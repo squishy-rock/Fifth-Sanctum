@@ -25,17 +25,23 @@ void PlayScene::draw()
 
 	//Util::DrawRect(glm::vec2{ m_pBed[0]->getPosSize().x, m_pBed[0]->getPosSize().y}, m_pBed[0]->getPosSize().w, m_pBed[0]->getPosSize().h);
 
-	for (int i = 0; i < m_pDiamond.size(); i++)
+	/*for (int i = 0; i < m_pDiamond.size(); i++)
 	{
 		m_pDiamond[i]->draw();
-	}
-	TextureManager::Instance().draw("box", tileLocation[0]->x, tileLocation[0]->y, 0, 255, false);
-	TextureManager::Instance().draw("box", tileLocation[1]->x, tileLocation[1]->y, 0, 255, false);
+	}*/
+	/*TextureManager::Instance().draw("box", tileLocation[0]->x, tileLocation[0]->y, 0, 255, false);
+	TextureManager::Instance().draw("box", tileLocation[1]->x, tileLocation[1]->y, 0, 255, false);*/
 
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
 	/*Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);*/
 	if (m_getGridColliderEnabled())
 	{
+		//////////// this is to draw rect for obstacle object
+		for (Obstacle* o : m_pObstacle)
+		{
+			Util::DrawRect(glm::vec2{ o->getPosSize().x, o->getPosSize().y }, o->getPosSize().w, o->getPosSize().h);
+		}
+
 		//////////// this is to draw rect for bed object
 		for (Bed* bed : m_pBed)
 		{
@@ -107,18 +113,18 @@ void PlayScene::update()
 			{
 				if (CollisionManager::AABBCheck(&temp, r))
 				{
-					// Adding Enemy for test
-					m_pEnemy.push_back(new Enemy());
-					m_pEnemy.shrink_to_fit();
-					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = m_pPlayerFire[i]->getTransform()->position;
-					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+					//// Adding Enemy for test
+					//m_pEnemy.push_back(new Enemy());
+					//m_pEnemy.shrink_to_fit();
+					//m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+					//m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+					//m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = m_pPlayerFire[i]->getTransform()->position;
+					//m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+					//m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+					//m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+					//addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 
-					std::cout << "gooooooo" << std::endl;
+					//std::cout << "gooooooo" << std::endl;
 					removeChild(m_pPlayerFire[i]);
 					//delete m_pPlayerFire[i];  // this line causing error
 					m_pPlayerFire[i] = nullptr;
@@ -145,13 +151,19 @@ void PlayScene::update()
 
 			if (CollisionManager::AABBCheck(&tempH, &tempE))
 			{
+				m_pHuman->SetIsColliding(true);
+				m_pHuman->Hit();
+
+				removeChild(m_pEnemy[i]);
+				m_pEnemy[i] = nullptr;
+				m_pEnemy.erase(m_pEnemy.begin() + i);
+				m_pEnemy.shrink_to_fit();
+
+				HumanLife::m_hit();
 				if (HumanLife::getHumanLife() <= 0)
 				{
 					TheGame::Instance().changeSceneState(END_SCENE);
 				}
-				HumanLife::m_hit();
-				m_pHuman->SetIsColliding(true);
-				m_pHuman->Hit();
 			}
 			else
 			{
@@ -204,6 +216,7 @@ void PlayScene::update()
 			if (CollisionManager::AABBCheck(&tempH, &tempD))
 			{
 				SoundManager::Instance().playSound("diamond", 0, -1);
+				removeChild(m_pDiamond[i]);
 				m_pDiamond[i] = nullptr;
 				m_pDiamond.erase(m_pDiamond.begin() + i);
 				m_pDiamond.shrink_to_fit();
@@ -351,21 +364,39 @@ void PlayScene::start()
 	m_pGhost = new Ghost();
 	m_pGhost->getTransform()->position = m_pHuman->getTransform()->position;
 	m_pGhost->setLayerIndex(0);
-	addChild(m_pGhost, 2, 0);  // addChild( GameObject, layerIndex, OrderIndex) 
+	addChild(m_pGhost, 2, 2);  // addChild( GameObject, layerIndex, OrderIndex) 
 
 	//Life
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
 
+	// Pause Button
+	m_pPauseButton = new Button("../Assets/textures/pauseButton.png", "pauseButton", RESUME_BUTTON);
+	m_pPauseButton->getTransform()->position = glm::vec2(WIDTH - 50, 50);
+	m_pPauseButton->addEventListener(CLICK, [&]()-> void
+		{
+			m_pPauseButton->setActive(false);
+			TheGame::Instance().changeSceneState(PAUSE_SCENE);
+		});
+
+	m_pPauseButton->addEventListener(MOUSE_OVER, [&]()->void
+		{
+			m_pPauseButton->setAlpha(128);
+		});
+
+	m_pPauseButton->addEventListener(MOUSE_OUT, [&]()->void
+		{
+			m_pPauseButton->setAlpha(255);
+		});
+	addChild(m_pPauseButton, 5, 0);
+
 	// For event
 	TextureManager::Instance().load("../Assets/textures/box.png", "box");
 	SoundManager::Instance().load("../Assets/audio/coin.wav", "diamond", SOUND_SFX);
 
-	/*m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
+	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
-	Mix_PlayMusic(m_pPlaySceneMusic,-1);*/
-
-	//w = new Weapon1(100, 200, MRIGHT);
+	Mix_PlayMusic(m_pPlaySceneMusic,-1);
 
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
@@ -407,13 +438,13 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.x += speed;
 			}
-			/*for (SDL_Rect* bed : bedLocation)
-			{
-				bed->x += speed;
-			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.x += speed;
+			}
+			for (Obstacle* o : m_pObstacle)
+			{
+				o->positionAndSize.x += speed;
 			}
 		}
 	}
@@ -439,13 +470,13 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.x -= speed;
 			}
-			/*for (SDL_Rect* bed : bedLocation)
-			{
-				bed->x -= speed;
-			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.x -= speed;
+			}
+			for (Obstacle* o : m_pObstacle)
+			{
+				o->positionAndSize.x -= speed;
 			}
 		}
 	}
@@ -471,13 +502,13 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y += speed;
 			}
-			/*for (SDL_Rect* bed : bedLocation)
-			{
-				bed->y += speed;
-			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.y += speed;
+			}
+			for (Obstacle* o : m_pObstacle)
+			{
+				o->positionAndSize.y += speed;
 			}
 		}
 	}
@@ -503,13 +534,13 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y -= speed;
 			}
-			/*for (SDL_Rect* bed : bedLocation)
-			{
-				bed->y -= speed;
-			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.y -= speed;
+			}
+			for (Obstacle* o : m_pObstacle)
+			{
+				o->positionAndSize.y -= speed;
 			}
 		}
 	}
@@ -561,16 +592,7 @@ bool PlayScene::checkUpSensor()
 		}
 	}
 
-	/*for (SDL_Rect* bed : bedLocation)
-	{
-		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, bed))
-		{
-			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32};
-			m_pDiamond.push_back(new Diamond(temp));
-			return true;
-		}
-	}*/
-
+	///////////// Spawn Enemy or Diamond when player touch the bed
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, &bed->getPosSize()))
@@ -585,9 +607,10 @@ bool PlayScene::checkUpSensor()
 				}
 				if (randomAction == 0)
 				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
 					m_pDiamond.push_back(new Diamond(temp));
-					
+					m_pDiamond.shrink_to_fit();
+					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
 				}
 				else if (randomAction == 1)
 				{
@@ -604,6 +627,14 @@ bool PlayScene::checkUpSensor()
 					numOfRandSpawn++;
 				}
 			}
+			return true;
+		}
+	}
+
+	for (Obstacle* o : m_pObstacle)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, &o->getPosSize()))
+		{
 			return true;
 		}
 	}
@@ -642,16 +673,6 @@ bool PlayScene::checkDownSensor()
 		}
 	}
 
-	/*for (SDL_Rect* bed : bedLocation)
-	{
-		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, bed))
-		{
-			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
-			m_pDiamond.push_back(new Diamond(temp));
-			return true;
-		}
-	}*/
-
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, &bed->getPosSize()))
@@ -685,6 +706,14 @@ bool PlayScene::checkDownSensor()
 					numOfRandSpawn++;
 				}
 			}
+			return true;
+		}
+	}
+
+	for (Obstacle* o : m_pObstacle)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, &o->getPosSize()))
+		{
 			return true;
 		}
 	}
@@ -722,16 +751,6 @@ bool PlayScene::checkRightSensor()
 		}
 	}
 
-	/*for (SDL_Rect* bed : bedLocation)
-	{
-		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, bed))
-		{
-			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
-			m_pDiamond.push_back(new Diamond(temp));
-			return true;
-		}
-	}*/
-
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, &bed->getPosSize()))
@@ -765,6 +784,13 @@ bool PlayScene::checkRightSensor()
 					numOfRandSpawn++;
 				}
 			}
+			return true;
+		}
+	}
+	for (Obstacle* o : m_pObstacle)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, &o->getPosSize()))
+		{
 			return true;
 		}
 	}
@@ -802,16 +828,6 @@ bool PlayScene::checkLeftSensor()
 		}
 	}
 
-	/*for (SDL_Rect* bed : bedLocation)
-	{
-		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, bed))
-		{
-			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
-			m_pDiamond.push_back(new Diamond(temp));
-			return true;
-		}
-	}*/
-
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, &bed->getPosSize()))
@@ -848,6 +864,15 @@ bool PlayScene::checkLeftSensor()
 			return true;
 		}
 	}
+
+	for (Obstacle* o : m_pObstacle)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, &o->getPosSize()))
+		{
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -858,9 +883,9 @@ void PlayScene::initTileLocation()
 	int xLocOnMap[] = {10, 11, 12, 13, 14, 15}; // we need to add all the location of the walls on the map
 	int yLocOnMap[] = {78, 78, 78, 78, 78, 78 }; // we need to add all the location of the walls on the map
 
-	//Event Tiles
-	tileLocation.push_back(new SDL_Rect{ 20 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
-	tileLocation.push_back(new SDL_Rect{ 14 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
+	////Event Tiles
+	//tileLocation.push_back(new SDL_Rect{ 20 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
+	//tileLocation.push_back(new SDL_Rect{ 14 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
 	
 	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 11 * 32 + yLocation, 32 * 80, 32 });  // up side wall
 	tileLocation.push_back(new SDL_Rect{ 10 * 32 - xLocation, 90 * 32 + yLocation,32 * 80, 32 });  // down side wall
@@ -995,7 +1020,7 @@ void PlayScene::initTileLocation()
 		tileLocation.push_back(new SDL_Rect{ localLocation[i].x * 32 - xLocation, localLocation[i].y * 32 + yLocation, 32,32 });
 	}
 
-	// these lines to locate the big bed starting location
+	// these lines to locate the double bed starting location
 	bedPointLocation.push_back(SDL_Point{ 15, 79 });
 	bedPointLocation.push_back(SDL_Point{ 68, 79 });
 	bedPointLocation.push_back(SDL_Point{ 38, 66 });
@@ -1004,28 +1029,15 @@ void PlayScene::initTileLocation()
 	bedPointLocation.push_back(SDL_Point{ 50, 12 });
 	bedPointLocation.push_back(SDL_Point{ 31, 12 });
 
-	/*for (SDL_Point bed : bedPointLocation)
-	{
-		bedLocation.push_back(new SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 });
-	}*/
-
-	/*m_pBed.push_back(new Bed(SDL_Rect{ 15 * 32 - xLocation, 79 * 32 + yLocation, 32 * 3,32 * 2 }));
-	m_pBed.shrink_to_fit();*/
-
 	for (SDL_Point bed : bedPointLocation)
 	{
 		m_pBed.push_back(new Bed(SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 }));
 		m_pBed.shrink_to_fit();
 	}
 	
-	/*for (unsigned i = 0; i < bedPointLocation.size(); i++)
-	{
-		delete bedPointLocation[i];
-		bedPointLocation[i] = null;
-	}
 	bedPointLocation.clear();
-	bedPointLocation.shrink_to_fit();
-
+	
+	// these lines to locate the single bed starting location
 	bedPointLocation.push_back(SDL_Point{ 45, 79 });
 	bedPointLocation.push_back(SDL_Point{ 75, 66 });
 	bedPointLocation.push_back(SDL_Point{ 50, 45 });
@@ -1034,12 +1046,23 @@ void PlayScene::initTileLocation()
 	bedPointLocation.push_back(SDL_Point{ 72, 33 });
 	bedPointLocation.push_back(SDL_Point{ 45, 33 });
 	bedPointLocation.push_back(SDL_Point{ 35, 33 });
-
+	
 	for (SDL_Point bed : bedPointLocation)
 	{
 		m_pBed.push_back(new Bed(SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 2,32 * 2 }));
 		m_pBed.shrink_to_fit();
-	}*/
+	}
+
+	//////////Obstacle/////////////
+	SDL_Rect obstacleLocation[] = { {14, 71, 5, 2},
+								    {38, 71, 3, 2},
+								    {57, 70, 6, 2},
+								    {78, 70, 7, 2},
+								    {82, 49, 4, 2} };
+	for (auto o : obstacleLocation)
+	{
+		m_pObstacle.push_back(new Obstacle(SDL_Rect{ o.x * 32 - xLocation, o.y * 32 + yLocation - 15, o.w * 32, o.h * 32}));
+	}
 }
 
 bool PlayScene::m_getGridColliderEnabled() const

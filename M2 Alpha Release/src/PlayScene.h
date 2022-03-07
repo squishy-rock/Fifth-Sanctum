@@ -84,8 +84,11 @@ private:
 	std::vector<Enemy*> m_pEnemy;
 	std::vector<Diamond*> m_pDiamond;
 	std::vector<Bed*> m_pBed;
+	std::vector<Obstacle*> m_pObstacle;
 
 	int numOfRandSpawn = 0;
+
+	Button* m_pPauseButton;
 };
 
 #endif /* defined (__PLAY_SCENE__) */

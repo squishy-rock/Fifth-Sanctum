@@ -1,23 +1,27 @@
 #pragma once
 #ifndef __OBSTACLE__
 #define __OBSTACLE__
-#include "DisplayObject.h"
+#include "GLM/glm.hpp"
+#include "SDL.h"
 
-class Obstacle final : public DisplayObject
-{
+class Obstacle {
 public:
-	// constructors
-	Obstacle();
-	
-	// destructor
+	Obstacle(SDL_Rect P_S);
 	~Obstacle();
-	
-	// life cycle functions
-	void draw() override;
-	void update() override;
-	void clean() override;
+	void setPositionSize(SDL_Rect P_S);
+	void setIsVisited(bool v);
+
+
+	SDL_Rect getPosSize();
+	bool getIsVisited();
+
+	SDL_Rect positionAndSize;
+
 private:
-	
+
+
+	bool isVisited = false;
 };
+
 
 #endif /* defined (__OBSTACLE__) */
