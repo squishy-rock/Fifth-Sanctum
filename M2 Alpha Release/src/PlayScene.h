@@ -16,6 +16,7 @@
 #include "HumanLife.h"
 #include "SoundManager.h"
 #include "Diamond.h"
+#include "Bed.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -82,7 +83,7 @@ private:
 
 	std::vector<Enemy*> m_pEnemy;
 	std::vector<Diamond*> m_pDiamond;
-	
+	std::vector<Bed*> m_pBed;
 };
 
 #endif /* defined (__PLAY_SCENE__) */

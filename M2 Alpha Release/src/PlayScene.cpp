@@ -22,6 +22,9 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
+
+	Util::DrawRect(glm::vec2{ m_pBed[0]->getPosSize().x, m_pBed[0]->getPosSize().y}, m_pBed[0]->getPosSize().w, m_pBed[0]->getPosSize().h);
+
 	for (int i = 0; i < m_pDiamond.size(); i++)
 	{
 		m_pDiamond[i]->draw();
@@ -236,6 +239,14 @@ void PlayScene::clean()
 	}
 	tileLocation.clear(); 
 	tileLocation.shrink_to_fit(); 
+
+	for (unsigned i = 0; i < m_pBed.size(); i++)
+	{
+		delete m_pBed[i];
+		m_pBed[i] = nullptr;
+	}
+	m_pBed.clear();
+	m_pBed.shrink_to_fit();
 }
 
 void PlayScene::handleEvents()
@@ -394,6 +405,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				bed->x += speed;
 			}
+			for (Bed* bed : m_pBed)
+			{
+				bed->positionAndSize.x += speed;
+			}
 		}
 	}
 
@@ -421,6 +436,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (SDL_Rect* bed : bedLocation)
 			{
 				bed->x -= speed;
+			}
+			for (Bed* bed : m_pBed)
+			{
+				bed->positionAndSize.x -= speed;
 			}
 		}
 	}
@@ -450,6 +469,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				bed->y += speed;
 			}
+			for (Bed* bed : m_pBed)
+			{
+				bed->positionAndSize.y += speed;
+			}
 		}
 	}
 
@@ -477,6 +500,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (SDL_Rect* bed : bedLocation)
 			{
 				bed->y -= speed;
+			}
+			for (Bed* bed : m_pBed)
+			{
+				bed->positionAndSize.y -= speed;
 			}
 		}
 	}
@@ -528,12 +555,26 @@ bool PlayScene::checkUpSensor()
 		}
 	}
 
-	for (SDL_Rect* bed : bedLocation)
+	/*for (SDL_Rect* bed : bedLocation)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, bed))
 		{
 			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32};
 			m_pDiamond.push_back(new Diamond(temp));
+			return true;
+		}
+	}*/
+
+	for (Bed* bed : m_pBed)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, &bed->getPosSize()))
+		{
+			if (!bed->getIsVisited())
+			{
+				bed->setIsVisited(true);
+				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -572,12 +613,26 @@ bool PlayScene::checkDownSensor()
 		}
 	}
 
-	for (SDL_Rect* bed : bedLocation)
+	/*for (SDL_Rect* bed : bedLocation)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, bed))
 		{
 			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
 			m_pDiamond.push_back(new Diamond(temp));
+			return true;
+		}
+	}*/
+
+	for (Bed* bed : m_pBed)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, &bed->getPosSize()))
+		{
+			if (!bed->getIsVisited())
+			{
+				bed->setIsVisited(true);
+				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -615,12 +670,26 @@ bool PlayScene::checkRightSensor()
 		}
 	}
 
-	for (SDL_Rect* bed : bedLocation)
+	/*for (SDL_Rect* bed : bedLocation)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, bed))
 		{
 			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
 			m_pDiamond.push_back(new Diamond(temp));
+			return true;
+		}
+	}*/
+
+	for (Bed* bed : m_pBed)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, &bed->getPosSize()))
+		{
+			if (!bed->getIsVisited())
+			{
+				bed->setIsVisited(true);
+				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -658,12 +727,26 @@ bool PlayScene::checkLeftSensor()
 		}
 	}
 
-	for (SDL_Rect* bed : bedLocation)
+	/*for (SDL_Rect* bed : bedLocation)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, bed))
 		{
 			const SDL_Rect temp = { bed->x + rand() % 200, bed->y + 150, 32,32 };
 			m_pDiamond.push_back(new Diamond(temp));
+			return true;
+		}
+	}*/
+
+	for (Bed* bed : m_pBed)
+	{
+		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, &bed->getPosSize()))
+		{
+			if (!bed->getIsVisited())
+			{
+				bed->setIsVisited(true);
+				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
+				m_pDiamond.push_back(new Diamond(temp));
+			}
 			return true;
 		}
 	}
@@ -826,6 +909,15 @@ void PlayScene::initTileLocation()
 	for (SDL_Point bed : bedPointLocation)
 	{
 		bedLocation.push_back(new SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 });
+	}
+
+	/*m_pBed.push_back(new Bed(SDL_Rect{ 15 * 32 - xLocation, 79 * 32 + yLocation, 32 * 3,32 * 2 }));
+	m_pBed.shrink_to_fit();*/
+
+	for (SDL_Point bed : bedPointLocation)
+	{
+		m_pBed.push_back(new Bed(SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 }));
+		m_pBed.shrink_to_fit();
 	}
 }
 
