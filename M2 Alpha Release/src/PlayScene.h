@@ -48,6 +48,15 @@ public:
 	bool m_getGridColliderEnabled() const;
 	void m_setGridColliderEnabled(bool state);
 
+	bool CheckKeyList(char _c) {
+		if (std::find(keyList.begin(), keyList.end(), _c) != keyList.end()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 private:
 	// IMGUI Function
 	void GUI_Function();
@@ -56,6 +65,7 @@ private:
 	glm::vec2 m_mousePosition;
 
 	std::vector <Weap*> m_pPlayerFire;
+	std::vector <char> keyList;
 
 	Plane* m_pPlaneSprite;
 	Player* m_pPlayer;
