@@ -23,7 +23,7 @@ void PlayScene::draw()
 {
 	drawDisplayList();
 
-	Util::DrawRect(glm::vec2{ m_pBed[0]->getPosSize().x, m_pBed[0]->getPosSize().y}, m_pBed[0]->getPosSize().w, m_pBed[0]->getPosSize().h);
+	//Util::DrawRect(glm::vec2{ m_pBed[0]->getPosSize().x, m_pBed[0]->getPosSize().y}, m_pBed[0]->getPosSize().w, m_pBed[0]->getPosSize().h);
 
 	for (int i = 0; i < m_pDiamond.size(); i++)
 	{
@@ -36,6 +36,12 @@ void PlayScene::draw()
 	/*Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);*/
 	if (m_getGridColliderEnabled())
 	{
+		//////////// this is to draw rect for bed object
+		for (Bed* bed : m_pBed)
+		{
+			Util::DrawRect(glm::vec2{ bed->getPosSize().x, bed->getPosSize().y }, bed->getPosSize().w, bed->getPosSize().h);
+		}
+
 		//////////// this is to draw rect for all collider object
 		for (int i = 0; i < localLocation.size(); i++)
 		{
@@ -49,10 +55,10 @@ void PlayScene::draw()
 		Util::DrawRect(glm::vec2{ m_pHuman->leftSenRect->x, m_pHuman->leftSenRect->y }, m_pHuman->leftSenRect->w, m_pHuman->leftSenRect->h);
 
 		//////////// this is to draw rect for all bed collider
-		for (SDL_Rect* bed: bedLocation)
+		/*for (SDL_Rect* bed: bedLocation)
 		{
 			Util::DrawRect(glm::vec2{ bed->x, bed->y }, bed->w, bed->h);
-		}
+		}*/
 
 		//for (Enemy* e : m_pEnemy)
 		//{
@@ -401,10 +407,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.x += speed;
 			}
-			for (SDL_Rect* bed : bedLocation)
+			/*for (SDL_Rect* bed : bedLocation)
 			{
 				bed->x += speed;
-			}
+			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.x += speed;
@@ -433,10 +439,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.x -= speed;
 			}
-			for (SDL_Rect* bed : bedLocation)
+			/*for (SDL_Rect* bed : bedLocation)
 			{
 				bed->x -= speed;
-			}
+			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.x -= speed;
@@ -465,10 +471,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y += speed;
 			}
-			for (SDL_Rect* bed : bedLocation)
+			/*for (SDL_Rect* bed : bedLocation)
 			{
 				bed->y += speed;
-			}
+			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.y += speed;
@@ -497,10 +503,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y -= speed;
 			}
-			for (SDL_Rect* bed : bedLocation)
+			/*for (SDL_Rect* bed : bedLocation)
 			{
 				bed->y -= speed;
-			}
+			}*/
 			for (Bed* bed : m_pBed)
 			{
 				bed->positionAndSize.y -= speed;
@@ -572,8 +578,31 @@ bool PlayScene::checkUpSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
+				int randomAction = rand() % 2;
+				if (numOfRandSpawn > 5)
+				{
+					randomAction = 0;
+				}
+				if (randomAction == 0)
+				{
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					m_pDiamond.push_back(new Diamond(temp));
+					
+				}
+				else if (randomAction == 1)
+				{
+					// Adding Enemy for test
+					m_pEnemy.push_back(new Enemy());
+					m_pEnemy.shrink_to_fit();
+					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200};
+					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+					numOfRandSpawn++;
+				}
 			}
 			return true;
 		}
@@ -630,8 +659,31 @@ bool PlayScene::checkDownSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
+				int randomAction = rand() % 2;
+				if (numOfRandSpawn > 5)
+				{
+					randomAction = 0;
+				}
+				if (randomAction == 0)
+				{
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					m_pDiamond.push_back(new Diamond(temp));
+
+				}
+				else if (randomAction == 1)
+				{
+					// Adding Enemy for test
+					m_pEnemy.push_back(new Enemy());
+					m_pEnemy.shrink_to_fit();
+					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200 };
+					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+					numOfRandSpawn++;
+				}
 			}
 			return true;
 		}
@@ -687,8 +739,31 @@ bool PlayScene::checkRightSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
+				int randomAction = rand() % 2;
+				if (numOfRandSpawn > 5)
+				{
+					randomAction = 0;
+				}
+				if (randomAction == 0)
+				{
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					m_pDiamond.push_back(new Diamond(temp));
+
+				}
+				else if (randomAction == 1)
+				{
+					// Adding Enemy for test
+					m_pEnemy.push_back(new Enemy());
+					m_pEnemy.shrink_to_fit();
+					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200 };
+					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+					numOfRandSpawn++;
+				}
 			}
 			return true;
 		}
@@ -744,8 +819,31 @@ bool PlayScene::checkLeftSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				const SDL_Rect temp = { bed->getPosSize().x + rand() % 200, bed->getPosSize().y + 150, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
+				int randomAction = rand() % 2;
+				if (numOfRandSpawn > 5)
+				{
+					randomAction = 0;
+				}
+				if (randomAction == 0)
+				{
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					m_pDiamond.push_back(new Diamond(temp));
+
+				}
+				else if (randomAction == 1)
+				{
+					// Adding Enemy for test
+					m_pEnemy.push_back(new Enemy());
+					m_pEnemy.shrink_to_fit();
+					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200 };
+					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+					numOfRandSpawn++;
+				}
 			}
 			return true;
 		}
@@ -897,7 +995,7 @@ void PlayScene::initTileLocation()
 		tileLocation.push_back(new SDL_Rect{ localLocation[i].x * 32 - xLocation, localLocation[i].y * 32 + yLocation, 32,32 });
 	}
 
-	// these lines to locate the bed starting location
+	// these lines to locate the big bed starting location
 	bedPointLocation.push_back(SDL_Point{ 15, 79 });
 	bedPointLocation.push_back(SDL_Point{ 68, 79 });
 	bedPointLocation.push_back(SDL_Point{ 38, 66 });
@@ -906,10 +1004,10 @@ void PlayScene::initTileLocation()
 	bedPointLocation.push_back(SDL_Point{ 50, 12 });
 	bedPointLocation.push_back(SDL_Point{ 31, 12 });
 
-	for (SDL_Point bed : bedPointLocation)
+	/*for (SDL_Point bed : bedPointLocation)
 	{
 		bedLocation.push_back(new SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 });
-	}
+	}*/
 
 	/*m_pBed.push_back(new Bed(SDL_Rect{ 15 * 32 - xLocation, 79 * 32 + yLocation, 32 * 3,32 * 2 }));
 	m_pBed.shrink_to_fit();*/
@@ -919,6 +1017,29 @@ void PlayScene::initTileLocation()
 		m_pBed.push_back(new Bed(SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 3,32 * 2 }));
 		m_pBed.shrink_to_fit();
 	}
+	
+	/*for (unsigned i = 0; i < bedPointLocation.size(); i++)
+	{
+		delete bedPointLocation[i];
+		bedPointLocation[i] = null;
+	}
+	bedPointLocation.clear();
+	bedPointLocation.shrink_to_fit();
+
+	bedPointLocation.push_back(SDL_Point{ 45, 79 });
+	bedPointLocation.push_back(SDL_Point{ 75, 66 });
+	bedPointLocation.push_back(SDL_Point{ 50, 45 });
+	bedPointLocation.push_back(SDL_Point{ 56, 45 });
+	bedPointLocation.push_back(SDL_Point{ 86, 33 });
+	bedPointLocation.push_back(SDL_Point{ 72, 33 });
+	bedPointLocation.push_back(SDL_Point{ 45, 33 });
+	bedPointLocation.push_back(SDL_Point{ 35, 33 });
+
+	for (SDL_Point bed : bedPointLocation)
+	{
+		m_pBed.push_back(new Bed(SDL_Rect{ bed.x * 32 - xLocation, bed.y * 32 + yLocation, 32 * 2,32 * 2 }));
+		m_pBed.shrink_to_fit();
+	}*/
 }
 
 bool PlayScene::m_getGridColliderEnabled() const

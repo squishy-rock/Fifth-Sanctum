@@ -78,12 +78,14 @@ private:
 
 	std::vector<SDL_Rect*> tileLocation;
 	std::vector<SDL_Point> localLocation;
-	std::vector<SDL_Rect*> bedLocation;
+	//std::vector<SDL_Rect*> bedLocation;
 	std::vector<SDL_Point> bedPointLocation;
 
 	std::vector<Enemy*> m_pEnemy;
 	std::vector<Diamond*> m_pDiamond;
 	std::vector<Bed*> m_pBed;
+
+	int numOfRandSpawn = 0;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
