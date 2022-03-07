@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Label.h"
 #include "Button.h"
+#include "Bg.h"
 
 class EndScene final : public Scene
 {

@@ -8,6 +8,9 @@
 #include "Button.h"
 #include "SoundManager.h"
 
+
+
+
 class StartScene final : public Scene
 {
 public:
@@ -24,6 +27,7 @@ public:
 private:
 	Label* m_pStartLabel{};
 	Label* m_pInstructionsLabel{};
+
 
 	Ship* m_pShip{};
 	
