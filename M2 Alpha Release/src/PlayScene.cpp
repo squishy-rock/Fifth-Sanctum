@@ -275,19 +275,43 @@ void PlayScene::handleEvents()
 	////////////// Player Movement [WASD] //////////////////////
 	bool isSprint = EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT);
 
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_W))
+		if (CheckKeyList('W'))DeleteKeyList('W');
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
+		if (!CheckKeyList('W'))keyList.push_back('W');
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_S))
+		if (CheckKeyList('S'))DeleteKeyList('S');
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
+		if (!CheckKeyList('S'))keyList.push_back('S');
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_A))
+		if (CheckKeyList('A'))DeleteKeyList('A');
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
+		if (!CheckKeyList('A'))keyList.push_back('A');
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_D))
+		if (CheckKeyList('D'))DeleteKeyList('D');
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
+		if (!CheckKeyList('D'))keyList.push_back('D');
+
+	if (keyList.size() > 0)
+		std::cout << keyList.size() << (char)keyList[keyList.size() - 1] << std::endl;
+	else
+		std::cout << keyList.size() << std::endl;
+
+	char key = keyList.size() > 0 ? ((char)keyList[keyList.size() - 1]) : 0;
+
+	if (key == 'W')
 	{
 		CameraMovement(PLAYER_RUN_UP, isSprint);
 	}
-	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
+	else if (key == 'A')
 	{
 		CameraMovement(PLAYER_RUN_LEFT, isSprint);
 	}
-	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
+	else if (key == 'S')
 	{
 		CameraMovement(PLAYER_RUN_DOWN, isSprint);
 	}
-	else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
+	else if (key == 'D')
 	{
 		CameraMovement(PLAYER_RUN_RIGHT, isSprint);
 	}
@@ -295,6 +319,7 @@ void PlayScene::handleEvents()
 	{
 		m_pHuman->setAnimationState(m_pHuman->getLastHumanDirection());
 	}
+
 	/////////////////////////////////////////////////////////////
 	
 	

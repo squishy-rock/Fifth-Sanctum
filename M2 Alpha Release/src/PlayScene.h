@@ -57,6 +57,21 @@ public:
 		}
 	}
 
+	bool DeleteKeyList(char _c) {
+		bool _rtn = false;
+		for (int i = 0; i < keyList.size(); ) {
+			if (keyList[i] == _c) {
+				keyList.erase(keyList.begin() + i);
+				_rtn = true;
+				break;
+			}
+			else {
+				i++;
+			}
+		}
+		return _rtn;
+	}
+
 private:
 	// IMGUI Function
 	void GUI_Function();
