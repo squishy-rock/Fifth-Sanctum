@@ -17,6 +17,7 @@
 #include "SoundManager.h"
 #include "Diamond.h"
 #include "Bed.h"
+#include "Death.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -110,7 +111,7 @@ private:
 	std::vector<Diamond*> m_pDiamond;
 	std::vector<Bed*> m_pBed;
 	std::vector<Obstacle*> m_pObstacle;
-
+	std::vector<Death*> m_pDeath;
 	int numOfRandSpawn = 0;
 
 	Button* m_pPauseButton;

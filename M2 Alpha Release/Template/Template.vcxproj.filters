@@ -171,6 +171,9 @@
     <ClCompile Include="..\src\bg.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Death.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\StartScene.h">
@@ -351,6 +354,9 @@
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\bg.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Death.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
   </ItemGroup>

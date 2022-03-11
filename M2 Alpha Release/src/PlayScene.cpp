@@ -102,6 +102,18 @@ void PlayScene::draw()
 
 void PlayScene::update()
 {
+
+	for (int i = 0 ; i < m_pDeath.size(); i++)
+	{
+		if (m_pDeath[i]->getIsDone() == true)
+		{
+			removeChild(m_pDeath[i]);
+			m_pDeath[i] = nullptr;
+			m_pDeath.erase(m_pDeath.begin() + i);
+			m_pDeath.shrink_to_fit();
+		}
+	}
+
 	count++;
 	if (m_pPlayerFire.size() > 0)
 	{
@@ -154,6 +166,11 @@ void PlayScene::update()
 				m_pHuman->SetIsColliding(true);
 				m_pHuman->Hit();
 
+				m_pDeath.push_back(new Death());
+				m_pDeath.shrink_to_fit();
+				m_pDeath[m_pDeath.size() - 1]->getTransform()->position = m_pEnemy[i]->getTransform()->position;
+				addChild(m_pDeath[m_pDeath.size() - 1], 1, 4);
+
 				removeChild(m_pEnemy[i]);
 				m_pEnemy[i] = nullptr;
 				m_pEnemy.erase(m_pEnemy.begin() + i);
@@ -186,6 +203,11 @@ void PlayScene::update()
 
 				if (CollisionManager::AABBCheck(&tempF, &tempE))
 				{
+					m_pDeath.push_back(new Death());
+					m_pDeath.shrink_to_fit();
+					m_pDeath[m_pDeath.size() - 1]->getTransform()->position = m_pEnemy[i]->getTransform()->position;
+					addChild(m_pDeath[m_pDeath.size() - 1], 1, 4);
+
 					removeChild(m_pEnemy[j]);
 					m_pEnemy[j] = nullptr;
 					m_pEnemy.erase(m_pEnemy.begin() + j);
@@ -397,6 +419,11 @@ void PlayScene::start()
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
 
+	//Death Animation
+	/*m_pDeath.push_back(new Death());
+	m_pDeath[0]->getTransform()->position = glm::vec2{ WIDTH / 2 - 50, HEIGHT / 2 - 50 };
+	addChild(m_pDeath[0], 6, 4);*/
+
 	// Pause Button
 	m_pPauseButton = new Button("../Assets/textures/pauseButton.png", "pauseButton", RESUME_BUTTON);
 	m_pPauseButton->getTransform()->position = glm::vec2(WIDTH - 50, 50);
@@ -473,6 +500,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				o->positionAndSize.x += speed;
 			}
+			for (Death* d : m_pDeath)
+			{
+				d->getTransform()->position.x += speed;
+			}
 		}
 	}
 
@@ -504,6 +535,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (Obstacle* o : m_pObstacle)
 			{
 				o->positionAndSize.x -= speed;
+			}
+			for (Death* d : m_pDeath)
+			{
+				d->getTransform()->position.x -= speed;
 			}
 		}
 	}
@@ -537,6 +572,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				o->positionAndSize.y += speed;
 			}
+			for (Death* d : m_pDeath)
+			{
+				d->getTransform()->position.y += speed;
+			}
 		}
 	}
 
@@ -568,6 +607,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (Obstacle* o : m_pObstacle)
 			{
 				o->positionAndSize.y -= speed;
+			}
+			for (Death* d : m_pDeath)
+			{
+				d->getTransform()->position.y -= speed;
 			}
 		}
 	}
@@ -720,7 +763,7 @@ bool PlayScene::checkDownSensor()
 				}
 				else if (randomAction == 1)
 				{
-					// Adding Enemy for test
+					// Adding Enemy in random location in the room
 					m_pEnemy.push_back(new Enemy());
 					m_pEnemy.shrink_to_fit();
 					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);

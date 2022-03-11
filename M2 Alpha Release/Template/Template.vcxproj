@@ -169,6 +169,7 @@
     <ClCompile Include="..\src\bg.cpp" />
     <ClCompile Include="..\src\Button.cpp" />
     <ClCompile Include="..\src\CollisionManager.cpp" />
+    <ClCompile Include="..\src\Death.cpp" />
     <ClCompile Include="..\src\Diamond.cpp" />
     <ClCompile Include="..\src\Enemy.cpp" />
     <ClCompile Include="..\src\Ghost.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="..\src\CollisionManager.h" />
     <ClInclude Include="..\src\CollisionShape.h" />
     <ClInclude Include="..\src\Config.h" />
+    <ClInclude Include="..\src\Death.h" />
     <ClInclude Include="..\src\Diamond.h" />
     <ClInclude Include="..\src\Direction.h" />
     <ClInclude Include="..\src\Enemy.h" />
