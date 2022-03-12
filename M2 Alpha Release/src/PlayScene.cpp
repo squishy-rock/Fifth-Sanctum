@@ -446,9 +446,9 @@ void PlayScene::start()
 
 	// For event
 	TextureManager::Instance().load("../Assets/textures/box.png", "box");
-	SoundManager::Instance().load("../Assets/audio/coin.wav", "diamond", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/coin3.wav", "diamond", SOUND_SFX);
 
-	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets.mp3");
+	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets5.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
 
