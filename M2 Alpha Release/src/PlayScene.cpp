@@ -165,11 +165,13 @@ void PlayScene::update()
 			{
 				m_pHuman->SetIsColliding(true);
 				m_pHuman->Hit();
-
+				SoundManager::Instance().playSound("collision", 0, -1);
 				m_pDeath.push_back(new Death());
 				m_pDeath.shrink_to_fit();
 				m_pDeath[m_pDeath.size() - 1]->getTransform()->position = m_pEnemy[i]->getTransform()->position;
 				addChild(m_pDeath[m_pDeath.size() - 1], 1, 4);
+
+				
 
 				removeChild(m_pEnemy[i]);
 				m_pEnemy[i] = nullptr;
@@ -212,6 +214,8 @@ void PlayScene::update()
 					m_pEnemy[j] = nullptr;
 					m_pEnemy.erase(m_pEnemy.begin() + j);
 					m_pEnemy.shrink_to_fit();
+
+					SoundManager::Instance().playSound("enemydeath", 0, -1);
 
 					removeChild(m_pPlayerFire[i]);
 					m_pPlayerFire[i] = nullptr;
@@ -447,6 +451,8 @@ void PlayScene::start()
 	// For event
 	TextureManager::Instance().load("../Assets/textures/box.png", "box");
 	SoundManager::Instance().load("../Assets/audio/coin3.wav", "diamond", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/collision.aiff", "collision", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/enemydeath.wav", "enemydeath", SOUND_SFX);
 
 	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets5.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
