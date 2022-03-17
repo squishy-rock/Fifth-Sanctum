@@ -125,18 +125,6 @@ void PlayScene::update()
 			{
 				if (CollisionManager::AABBCheck(&temp, r))
 				{
-					//// Adding Enemy for test
-					//m_pEnemy.push_back(new Enemy());
-					//m_pEnemy.shrink_to_fit();
-					//m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-					//m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-					//m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = m_pPlayerFire[i]->getTransform()->position;
-					//m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-					//m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-					//m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-					//addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-
-					//std::cout << "gooooooo" << std::endl;
 					removeChild(m_pPlayerFire[i]);
 					//delete m_pPlayerFire[i];  // this line causing error
 					m_pPlayerFire[i] = nullptr;
@@ -477,6 +465,7 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 		speed = PLAYERSPEED;
 		m_pHuman->setAnimationSpeed(0.3);
 	}
+
 	if (p == PLAYER_RUN_LEFT)
 	{
 		if (!checkLeftSensor())
@@ -643,27 +632,6 @@ bool PlayScene::checkUpSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->upSenRect, r))
 		{
-			if (r == tileLocation[0] && count >= maxCount)
-			{
-				m_pEnemy.push_back(new Enemy());
-				m_pEnemy.shrink_to_fit();
-				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
-				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-
-				count = 0;
-			}
-
-			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
-			{
-				const SDL_Rect temp = { tileLocation[1]->x, tileLocation[1]->y - 32, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
-			}
 			return true;
 		}
 	}
@@ -677,9 +645,10 @@ bool PlayScene::checkUpSensor()
 			{
 				bed->setIsVisited(true);
 				int randomAction = rand() % 2;
-				if (numOfRandSpawn > 5)
+				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
+					numOfRandSpawn++;
 				}
 				if (randomAction == 0)
 				{
@@ -690,7 +659,6 @@ bool PlayScene::checkUpSensor()
 				}
 				else if (randomAction == 1)
 				{
-					// Adding Enemy for test
 					m_pEnemy.push_back(new Enemy());
 					m_pEnemy.shrink_to_fit();
 					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
@@ -724,31 +692,11 @@ bool PlayScene::checkDownSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, r))
 		{
-			if (r == tileLocation[0] && count >= maxCount)
-			{
-				m_pEnemy.push_back(new Enemy());
-				m_pEnemy.shrink_to_fit();
-				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
-				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-
-				count = 0;
-			}
-
-			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
-			{
-				const SDL_Rect temp = { tileLocation[1]->x, tileLocation[1]->y + 32, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
-			}
 			return true;
 		}
 	}
 
+	///////////// Spawn Enemy or Diamond when player touch the bed
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, &bed->getPosSize()))
@@ -757,19 +705,20 @@ bool PlayScene::checkDownSensor()
 			{
 				bed->setIsVisited(true);
 				int randomAction = rand() % 2;
-				if (numOfRandSpawn > 5)
+				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
+					numOfRandSpawn++;
 				}
 				if (randomAction == 0)
 				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
 					m_pDiamond.push_back(new Diamond(temp));
-
+					m_pDiamond.shrink_to_fit();
+					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
 				}
 				else if (randomAction == 1)
 				{
-					// Adding Enemy in random location in the room
 					m_pEnemy.push_back(new Enemy());
 					m_pEnemy.shrink_to_fit();
 					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
@@ -802,31 +751,11 @@ bool PlayScene::checkRightSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, r))
 		{
-			if (r == tileLocation[0] && count >= maxCount)
-			{
-				m_pEnemy.push_back(new Enemy());
-				m_pEnemy.shrink_to_fit();
-				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
-				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-
-				count = 0;
-			}
-
-			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
-			{
-				const SDL_Rect temp = { tileLocation[1]->x + 32, tileLocation[1]->y, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
-			}
 			return true;
 		}
 	}
 
+	///////////// Spawn Enemy or Diamond when player touch the bed
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, &bed->getPosSize()))
@@ -835,19 +764,20 @@ bool PlayScene::checkRightSensor()
 			{
 				bed->setIsVisited(true);
 				int randomAction = rand() % 2;
-				if (numOfRandSpawn > 5)
+				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
+					numOfRandSpawn++;
 				}
 				if (randomAction == 0)
 				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
 					m_pDiamond.push_back(new Diamond(temp));
-
+					m_pDiamond.shrink_to_fit();
+					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
 				}
 				else if (randomAction == 1)
 				{
-					// Adding Enemy for test
 					m_pEnemy.push_back(new Enemy());
 					m_pEnemy.shrink_to_fit();
 					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
@@ -879,31 +809,11 @@ bool PlayScene::checkLeftSensor()
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, r))
 		{
-			if (r == tileLocation[0] && count >= maxCount)
-			{
-				m_pEnemy.push_back(new Enemy());
-				m_pEnemy.shrink_to_fit();
-				m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.x = tileLocation[0]->x;
-				m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position.y = tileLocation[0]->y;
-				m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-				m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-				m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-				addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-
-				count = 0;
-			}
-
-			if (r == tileLocation[1]) // && EventManager::Instance().isKeyDown(SDL_SCANCODE_F))
-			{
-				const SDL_Rect temp = { tileLocation[1]->x - 32, tileLocation[1]->y, 32,32 };
-				m_pDiamond.push_back(new Diamond(temp));
-			}
 			return true;
 		}
 	}
 
+	///////////// Spawn Enemy or Diamond when player touch the bed
 	for (Bed* bed : m_pBed)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, &bed->getPosSize()))
@@ -912,19 +822,20 @@ bool PlayScene::checkLeftSensor()
 			{
 				bed->setIsVisited(true);
 				int randomAction = rand() % 2;
-				if (numOfRandSpawn > 5)
+				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
+					numOfRandSpawn++;
 				}
 				if (randomAction == 0)
 				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200, 32,32 };
+					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
 					m_pDiamond.push_back(new Diamond(temp));
-
+					m_pDiamond.shrink_to_fit();
+					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
 				}
 				else if (randomAction == 1)
 				{
-					// Adding Enemy for test
 					m_pEnemy.push_back(new Enemy());
 					m_pEnemy.shrink_to_fit();
 					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
@@ -956,8 +867,8 @@ void PlayScene::initTileLocation()
 {
 	int xLocation = m_pLevel->getTransform()->position.x - m_pLevel->getWidth() / 2;
 	int yLocation = m_pLevel->getTransform()->position.y - m_pLevel->getHeight() / 2;
-	int xLocOnMap[] = {10, 11, 12, 13, 14, 15}; // we need to add all the location of the walls on the map
-	int yLocOnMap[] = {78, 78, 78, 78, 78, 78 }; // we need to add all the location of the walls on the map
+	//int xLocOnMap[] = {10, 11, 12, 13, 14, 15}; // we need to add all the location of the walls on the map
+	//int yLocOnMap[] = {78, 78, 78, 78, 78, 78 }; // we need to add all the location of the walls on the map
 
 	////Event Tiles
 	//tileLocation.push_back(new SDL_Rect{ 20 * 32 - xLocation, 82 * 32 + yLocation, 32, 32 });
@@ -1176,13 +1087,13 @@ void PlayScene::GUI_Function()
 
 	ImGui::Separator();
 
-	static bool GhostMode = false;
+	static bool GhostMode = true;
 	if (ImGui::Checkbox("Ghost Mode", &GhostMode))
 	{
 		m_pGhost->setEnabled(GhostMode);
 	}
 
-	ImGui::Separator();
+	/*ImGui::Separator();
 
 	static float float3[3] = { 0.0f, 1.0f, 1.5f };
 	if(ImGui::SliderFloat3("My Slider", float3, 0.0f, 2.0f))
@@ -1191,7 +1102,7 @@ void PlayScene::GUI_Function()
 		std::cout << float3[1] << std::endl;
 		std::cout << float3[2] << std::endl;
 		std::cout << "---------------------------\n";
-	}
+	}*/
 	
 	
 	ImGui::End();
