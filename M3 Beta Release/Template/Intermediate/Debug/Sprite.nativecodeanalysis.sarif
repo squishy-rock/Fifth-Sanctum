@@ -1,0 +1,1199 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 444,
+                  "startColumn": 14,
+                  "endLine": 444,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 445,
+                  "startColumn": 14,
+                  "endLine": 445,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 446,
+                  "startColumn": 14,
+                  "endLine": 446,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 447,
+                  "startColumn": 14,
+                  "endLine": 447,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'SDL_bool' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_rect.h"
+                },
+                "region": {
+                  "startLine": 102,
+                  "startColumn": 29
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_PointInRect",
+                  "decoratedName": "SDL_PointInRect",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'Sprite::m_pSpriteSheet' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/src/Sprite.cpp"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 9,
+                  "endLine": 3,
+                  "endColumn": 9
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Sprite::{ctor}",
+                  "decoratedName": "??0Sprite@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "Sprite::m_pSpriteSheet"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::x' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::x"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::z' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::y' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::w' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::r' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::r"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::g' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::g"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::b' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::a' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::a"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::s' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::s"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::t' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::t"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::p' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::p"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::q' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::q"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::data' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::data"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'glm::ctor' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.30.30706.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00D3E1C0 -il C:\\Users\\mabou\\AppData\\Local\\Temp\\_CL_19d22ab1ast -typedil -f ..\\src\\Sprite.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1930 -D_MSC_FULL_VER=193030706 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\GLM\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL_Image\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL_Mixer\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL2_ttf\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL_net\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\IMGUI_SDL\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\IMGUI\\ -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_CRT_SECURE_NO_WARNINGS -DFREEGLUT_STATIC -D_MBCS -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -Zc:wchar_t -Zc:forScope -std:c++17 -FoC:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template\\Intermediate\\Debug\\Sprite.obj -FdC:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template\\Intermediate\\Debug\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\src -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "4ca2ca8b2b701dae628c2777e807bbc875ff6db056a9dbeb9ce85a17d7d76b41"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_rect.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "afa4fb3566e197cd13cf7621b38223158f1a6faf074339ebadefc28c3e7cb6c8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/src/Sprite.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "71b0378b4b095f4fe336caa273738a1c64fa8583e5a0e6fa5cd561b16fac58da"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "f7d37cb2b21c246b155cb99a1d88dbfeab8fc47330cf117c645df84e263adfad"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/sprite.h"
+          },
+          "hashes": {
+            "sha-256": "a8e0b553bc23c3b5885af381098907493b435715101f0619bdc53156ff443ed6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/agent.h"
+          },
+          "hashes": {
+            "sha-256": "be69e9ebc9d108864f64b4bcf882b399766db73feb1238f75a14907eb5706c18"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/vec4.hpp"
+          },
+          "hashes": {
+            "sha-256": "08533bad586f57552255f7bf290e6c5c555bccc01af8a792f6545dc410f45a9a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec4.hpp"
+          },
+          "hashes": {
+            "sha-256": "fa78012811170d9fac2f5d15ed777b836d16571e935bf727dc3bba5976b31bd4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec.hpp"
+          },
+          "hashes": {
+            "sha-256": "7707c73694d63b0dfa72d7bff73de11c17d7e869d196daee6507a196695d6c5f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/precision.hpp"
+          },
+          "hashes": {
+            "sha-256": "9abc71c1cab51d26a051f43dab514c17cd4540ed68352f001d5044e9e218d1f9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/setup.hpp"
+          },
+          "hashes": {
+            "sha-256": "4aa96d91921e7b7698d5fda4c8d3e5ad5090ce6034046b30a1b9d40608ea46f5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/platform.h"
+          },
+          "hashes": {
+            "sha-256": "0c2ffe59f756a218983876a8f0c3686e08d496e87eac74453729091cdb1d9c30"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_int.hpp"
+          },
+          "hashes": {
+            "sha-256": "60d5971f1bfeb63d541c02f833c17e766a786bf191610e4e0d9103b9079063ef"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec4_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "980271fbd4ec46b77c4633b37233765fa20fc9f618583cc38265b0a1546b2ee3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/displayobject.h"
+          },
+          "hashes": {
+            "sha-256": "875e0bac1ddf5e15512a16d9e244d9875903bc0396f424b95f58e7e088d640e3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/gameobject.h"
+          },
+          "hashes": {
+            "sha-256": "dd23062a80e1f1be4bf51753e91525e72df6973aca92870ee9d8eab1d22e9a93"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/transform.h"
+          },
+          "hashes": {
+            "sha-256": "8b7f83efea08f803e8ae96cc1347463cc975046cc8e0a6a985b89d642aab3170"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/vec2.hpp"
+          },
+          "hashes": {
+            "sha-256": "8a4bb1ecf163a05b7a56a681c8d784c7f22b28d9a0ff069d33195f831d3e3404"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec2.hpp"
+          },
+          "hashes": {
+            "sha-256": "2dbb401acc47cfc851eee6ae6344ae1d98d4cbcf921013986844769e7fb4fb16"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec2.inl"
+          },
+          "hashes": {
+            "sha-256": "1dbad7c63117e8c5eae6402861d28bf38610c484ae2a66af63ff62d0bb2f06c8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/rigidbody.h"
+          },
+          "hashes": {
+            "sha-256": "3ce169326d7c5ca55b7faf03f92a3ed379f102730a568267db371e55622e1794"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/gameobjecttype.h"
+          },
+          "hashes": {
+            "sha-256": "5be1718f149bd503f84ae21f019d94569d84ac44f3b67d9807fc658549d80e75"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/scene.h"
+          },
+          "hashes": {
+            "sha-256": "b52d46fea1d1f5b74b29701ca22ece39cc557f4c450b67c88f061a7921e382cd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/animation.h"
+          },
+          "hashes": {
+            "sha-256": "d7f5063ec32c7d8f26138389dd9b0439765ad0f39a1cd066800ca76a331b9ab3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/frame.h"
+          },
+          "hashes": {
+            "sha-256": "cba1faed0e1269aebe686d1e5b3fe05a02f00cab047cf6f3c1ab8a89b9746919"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/spritesheet.h"
+          },
+          "hashes": {
+            "sha-256": "9fe4b3d1d6583e3a51231f6e356035487f0786ae32e66a5847878bea5e26782b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl.h"
+          },
+          "hashes": {
+            "sha-256": "19113de016377833a3b51f440e0e87b4b1090198d868d57e76ae327da1158fe5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_main.h"
+          },
+          "hashes": {
+            "sha-256": "41aa954e11c6c55e8fb0a4c379b899243a606c00e69681ac4db593bd08d1d23d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_config.h"
+          },
+          "hashes": {
+            "sha-256": "139f5ef9755e14324649f730ef6cb6cae471eba5402d61f849c94a61011fcd32"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_platform.h"
+          },
+          "hashes": {
+            "sha-256": "a505af23c30280cf6342089bd71185211706e4ec382c55f0d1c9bbd9356c64b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/begin_code.h"
+          },
+          "hashes": {
+            "sha-256": "856fde974ce680731794a8e4293ca844f8683eef1942fa6c9635ef2bdb57ccf8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/close_code.h"
+          },
+          "hashes": {
+            "sha-256": "33b3409fcefb5d55acddea1ecc799cce496ca25588757327787a081c4f68c331"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_assert.h"
+          },
+          "hashes": {
+            "sha-256": "06f2d7531f957ebdaeca06ae395607f13c5491d3a346ba6e0b9d75f3b521a025"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_atomic.h"
+          },
+          "hashes": {
+            "sha-256": "958bcfff611d842ee48e3465a3b90b1bb6ed73942d62a5aeaf6e7ac8a5956025"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_audio.h"
+          },
+          "hashes": {
+            "sha-256": "107e064767d359b5739e19c0e41dc3addb6924db9e727d383611413d97505f99"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_error.h"
+          },
+          "hashes": {
+            "sha-256": "159588d8e958bdbbab6480d079e1b6f43ccccfc9fc8733ba6dabd71835a81e19"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_endian.h"
+          },
+          "hashes": {
+            "sha-256": "d72fb033c7689965c50e8b74cf30a68c76f7e2f96a3bc63bbfddc36a62384e68"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_mutex.h"
+          },
+          "hashes": {
+            "sha-256": "4db41a0fdd8fd21fb7b0d1297981e0f56d434a3dc2bb5ae7dc720881e7910c2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_thread.h"
+          },
+          "hashes": {
+            "sha-256": "ed684b6a7075da6c344a54e3405119cc37a3707987b6aff006d73ba2e8ec4924"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_rwops.h"
+          },
+          "hashes": {
+            "sha-256": "1482fa713fd8fb401716cdc617d109de6da96e498c2714ff23e2ee64fe3f26b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_clipboard.h"
+          },
+          "hashes": {
+            "sha-256": "73ca27bea2c38e94b7da4257fe6a93fc2645ad3ddbac8b32076b3af89ea43e5a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_cpuinfo.h"
+          },
+          "hashes": {
+            "sha-256": "a4f552f260cc0f5ed3870212761f8d11718ea9090e382945a14d329588033523"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_events.h"
+          },
+          "hashes": {
+            "sha-256": "9dd2fa4184a466578937855ad27786d02d5ccad422eac37661105936a8342865"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_video.h"
+          },
+          "hashes": {
+            "sha-256": "0a2b9300bde06f2f59e361ef38fed2b4a5c30a96f1e399fea5f7b7cc6c37344d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_pixels.h"
+          },
+          "hashes": {
+            "sha-256": "0e08c82367fc5f97a673f7cab16d21babf4c1a94ecf2aa5a4c77bf342ed67461"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_surface.h"
+          },
+          "hashes": {
+            "sha-256": "85d07bd83c7f81a4eae6c2a93c33bebcdde05c75ec13b6312fccf60a8ca463ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_blendmode.h"
+          },
+          "hashes": {
+            "sha-256": "a3a69cc5bc5eb2e6d2e73e3813268a4f12ede2c17dee3d3ea21f6eef0e2fa4d0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_keyboard.h"
+          },
+          "hashes": {
+            "sha-256": "1c0cc7b648dbd591ae2095297af21cf77acd8f070619c8ea3b41567e45ae6899"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_keycode.h"
+          },
+          "hashes": {
+            "sha-256": "eeaf1af7a182c7398cfc87ae0b941ee87754449fed930ed913ec35101d3930c5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_scancode.h"
+          },
+          "hashes": {
+            "sha-256": "1beb3f357a7593aa1a71de7f588e8ce57da7caeee38a569d4c3068cd91d71e25"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_mouse.h"
+          },
+          "hashes": {
+            "sha-256": "a12c97589d1397e175be34ef5bb34ee752ff1643f3d043f02a159f794f394437"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_joystick.h"
+          },
+          "hashes": {
+            "sha-256": "05e829828f12602ddbb2b75141350f5d9cace6196fa85c8754d3dcae70fd0c06"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_gamecontroller.h"
+          },
+          "hashes": {
+            "sha-256": "b8bdfbc89542dbcb1dcfa3c04ed1aaa2e2dd11cc4424af9c5479484411a6c300"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_quit.h"
+          },
+          "hashes": {
+            "sha-256": "19d3fcccadf762f34cfd894acbced7827c7925704baf41f79d6d61e89bd7bd57"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_gesture.h"
+          },
+          "hashes": {
+            "sha-256": "e47e1f85b9d60ef48a71c0f842d1dc42d621b2b82d92dc854f2abd8e084a6432"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_touch.h"
+          },
+          "hashes": {
+            "sha-256": "89921ce7114aa85a088051b1f4fe234923cdbfbe7122a118e5885a8ea3f73472"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_filesystem.h"
+          },
+          "hashes": {
+            "sha-256": "7de84bbd904f402766313f859732b4140aea915d785e3247715cc18a2e417524"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_haptic.h"
+          },
+          "hashes": {
+            "sha-256": "23b2e5ea89a765ddd3b364bb924f4670c4eb366f3b4921205a8698491b7fee95"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_hints.h"
+          },
+          "hashes": {
+            "sha-256": "28805a0bc81bbb658e6354739ffc75a3e269ce48e7eec9a176039e8a1ae9eac5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_loadso.h"
+          },
+          "hashes": {
+            "sha-256": "6e972efccb39084e441d5575cd721f5a0870f0933ca81db5d78c5fb085013de1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_log.h"
+          },
+          "hashes": {
+            "sha-256": "290325289bebf62c06bf848fc5dc6a4f2d4ddaa0fc3dd5e92510f3a9e59fca29"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_messagebox.h"
+          },
+          "hashes": {
+            "sha-256": "72433c18f5a959f95cbbc12be5cf9469148969e54d3e40aae6590beb6f249d64"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_metal.h"
+          },
+          "hashes": {
+            "sha-256": "7175fed4d6a80ac1c502434954df51bf5234c74386c680f794273f37055139e0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_power.h"
+          },
+          "hashes": {
+            "sha-256": "98b10b1c4c2b24e0346a4ad301a583f9e61342bdf4aa00b3e89f0aefdb0f0df9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_render.h"
+          },
+          "hashes": {
+            "sha-256": "463e7a343ed85d5ff5875447e97d87a347c9d228cf0d39acebe35ae37174b9e4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_sensor.h"
+          },
+          "hashes": {
+            "sha-256": "dc025e1e60bc2e4c4b05b12a0e09c7d59a016c0fc22536081ee7b7c774061f93"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_shape.h"
+          },
+          "hashes": {
+            "sha-256": "440f3a72cf1195bee216660e809f1d38789bb9d8faad0bc71b7b781fc0069a68"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_system.h"
+          },
+          "hashes": {
+            "sha-256": "67047d73f06da35d2db3783225980179910391c7d80716d7a99621a35ac3ba52"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_timer.h"
+          },
+          "hashes": {
+            "sha-256": "a68483fb2b917761ab4960c050d12b11c9608811fd12264e64387a65f1bf8dc7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_version.h"
+          },
+          "hashes": {
+            "sha-256": "78511f2d9d044cf48e7f4ed0f1d7f81184a70ea9ea2e538fa7039ead8f531ea2"
+          }
+        }
+      ]
+    }
+  ]
+}

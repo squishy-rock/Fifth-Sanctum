@@ -1,0 +1,2352 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 444,
+                  "startColumn": 14,
+                  "endLine": 444,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 445,
+                  "startColumn": 14,
+                  "endLine": 445,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 446,
+                  "startColumn": 14,
+                  "endLine": 446,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26819",
+          "message": {
+            "text": "Unannotated fallthrough between switch labels (es.78)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+                },
+                "region": {
+                  "startLine": 447,
+                  "startColumn": 14,
+                  "endLine": 447,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_memset4",
+                  "decoratedName": "SDL_memset4",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'SDL_bool' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_rect.h"
+                },
+                "region": {
+                  "startLine": 102,
+                  "startColumn": 29
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SDL_PointInRect",
+                  "decoratedName": "SDL_PointInRect",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::x' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::x"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::z' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::y' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::w' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::r' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::r"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::g' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::g"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::b' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::a' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::a"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::s' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::s"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::t' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::t"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::p' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::p"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::q' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::q"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::data' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::data"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'glm::ctor' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.30.30706.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00D3E1C0 -il C:\\Users\\mabou\\AppData\\Local\\Temp\\_CL_f78266e3ast -typedil -f ..\\src\\HumanLife.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1930 -D_MSC_FULL_VER=193030706 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\GLM\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL_Image\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL_Mixer\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL2_ttf\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\SDL_net\\include\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\IMGUI_SDL\\ -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\include\\IMGUI\\ -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_CRT_SECURE_NO_WARNINGS -DFREEGLUT_STATIC -D_MBCS -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -Zc:wchar_t -Zc:forScope -std:c++17 -FoC:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template\\Intermediate\\Debug\\HumanLife.obj -FdC:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template\\Intermediate\\Debug\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\Template -I C:\\Users\\mabou\\OneDrive\\Desktop\\this\\Fifth-Sanctum-main\\M2 Alpha Release\\src -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.30.30705\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_stdinc.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "4ca2ca8b2b701dae628c2777e807bbc875ff6db056a9dbeb9ce85a17d7d76b41"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/SDL/include/SDL_rect.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "afa4fb3566e197cd13cf7621b38223158f1a6faf074339ebadefc28c3e7cb6c8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/src/Sprite.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "71b0378b4b095f4fe336caa273738a1c64fa8583e5a0e6fa5cd561b16fac58da"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/GLM/glm/detail/type_vec4.inl"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "f7d37cb2b21c246b155cb99a1d88dbfeab8fc47330cf117c645df84e263adfad"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/sprite.h"
+          },
+          "hashes": {
+            "sha-256": "a8e0b553bc23c3b5885af381098907493b435715101f0619bdc53156ff443ed6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/agent.h"
+          },
+          "hashes": {
+            "sha-256": "be69e9ebc9d108864f64b4bcf882b399766db73feb1238f75a14907eb5706c18"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/vec4.hpp"
+          },
+          "hashes": {
+            "sha-256": "08533bad586f57552255f7bf290e6c5c555bccc01af8a792f6545dc410f45a9a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec4.hpp"
+          },
+          "hashes": {
+            "sha-256": "fa78012811170d9fac2f5d15ed777b836d16571e935bf727dc3bba5976b31bd4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec.hpp"
+          },
+          "hashes": {
+            "sha-256": "7707c73694d63b0dfa72d7bff73de11c17d7e869d196daee6507a196695d6c5f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/precision.hpp"
+          },
+          "hashes": {
+            "sha-256": "9abc71c1cab51d26a051f43dab514c17cd4540ed68352f001d5044e9e218d1f9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/setup.hpp"
+          },
+          "hashes": {
+            "sha-256": "4aa96d91921e7b7698d5fda4c8d3e5ad5090ce6034046b30a1b9d40608ea46f5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/platform.h"
+          },
+          "hashes": {
+            "sha-256": "0c2ffe59f756a218983876a8f0c3686e08d496e87eac74453729091cdb1d9c30"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_int.hpp"
+          },
+          "hashes": {
+            "sha-256": "60d5971f1bfeb63d541c02f833c17e766a786bf191610e4e0d9103b9079063ef"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec4_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "980271fbd4ec46b77c4633b37233765fa20fc9f618583cc38265b0a1546b2ee3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/displayobject.h"
+          },
+          "hashes": {
+            "sha-256": "875e0bac1ddf5e15512a16d9e244d9875903bc0396f424b95f58e7e088d640e3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/gameobject.h"
+          },
+          "hashes": {
+            "sha-256": "dd23062a80e1f1be4bf51753e91525e72df6973aca92870ee9d8eab1d22e9a93"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/transform.h"
+          },
+          "hashes": {
+            "sha-256": "8b7f83efea08f803e8ae96cc1347463cc975046cc8e0a6a985b89d642aab3170"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/vec2.hpp"
+          },
+          "hashes": {
+            "sha-256": "8a4bb1ecf163a05b7a56a681c8d784c7f22b28d9a0ff069d33195f831d3e3404"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec2.hpp"
+          },
+          "hashes": {
+            "sha-256": "2dbb401acc47cfc851eee6ae6344ae1d98d4cbcf921013986844769e7fb4fb16"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec2.inl"
+          },
+          "hashes": {
+            "sha-256": "1dbad7c63117e8c5eae6402861d28bf38610c484ae2a66af63ff62d0bb2f06c8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/rigidbody.h"
+          },
+          "hashes": {
+            "sha-256": "3ce169326d7c5ca55b7faf03f92a3ed379f102730a568267db371e55622e1794"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/gameobjecttype.h"
+          },
+          "hashes": {
+            "sha-256": "5be1718f149bd503f84ae21f019d94569d84ac44f3b67d9807fc658549d80e75"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/scene.h"
+          },
+          "hashes": {
+            "sha-256": "b52d46fea1d1f5b74b29701ca22ece39cc557f4c450b67c88f061a7921e382cd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/animation.h"
+          },
+          "hashes": {
+            "sha-256": "d7f5063ec32c7d8f26138389dd9b0439765ad0f39a1cd066800ca76a331b9ab3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/frame.h"
+          },
+          "hashes": {
+            "sha-256": "cba1faed0e1269aebe686d1e5b3fe05a02f00cab047cf6f3c1ab8a89b9746919"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/spritesheet.h"
+          },
+          "hashes": {
+            "sha-256": "9fe4b3d1d6583e3a51231f6e356035487f0786ae32e66a5847878bea5e26782b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl.h"
+          },
+          "hashes": {
+            "sha-256": "19113de016377833a3b51f440e0e87b4b1090198d868d57e76ae327da1158fe5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_main.h"
+          },
+          "hashes": {
+            "sha-256": "41aa954e11c6c55e8fb0a4c379b899243a606c00e69681ac4db593bd08d1d23d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_config.h"
+          },
+          "hashes": {
+            "sha-256": "139f5ef9755e14324649f730ef6cb6cae471eba5402d61f849c94a61011fcd32"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_platform.h"
+          },
+          "hashes": {
+            "sha-256": "a505af23c30280cf6342089bd71185211706e4ec382c55f0d1c9bbd9356c64b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/begin_code.h"
+          },
+          "hashes": {
+            "sha-256": "856fde974ce680731794a8e4293ca844f8683eef1942fa6c9635ef2bdb57ccf8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/close_code.h"
+          },
+          "hashes": {
+            "sha-256": "33b3409fcefb5d55acddea1ecc799cce496ca25588757327787a081c4f68c331"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_assert.h"
+          },
+          "hashes": {
+            "sha-256": "06f2d7531f957ebdaeca06ae395607f13c5491d3a346ba6e0b9d75f3b521a025"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_atomic.h"
+          },
+          "hashes": {
+            "sha-256": "958bcfff611d842ee48e3465a3b90b1bb6ed73942d62a5aeaf6e7ac8a5956025"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_audio.h"
+          },
+          "hashes": {
+            "sha-256": "107e064767d359b5739e19c0e41dc3addb6924db9e727d383611413d97505f99"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_error.h"
+          },
+          "hashes": {
+            "sha-256": "159588d8e958bdbbab6480d079e1b6f43ccccfc9fc8733ba6dabd71835a81e19"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_endian.h"
+          },
+          "hashes": {
+            "sha-256": "d72fb033c7689965c50e8b74cf30a68c76f7e2f96a3bc63bbfddc36a62384e68"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_mutex.h"
+          },
+          "hashes": {
+            "sha-256": "4db41a0fdd8fd21fb7b0d1297981e0f56d434a3dc2bb5ae7dc720881e7910c2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_thread.h"
+          },
+          "hashes": {
+            "sha-256": "ed684b6a7075da6c344a54e3405119cc37a3707987b6aff006d73ba2e8ec4924"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_rwops.h"
+          },
+          "hashes": {
+            "sha-256": "1482fa713fd8fb401716cdc617d109de6da96e498c2714ff23e2ee64fe3f26b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_clipboard.h"
+          },
+          "hashes": {
+            "sha-256": "73ca27bea2c38e94b7da4257fe6a93fc2645ad3ddbac8b32076b3af89ea43e5a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_cpuinfo.h"
+          },
+          "hashes": {
+            "sha-256": "a4f552f260cc0f5ed3870212761f8d11718ea9090e382945a14d329588033523"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_events.h"
+          },
+          "hashes": {
+            "sha-256": "9dd2fa4184a466578937855ad27786d02d5ccad422eac37661105936a8342865"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_video.h"
+          },
+          "hashes": {
+            "sha-256": "0a2b9300bde06f2f59e361ef38fed2b4a5c30a96f1e399fea5f7b7cc6c37344d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_pixels.h"
+          },
+          "hashes": {
+            "sha-256": "0e08c82367fc5f97a673f7cab16d21babf4c1a94ecf2aa5a4c77bf342ed67461"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_surface.h"
+          },
+          "hashes": {
+            "sha-256": "85d07bd83c7f81a4eae6c2a93c33bebcdde05c75ec13b6312fccf60a8ca463ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_blendmode.h"
+          },
+          "hashes": {
+            "sha-256": "a3a69cc5bc5eb2e6d2e73e3813268a4f12ede2c17dee3d3ea21f6eef0e2fa4d0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_keyboard.h"
+          },
+          "hashes": {
+            "sha-256": "1c0cc7b648dbd591ae2095297af21cf77acd8f070619c8ea3b41567e45ae6899"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_keycode.h"
+          },
+          "hashes": {
+            "sha-256": "eeaf1af7a182c7398cfc87ae0b941ee87754449fed930ed913ec35101d3930c5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_scancode.h"
+          },
+          "hashes": {
+            "sha-256": "1beb3f357a7593aa1a71de7f588e8ce57da7caeee38a569d4c3068cd91d71e25"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_mouse.h"
+          },
+          "hashes": {
+            "sha-256": "a12c97589d1397e175be34ef5bb34ee752ff1643f3d043f02a159f794f394437"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_joystick.h"
+          },
+          "hashes": {
+            "sha-256": "05e829828f12602ddbb2b75141350f5d9cace6196fa85c8754d3dcae70fd0c06"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_gamecontroller.h"
+          },
+          "hashes": {
+            "sha-256": "b8bdfbc89542dbcb1dcfa3c04ed1aaa2e2dd11cc4424af9c5479484411a6c300"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_quit.h"
+          },
+          "hashes": {
+            "sha-256": "19d3fcccadf762f34cfd894acbced7827c7925704baf41f79d6d61e89bd7bd57"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_gesture.h"
+          },
+          "hashes": {
+            "sha-256": "e47e1f85b9d60ef48a71c0f842d1dc42d621b2b82d92dc854f2abd8e084a6432"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_touch.h"
+          },
+          "hashes": {
+            "sha-256": "89921ce7114aa85a088051b1f4fe234923cdbfbe7122a118e5885a8ea3f73472"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_filesystem.h"
+          },
+          "hashes": {
+            "sha-256": "7de84bbd904f402766313f859732b4140aea915d785e3247715cc18a2e417524"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_haptic.h"
+          },
+          "hashes": {
+            "sha-256": "23b2e5ea89a765ddd3b364bb924f4670c4eb366f3b4921205a8698491b7fee95"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_hints.h"
+          },
+          "hashes": {
+            "sha-256": "28805a0bc81bbb658e6354739ffc75a3e269ce48e7eec9a176039e8a1ae9eac5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_loadso.h"
+          },
+          "hashes": {
+            "sha-256": "6e972efccb39084e441d5575cd721f5a0870f0933ca81db5d78c5fb085013de1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_log.h"
+          },
+          "hashes": {
+            "sha-256": "290325289bebf62c06bf848fc5dc6a4f2d4ddaa0fc3dd5e92510f3a9e59fca29"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_messagebox.h"
+          },
+          "hashes": {
+            "sha-256": "72433c18f5a959f95cbbc12be5cf9469148969e54d3e40aae6590beb6f249d64"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_metal.h"
+          },
+          "hashes": {
+            "sha-256": "7175fed4d6a80ac1c502434954df51bf5234c74386c680f794273f37055139e0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_power.h"
+          },
+          "hashes": {
+            "sha-256": "98b10b1c4c2b24e0346a4ad301a583f9e61342bdf4aa00b3e89f0aefdb0f0df9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_render.h"
+          },
+          "hashes": {
+            "sha-256": "463e7a343ed85d5ff5875447e97d87a347c9d228cf0d39acebe35ae37174b9e4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_sensor.h"
+          },
+          "hashes": {
+            "sha-256": "dc025e1e60bc2e4c4b05b12a0e09c7d59a016c0fc22536081ee7b7c774061f93"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_shape.h"
+          },
+          "hashes": {
+            "sha-256": "440f3a72cf1195bee216660e809f1d38789bb9d8faad0bc71b7b781fc0069a68"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_system.h"
+          },
+          "hashes": {
+            "sha-256": "67047d73f06da35d2db3783225980179910391c7d80716d7a99621a35ac3ba52"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_timer.h"
+          },
+          "hashes": {
+            "sha-256": "a68483fb2b917761ab4960c050d12b11c9608811fd12264e64387a65f1bf8dc7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl/include/sdl_version.h"
+          },
+          "hashes": {
+            "sha-256": "78511f2d9d044cf48e7f4ed0f1d7f81184a70ea9ea2e538fa7039ead8f531ea2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/src/Weap.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "409de4ec45b71ca2d11d698c51740be613bb91c7f230e3e9d308679d7cb7a062"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/mabou/OneDrive/Desktop/this/Fifth-Sanctum-main/M2 Alpha Release/include/IMGUI/imgui.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "02758ed5610a88bf8835b95fe5170f7ea95310f9c16c202fff6708ea5659d182"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/pausescene.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "5583e6d613304b2372f6dc6badb7627a7f6b2dd9f37ddc6b10f3ec8b068a83bd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/pausescene.h"
+          },
+          "hashes": {
+            "sha-256": "4dc52856474f56e050b0b4b3be5c060a77dc59e5d4c998c124e485386a011968"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/label.h"
+          },
+          "hashes": {
+            "sha-256": "5d4e50aabec708249d12a39219d31aaa9731a4858e3db2680b1f6ebb9c95add0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/uicontrol.h"
+          },
+          "hashes": {
+            "sha-256": "6b814b53a7b90dcdc6e917f2b340eed5ecc2c351179e18ed3901e022f33dc017"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/event.h"
+          },
+          "hashes": {
+            "sha-256": "67728cdfce59fdc48a531be0d72aabf87a2f1d330d9851cc89d65e2ddd43fbf5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/fontmanager.h"
+          },
+          "hashes": {
+            "sha-256": "890a07719b21b5df026c2ad139420aa14641cfab5a404d35f81edf7d43790a5d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl_image/include/sdl_image.h"
+          },
+          "hashes": {
+            "sha-256": "180792a5b429f891d7af256c526edf4a4e82118bc778ddeff9dbc93485028009"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl2_ttf/include/sdl_ttf.h"
+          },
+          "hashes": {
+            "sha-256": "d8812df3f415637d49ea647d66d10d4ba7cead505445a5d8e6d089a92052d58b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/config.h"
+          },
+          "hashes": {
+            "sha-256": "3b1f7a52ed4dc71e8d2541382726230d6092c6a04fb19cf062ea9a93c8f80b7d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/button.h"
+          },
+          "hashes": {
+            "sha-256": "a6e39701c3b461ed4e09d3a070dd7675ad851793dd7103192027b12cc6406979"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/game.h"
+          },
+          "hashes": {
+            "sha-256": "e530ea199f9f89c517aac3b793a0c84b0d75f96522610280470bf76dc82ba904"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/scenestate.h"
+          },
+          "hashes": {
+            "sha-256": "a7dc04b3e463f4855ea30b0e766303c188b1f6261d83521b8c0f6587486159d4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/collisionmanager.h"
+          },
+          "hashes": {
+            "sha-256": "0fb11af76ec7e38ff067b0485e97ee258113d2139e281488ecbb55a6b71d1f5c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/ship.h"
+          },
+          "hashes": {
+            "sha-256": "7b024d46aec0f07fd0b7073b61d421cc0c6b2b33052592c92b8afc4c6bab76f3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/texturemanager.h"
+          },
+          "hashes": {
+            "sha-256": "d61df435e1314c9a19d4f1df93a5937174f8002c68e199aa7e2aeb2ee6342ca4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/norm.hpp"
+          },
+          "hashes": {
+            "sha-256": "29f70c53ad7ba4b996621b30afde97d1a8c734452f721c0c4e9bef4049cda42b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_geometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "80ecd481b8ff3bd744e15b4be9dd408d34006c28b68b64c537802170efcba4ee"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec3.hpp"
+          },
+          "hashes": {
+            "sha-256": "921e846a4ea65260948e57572ef128cdc09bd10beb9ef7d9e8903859aa52525f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec3.inl"
+          },
+          "hashes": {
+            "sha-256": "a90618ff000af2e400409211d01a7cbf799d14a9343126795aecc06c7e1693d7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_geometric.inl"
+          },
+          "hashes": {
+            "sha-256": "eee756f0ee0739c98886ec68a94653a9494931016b8c1217fa8f4dd858e0b374"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_exponential.hpp"
+          },
+          "hashes": {
+            "sha-256": "7a87425f7b12d95702a76265c3de8512b778ad5d25f66b88bbaaf44e1d488da7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec1.hpp"
+          },
+          "hashes": {
+            "sha-256": "9c4da9fa63a2b7737ae432c13274e3ceaa5bd61094946a8897a5dce6c2454ce6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/fwd.hpp"
+          },
+          "hashes": {
+            "sha-256": "b566db151c1150a08e88536e61f75bf91af49bff22f1a104abf010b6004deddf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_float.hpp"
+          },
+          "hashes": {
+            "sha-256": "2a9dda83e848bbff03e687285f3624a9642680ea1a153022cc3d9141ec19a346"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat.hpp"
+          },
+          "hashes": {
+            "sha-256": "b0c5abd87a23dec6489bebc760394028f2d4207ae6090d442022bde12e11b1c6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_vec1.inl"
+          },
+          "hashes": {
+            "sha-256": "482d3c97e4f241d53092ee2deb6f27c1cdce94bd6a8e86bbeb9435181770b4d4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_exponential.inl"
+          },
+          "hashes": {
+            "sha-256": "a3517e503cd18ca5b058c8fb2078eb71e0c3680d809413f076e945a06328338b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_vector_relational.hpp"
+          },
+          "hashes": {
+            "sha-256": "ce9cbd0cefb273398500859c432a87ef6f254ac5256552c143c2d342e03ba024"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_vector_relational.inl"
+          },
+          "hashes": {
+            "sha-256": "0d42184f95a131bbb8ff30dc14a1e79a9e8c5b63571b18c833b1ff7d33d1adbb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_vector_relational_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "74a4b8ce9f411d81ccf6f1763fa4872ba2a11ffb113b7304a65e74947ada8616"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/_vectorize.hpp"
+          },
+          "hashes": {
+            "sha-256": "b90bd2dce5031e3c533498477b2389b913aa06290aaa3b00a9509ecd8fdadae6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_exponential_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "e46b39724c2bf40edc916d948b3cf818bf9909ecbf5edd34def993cbfb9eb6ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/exponential.h"
+          },
+          "hashes": {
+            "sha-256": "b6867b6f7ef02d4d21bfb557f5598525d8ab4b512e77ce1c910d602ffe3bf6f6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_common.hpp"
+          },
+          "hashes": {
+            "sha-256": "d5cbdd6c2ac23e0fcf0f82c995325d3a9982fe654c95870a63f57f00eacaedf8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/_fixes.hpp"
+          },
+          "hashes": {
+            "sha-256": "22508408c83e084cc04bc5d85f2b8bd173c3bac93e0f9e2bad165d0718d9647d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_common.inl"
+          },
+          "hashes": {
+            "sha-256": "f30dd2aeefa4b8f34904bd3f2df25435d73ce019201876d62a9f0b6cbaf4e6a2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_common_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "7ebc5375f3ea30e0d53c754a9de985e62293be444dd6855079c07f0a9c165981"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/common.h"
+          },
+          "hashes": {
+            "sha-256": "4121f33727b84aabc6dbf34b872324f0c951d7b6cb616f8c7ff392f968cca8b8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_geometric_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "2d89eafb2a85cf9b1d45e2e2b1bb788ed29f9fff70341e921385ca9d4b7b609d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/geometric.h"
+          },
+          "hashes": {
+            "sha-256": "84c341ec44787b520c2d48a02622eea36c6643a9e346fa3dd7301c96f85a443a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/quaternion.hpp"
+          },
+          "hashes": {
+            "sha-256": "a18bb68842a3298ea16f1b52505993bea5060e5e8753f9ee965a650c94b1b3fa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/glm.hpp"
+          },
+          "hashes": {
+            "sha-256": "43ce1a14ecff183dd6fc0f9790c712aea35d66d67a371ef023f9b93a5f40864f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/vec3.hpp"
+          },
+          "hashes": {
+            "sha-256": "5b8b906cb37a503f9ce9a9bdcef32548a0120e5d105d084a5722f85a65cd71bb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat2x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "1ba268b12eb76ddf5b5b5f26a4127699d4ce18e43200cf44de28258bd3d469c1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat2x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "358009f09a3beff19141128e57546a609c9dd1cd1bab91cc18beb786c13be7ce"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat2x2.inl"
+          },
+          "hashes": {
+            "sha-256": "7fff6040d60b046d96e10ee31fbd2756b67219f7f6b15460a3e3faf299b0f4d0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_matrix.hpp"
+          },
+          "hashes": {
+            "sha-256": "e1fa8f911128b1398be2241ecf061dac25bb438c847afdf3412ba7b4bab1a105"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat2x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "354b5fb4c4e3dccae11ecced06742ca9eef6cdf54d8edd5ef9468a71e9d10055"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat2x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "0e06302d7e1d796900364c36671456702a945ab87bf38a87161f51f9a7de146d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat2x3.inl"
+          },
+          "hashes": {
+            "sha-256": "e7f2b344bc4bd5c443849895659cf7a2292fe0761b8127009d9c270eb28ace8f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat2x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "5bc82140a72e14403417c03e4913f02ad454799c6f0dc06168816a5636644ee0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat2x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "33c747bc76d6c78952ba27e829450a0d228053574274fc51f4d57fbbb3ebd936"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat2x4.inl"
+          },
+          "hashes": {
+            "sha-256": "d1a340c9aa942ea250e349e7bb56bf4d6438af14dafdd7f4402471fcb87b4e31"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat3x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "31c9ef08fbd9b91313e8acc38e515b1021e76f5f125562c77a5a5cd3e518ea36"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat3x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "fa04751fecb9b71ebeb13bf573728c5a07fa01eb6953b3d527f161bef12461dd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat3x2.inl"
+          },
+          "hashes": {
+            "sha-256": "60b854dd8f97edeb490f40674bc240935ce941edf6bbf68300303d403969cd70"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat3x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "f769d1b3da870e392f1e9b620806d102671b4c3b162ff5a520dc5766033f40fd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat3x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "03b0bfb2e3fcfde4d708fef7b21968d5c240d0aa700ab3997955822400342328"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat3x3.inl"
+          },
+          "hashes": {
+            "sha-256": "03dd4c0eea10339fc50043c4b8b60ba5fdbe532e0861dff445d6713351216415"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat3x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "0e54eb5b2dcf258bad08d967c8f0b7e85cc3493c5446de60f571061f8ced56cb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat3x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "34118f3b4376b6d6d7cc9f85e404cccb82007ab5733d0d7a4aacd6e7ae289941"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat3x4.inl"
+          },
+          "hashes": {
+            "sha-256": "ee627f395d9f201a2b6033762377f7bbe89097d3a4b6024a41b64c9ad6ccb6aa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat4x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "cb2e4557bc6ae0c6649e9ef9ce9e4378b51fe8934b00b383fa5f58a2ab0f8886"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "64e979c5af17205023f5802e2d79354f1412d239d224471a31ea7335d1266c7d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x2.inl"
+          },
+          "hashes": {
+            "sha-256": "c87f7706a5bef0f333f09d5d367e120b4cf32c457b826d93fea5a9856c18a603"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat4x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "25e9d416354420a30ae8a980219b496c8378c396dda7f5ff063fec382f83d7c7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "27ac83ff31e492f8e699b597e21a1225eefd7cf87237002acaa0a56ad3ffcbd0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x3.inl"
+          },
+          "hashes": {
+            "sha-256": "feab000b0f3631b200009baeadd5b8b267c5207124ac562bb39bdb82f919acda"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/mat4x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "7e1aa7a032c6c6b87b66484c54b30fd3b561b17cedda720c1ac66143286ca2a3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "8aa442aa688f88f28da2920f8a1af49e9aaf18ececd5d9ff1602951720f81d66"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x4.inl"
+          },
+          "hashes": {
+            "sha-256": "e34549bd2e740c9e484a35bc5b7e3b0c0e635bf179238736bec70b6d10865b17"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_mat4x4_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "0b52d51b1bbdc3b2f4742fa6b9ff0bb85f81fc333264f8b548daa5baf1424124"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_matrix.inl"
+          },
+          "hashes": {
+            "sha-256": "8acb7fe87735913fcb779aa733277d2d4df659076ee229d12ebf7cfe7ce4c49b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/geometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "9d5fb7344f38727711661378475d5b57410636dddd01f09fff468f217daa6477"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_matrix_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "3002be8ed00a834d0435843f02d1bd649353f7677759eacd2d54d77a01559d31"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/matrix.h"
+          },
+          "hashes": {
+            "sha-256": "ebabafc744e48d4fd282ed204f1778d892a5fc87733dc0ce4b5a9b1218c52b21"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/trigonometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "67fa0caa579b9056f644fea0c1b324948621f52656ac80d54a4b22a4d1d28a4e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_trigonometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "a7e92fa7a9bed189b54bf4636ed4a76861e6b4745a7afdb9c2fe55f71c4c1d20"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_trigonometric.inl"
+          },
+          "hashes": {
+            "sha-256": "a6692b614a7503c8896866b0c95ba3e6e49f2849bdffe03f5d038fa1e21bf38f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_trigonometric_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/exponential.hpp"
+          },
+          "hashes": {
+            "sha-256": "0124f222b519f1e2dd76ef9eea915da8cce17c61bcc25fa6449c351b43f3743d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/common.hpp"
+          },
+          "hashes": {
+            "sha-256": "12c4a3534cb3b477abd375ec040ca51852d9e2ac76cd68f68246759f67f70ea2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/packing.hpp"
+          },
+          "hashes": {
+            "sha-256": "152f59a10d67ed69b28028c7e3a106a3b9bbac15012a8a3136a4f3e4c6f699b2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_packing.hpp"
+          },
+          "hashes": {
+            "sha-256": "6a74d0267cebba949442c4ec3c99ec459d68eccd74ca9287f1af91b1dbae4109"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_packing.inl"
+          },
+          "hashes": {
+            "sha-256": "87b7931ab509446dcb01cda14ec854bda16338f53e0a90a6664d0d2a05f81f4f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_half.hpp"
+          },
+          "hashes": {
+            "sha-256": "0ced94d49eb7bdcc087185735494c0a1f6e33bea558d4d6152c282d3afbba0aa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/type_half.inl"
+          },
+          "hashes": {
+            "sha-256": "7d52db31248bafb5f295de592ddc5b2d55149dea008d04d047c3b0578590310a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_packing_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "e84bb92260bcbc89e4bf805abbc94c115aa04a7d0a07259cf230393530437105"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/matrix.hpp"
+          },
+          "hashes": {
+            "sha-256": "51ea56eeab7727ecb2e04419c8ac30c1b45aed07daa41fd85d727ebfdbfad65b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/vector_relational.hpp"
+          },
+          "hashes": {
+            "sha-256": "78a09044aea44d8affd3310368d8f4cd071eac87601b95aac1a3f64763fb905c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/integer.hpp"
+          },
+          "hashes": {
+            "sha-256": "2bee03ab58f53179f97440fa5925e398fd1534ba86928e3e002ddb0849f02bfe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_integer.hpp"
+          },
+          "hashes": {
+            "sha-256": "bdae04e15466538e95179dd35174c7e72a1afb044e38ab73f5ac52f24f9895da"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_integer.inl"
+          },
+          "hashes": {
+            "sha-256": "46b3a978bfe1c8ebe9da23e67b26982f92d05390ad9732b7a2e135232714e298"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/detail/func_integer_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "fde5ef132a948e0022973ed23c10c397f10fd76287d7a6d599bfe7943d1d23be"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/simd/integer.h"
+          },
+          "hashes": {
+            "sha-256": "6447108d6d1a8c1f676b091e2b21ece0f45ed0c5caa8321ec3c618361d108110"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/constants.hpp"
+          },
+          "hashes": {
+            "sha-256": "7ce2191244439ea69d79a1a1439cd79bee3de26cff15bf619dc61ab83474af5f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/constants.inl"
+          },
+          "hashes": {
+            "sha-256": "d137e26460d233412c663a59351085c85a1669817db22f3ef0a9596243111245"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/quaternion.hpp"
+          },
+          "hashes": {
+            "sha-256": "673007d6433abbc1b9b21f0717ef6a09077e0c000e62a9df1c05bd1a99e5c4e5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/quaternion.inl"
+          },
+          "hashes": {
+            "sha-256": "a92316706cc21f349435220adea15be706373dc44410678fbd32c6096625b2d4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/quaternion_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "67cfc6f7e4760ffe35193b06ec5f6a74f76998b891bdce42d4fcdcc8172aa2e9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/quaternion.inl"
+          },
+          "hashes": {
+            "sha-256": "56eaba5e1883e0deb8b2878164550f892a804f178a592c273d1d827211603482"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/norm.inl"
+          },
+          "hashes": {
+            "sha-256": "d11dd88e47776343668604d87da394be59ef50100f12f5de6b46c5ea5abf2d7b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/soundmanager.h"
+          },
+          "hashes": {
+            "sha-256": "929b058ad8ad4a42510d7f98d1db6da5420e64c693e3d2247b4658558f150ab2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/soundtype.h"
+          },
+          "hashes": {
+            "sha-256": "22765715046dabffc1b6cf0013ff2308b3ee7b4c4fc7e967971d008f124fbf5f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/sdl_mixer/include/sdl_mixer.h"
+          },
+          "hashes": {
+            "sha-256": "4a2f6bb30a144b881f133499d13d18098034fcc95af1517ac0580d5d09c2ee63"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/startscene.h"
+          },
+          "hashes": {
+            "sha-256": "98b37dfb8706cf5a212e598f0e36b93ee65c891d4e9c6b09bd77dfc5bd2fac26"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/playscene.h"
+          },
+          "hashes": {
+            "sha-256": "f5661c8a5691f5def8fcbf873f3874a320d007a9540749543701fae481198219"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/enemy.h"
+          },
+          "hashes": {
+            "sha-256": "fababff7be439e2db8df79e231fb8189633a0d0ff5cc09cbd3a1f8e0f9d2b482"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/playeranimationstate.h"
+          },
+          "hashes": {
+            "sha-256": "db113bdec7ac58f5ded5326fbcdcdbdda2268276d438fead92dc80c537b72f52"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/util.h"
+          },
+          "hashes": {
+            "sha-256": "0e2abbc946638179d569f82ed23d850087a6e5eea7d2ee6d654581c8b6a03bd9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/shapetype.h"
+          },
+          "hashes": {
+            "sha-256": "865e2b894b7246d88a11afa182a4bb5f62307c6509b5a62f2fd324120a8a2f20"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/renderer.h"
+          },
+          "hashes": {
+            "sha-256": "fc046b03ee856d3c4b51b045253778fcca79242810a433b538ad00a5cf688a47"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/obstacle.h"
+          },
+          "hashes": {
+            "sha-256": "20b1ed68cd1dbb33deb4021564db54bb6180d0251bb91dbc882936afe3ef7c1a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/weapon1.h"
+          },
+          "hashes": {
+            "sha-256": "8d37fb6a64c7856940f108842d9ef943b765c027409a1fca2d3c8e69a36fce82"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/direction.h"
+          },
+          "hashes": {
+            "sha-256": "bab1a1727e4eb16eeeeef1112fa4815a5d7802fb3cf93c6f0dd0f815459ad3ee"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/plane.h"
+          },
+          "hashes": {
+            "sha-256": "915b2a800559ebb69cec746d257fd2aacbc0c2539f818ccb973b3a40bfed78e2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/player.h"
+          },
+          "hashes": {
+            "sha-256": "f6e75b449ff32baace07051f6883aa3570e70b64bab1295fb00e3a572b4cf8b4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/human.h"
+          },
+          "hashes": {
+            "sha-256": "15b313ea0f071a5da7c5876aa2404e6549b09b07b424bb2676556619376a42ad"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/ghost.h"
+          },
+          "hashes": {
+            "sha-256": "ef58d288412da0fa914c6718bf98098a50177a4acb825e52c3058936fb382a41"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/level.h"
+          },
+          "hashes": {
+            "sha-256": "bf4b62a6dfc0dfc60b33cf15e31d4a374af1c3eea5a59483e5cf7bc90a579a40"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/humanlife.h"
+          },
+          "hashes": {
+            "sha-256": "c4e2cc6ab2db0c07f2535b7fde96499c1545d85496ccd9a153b04ca0837ba970"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/diamond.h"
+          },
+          "hashes": {
+            "sha-256": "0db349b4a22f9023a7699485d3d27947d8031cf903f17356aea82a7ed7aab5f4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/bed.h"
+          },
+          "hashes": {
+            "sha-256": "d49a387e85c013fd57f33d2be1669d9a53af27b5f653d257793e660a48fda3e7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/endscene.h"
+          },
+          "hashes": {
+            "sha-256": "1002f8f43a724a3d57d19277d57dab10189daae57314c5d985d56b3e605b60ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/template/bg.h"
+          },
+          "hashes": {
+            "sha-256": "2e501b66a9d09747a2bb5e0a6c4cf86929ad5fc3169c8b1a33dab64cef8b42ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/imguiwindowframe.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "e25061ae316598cf6db23cce3b670584a67d6a81efa0add385a4cff403f4738c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/string_cast.hpp"
+          },
+          "hashes": {
+            "sha-256": "f6a7447c88cdfc884d54f12ebb3a754e88b388a4db892908a866c9f14ee01da5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/type_precision.hpp"
+          },
+          "hashes": {
+            "sha-256": "e0c459ab8425f6b7a3e5a432c977d4e843b4a6e1851b7d5be77fc9e02d3c067a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/vec1.hpp"
+          },
+          "hashes": {
+            "sha-256": "33e01bb526359695a210293b09c5546b11929c1ccd475fd7d5c570c48819a19a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/vec1.inl"
+          },
+          "hashes": {
+            "sha-256": "e9f210a098fa415b3a54aaff88cf03a574d8ccf122863a7be968723ee571faa5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtc/type_precision.inl"
+          },
+          "hashes": {
+            "sha-256": "32555950ed7cd338c57cb2fe9eb966e7229683c743347fb6ac70e4f8858f9608"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/dual_quaternion.hpp"
+          },
+          "hashes": {
+            "sha-256": "f4caea901135ba8d03cc7bc3863180395d818d94abb0bae59030347818162c25"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/dual_quaternion.inl"
+          },
+          "hashes": {
+            "sha-256": "c4804482e387097ca694fd7f7ae1c6301f57e203232133f7bf2cc1a61def006c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/glm/glm/gtx/string_cast.inl"
+          },
+          "hashes": {
+            "sha-256": "86cc11e3f079b9d3a7a449954dca6b774d1a349662ab9140f47178ad75afc607"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/eventmanager.h"
+          },
+          "hashes": {
+            "sha-256": "4dd3bd79ce1778e0946900fa261a054be8525f86ac21d2f1b975182d2f2665ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/mousebuttons.h"
+          },
+          "hashes": {
+            "sha-256": "c077aed9093c39695b3502fc8bcb743b46f84dfb8dadaf76600040f2744f9bcd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/gamecontroller.h"
+          },
+          "hashes": {
+            "sha-256": "d38367b380fdfe4327c7ee358d5e7b20c0e81991cb06014c6179b0fa03599fa2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/imgui/imconfig.h"
+          },
+          "hashes": {
+            "sha-256": "6c9dea6293a76174af33ddc1e656826d2fa023543633f5dd856ecb84c09156d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/obstacle.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "52a7dbf402cd608231d5d07062d0d25bfca52dde5709160c7a5a84bbd686b938"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/level.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "0a3b37ffe13e22da6b68afd0e7d96010a2a589d88a94e4af2690241610b0d947"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/imguiwindowframe.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "8e3379d9246475c23cf1d0ee76420baa0e93b4d799337a46120d4a7d31654096"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/include/imgui_sdl/imgui_sdl.h"
+          },
+          "hashes": {
+            "sha-256": "188a4de2b8d005e8640737749656464e0e37adbe836fbc3b68c62611cd22dacf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/mabou/onedrive/desktop/this/fifth-sanctum-main/m2 alpha release/src/humanlife.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "b576314755057be5953598859de610fedaf17c0eb62cae5427e17808204c3a69"
+          }
+        }
+      ]
+    }
+  ]
+}
