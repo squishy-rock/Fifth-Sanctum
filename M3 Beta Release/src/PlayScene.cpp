@@ -244,6 +244,7 @@ void PlayScene::update()
 	{
 		TheGame::Instance().changeSceneState(END_SCENE);
 	}
+	const SDL_Color blue = { 0, 0, 255, 255 };
 
 	updateDisplayList();
 
@@ -388,6 +389,7 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+	const SDL_Color blue = { 0, 0, 255, 255 };
 	m_setGridColliderEnabled(false);
 
 	// Set GUI Title
@@ -417,8 +419,11 @@ void PlayScene::start()
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
 
-	// Time
-	playTime = PLAY_TIME;
+	// Time ** NEED TO BE FIXED **
+	playTime = PLAY_TIME; 
+	m_pPlayTimeLabel = new Label("Play Time", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
+	m_pPlayTimeLabel->setParent(this);
+	addChild(m_pPlayTimeLabel);
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());

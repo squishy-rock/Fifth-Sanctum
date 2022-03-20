@@ -119,6 +119,7 @@ private:
 	// Time
 	float playTime;
 	float PLAY_TIME = 10 * 60 * 1000; // 10 * 60seconds * 1000ms
+	Label* m_pPlayTimeLabel;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
