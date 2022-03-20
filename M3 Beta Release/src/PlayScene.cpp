@@ -135,8 +135,6 @@ void PlayScene::update()
 				}
 			}
 		}
-		
-
 	}
 
 	// Player VS Enemies collision
@@ -237,6 +235,15 @@ void PlayScene::update()
 			}
 
 		}
+	}
+
+	// CountDown 1 minutes until gameover.
+	float time = 600.0f;
+	time -= TheGame::Instance().getFrames()/50;
+	std::cout << time << "\n";
+	if (time <= 0)
+	{
+		TheGame::Instance().changeSceneState(END_SCENE);
 	}
 
 	updateDisplayList();
