@@ -115,6 +115,10 @@ private:
 	int numOfRandSpawn = 0;
 
 	Button* m_pPauseButton;
+
+	// Time
+	float playTime;
+	float PLAY_TIME = 10 * 60 * 1000; // 10 * 60seconds * 1000ms
 };
 
 #endif /* defined (__PLAY_SCENE__) */

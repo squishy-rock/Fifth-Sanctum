@@ -24,6 +24,7 @@ private:
 	Button* m_pResumeButton;
 	Button* m_pRestartButton;
 	Button* m_pQuitButton;
+
 };
 
 #endif /* defined (__PAUSE_SCENE__)*/

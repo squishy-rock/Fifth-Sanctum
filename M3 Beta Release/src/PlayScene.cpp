@@ -237,11 +237,10 @@ void PlayScene::update()
 		}
 	}
 
-	// CountDown 1 minutes until gameover.
-	float time = 600.0f;
-	time -= TheGame::Instance().getFrames()/50;
-	std::cout << time << "\n";
-	if (time <= 0)
+	// CountDown 10 minutes until gameover.
+	playTime -= TheGame::Instance().getDeltaTime()*1000.0f;
+	//std::cout << playTime <<"\n";
+	if (playTime <= 0)
 	{
 		TheGame::Instance().changeSceneState(END_SCENE);
 	}
@@ -417,6 +416,9 @@ void PlayScene::start()
 	//Life
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
+
+	// Time
+	playTime = PLAY_TIME;
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());
