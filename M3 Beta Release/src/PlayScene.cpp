@@ -240,11 +240,12 @@ void PlayScene::update()
 	// CountDown 10 minutes until gameover.
 	playTime -= TheGame::Instance().getDeltaTime()*1000.0f;
 	//std::cout << playTime <<"\n";
+	int time = (int)(playTime * 0.001f);
+	m_pPlayTimeLabel->setText("Play Time: " + std::to_string(time));
 	if (playTime <= 0)
 	{
 		TheGame::Instance().changeSceneState(END_SCENE);
 	}
-	const SDL_Color blue = { 0, 0, 255, 255 };
 
 	updateDisplayList();
 
@@ -389,7 +390,7 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
-	const SDL_Color blue = { 0, 0, 255, 255 };
+	const SDL_Color gainsboro = { 220, 220, 220, 255 };
 	m_setGridColliderEnabled(false);
 
 	// Set GUI Title
@@ -421,9 +422,10 @@ void PlayScene::start()
 
 	// Time ** NEED TO BE FIXED **
 	playTime = PLAY_TIME; 
-	m_pPlayTimeLabel = new Label("Play Time", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
+	float fontSize = 35.0f;
+	m_pPlayTimeLabel = new Label("Play Time", "Consolas", fontSize, gainsboro, glm::vec2(WIDTH * 0.5f, fontSize *0.5f + 20.0f));
 	m_pPlayTimeLabel->setParent(this);
-	addChild(m_pPlayTimeLabel);
+	addChild(m_pPlayTimeLabel, 3, 1);
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());
