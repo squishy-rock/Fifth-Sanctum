@@ -149,7 +149,7 @@ void PlayScene::update()
 
 			if (CollisionManager::AABBCheck(&tempH, &tempE))
 			{
-				m_pHuman->SetIsColliding(true);
+				m_pHuman->SetIsColliding(false);
 				m_pHuman->Hit();
 				SoundManager::Instance().playSound("collision", 0, -1);
 				m_pDeath.push_back(new Death());

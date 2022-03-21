@@ -88,7 +88,17 @@ void Human::draw()
 
 void Human::update()
 {
+	if (hitCount > 0)
+	{
+		hitCount--;
+		m_tint = hitCount % 8 < 4 ? 32 : 255;
 
+		if (hitCount == 0)
+		{
+			m_tint = 255;
+			isColliding = false;
+		}
+	}
 }
 
 void Human::clean()
@@ -119,6 +129,8 @@ void Human::setLastHumanDirection(const PlayerAnimationState new_state)
 
 void Human::Hit()
 {
+	hitCount = 65;
+	/*
 	SetTint(255);
 	if (GetIsColliding() == true && hitCount++ == maxCount)
 	{
@@ -129,7 +141,7 @@ void Human::Hit()
 	else
 	{
 		SetTint(255);
-	}
+	}*/
 }
 
 void Human::setAnimationSpeed(float s)
