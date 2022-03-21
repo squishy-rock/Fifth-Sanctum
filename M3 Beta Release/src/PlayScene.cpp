@@ -634,7 +634,7 @@ void PlayScene::Shooting()
 	if (!firing)
 	{
 		Mix_PlayChannel(-1, m_pGunSound, 0);
-		m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y) + 8, m_pHuman->getLastHumanDirection()));
+		m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y) + 4, m_pHuman->getLastHumanDirection()));
 		//m_pPlayerFire.push_back(new Weap(WIDTH / 2, HEIGHT / 2, m_pHuman->getLastHumanDirection()));
 		m_pPlayerFire.shrink_to_fit();
 		addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
