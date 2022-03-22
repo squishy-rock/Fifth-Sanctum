@@ -91,11 +91,6 @@ private:
 
 	bool firing = false;
 
-	HumanLife* m_HumanLife;
-
-	// For spawn time
-	int count = 0, maxCount = 180;
-
 	bool m_playerFacingRight;
 
 	//Music and Sound
@@ -113,6 +108,11 @@ private:
 	std::vector<Obstacle*> m_pObstacle;
 	std::vector<Death*> m_pDeath;
 	int numOfRandSpawn = 0;
+
+	// UI
+	HumanLife* m_HumanLife;
+	Label* m_pCountEnemyLable;
+	SDL_Texture* m_pCountEnemyT;
 
 	Button* m_pPauseButton;
 

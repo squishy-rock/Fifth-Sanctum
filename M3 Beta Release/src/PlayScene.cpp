@@ -22,7 +22,6 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
-
 	//Util::DrawRect(glm::vec2{ m_pBed[0]->getPosSize().x, m_pBed[0]->getPosSize().y}, m_pBed[0]->getPosSize().w, m_pBed[0]->getPosSize().h);
 
 	/*for (int i = 0; i < m_pDiamond.size(); i++)
@@ -98,6 +97,13 @@ void PlayScene::draw()
 		//	}
 		//}
 	}
+
+	// For Enemy indicator
+	if (m_pEnemy.size() > 0)
+	{
+		SDL_Rect dst = { 770,5,64,64 }, src = { 256,64,64,64 };
+		SDL_RenderCopy(Renderer::Instance().getRenderer(), m_pCountEnemyT, &src, &dst);
+	}
 }
 
 void PlayScene::update()
@@ -114,7 +120,6 @@ void PlayScene::update()
 		}
 	}
 
-	count++;
 	if (m_pPlayerFire.size() > 0)
 	{
 		for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
@@ -165,16 +170,16 @@ void PlayScene::update()
 				m_pEnemy.shrink_to_fit();
 
 				HumanLife::m_hit();
-				if (HumanLife::getHumanLife() <= 0)
-				{
-					TheGame::Instance().changeSceneState(END_SCENE);
-				}
 			}
 			else
 			{
 				m_pHuman->SetIsColliding(false);
 			}
 		}
+	}
+	if (HumanLife::getHumanLife() <= 0)
+	{
+		TheGame::Instance().changeSceneState(END_SCENE);
 	}
 
 	// PlayerFire VS Enemies
@@ -245,6 +250,16 @@ void PlayScene::update()
 	if (playTime <= 0)
 	{
 		TheGame::Instance().changeSceneState(END_SCENE);
+	}
+
+	// For counting the amount of Enemies
+	if (m_pEnemy.size() > 0)
+	{
+		m_pCountEnemyLable->setText("X " + std::to_string(m_pEnemy.size()));
+	}
+	else if (m_pEnemy.size() == 0)
+	{
+		m_pCountEnemyLable->setText(" ");
 	}
 
 	updateDisplayList();
@@ -376,6 +391,21 @@ void PlayScene::handleEvents()
 		SDL_Delay(100);
 	}
 
+	// To spawn Enemy for test
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_T))
+	{
+		m_pEnemy.push_back(new Enemy());
+		m_pEnemy.shrink_to_fit();
+		m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+		m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+		m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ m_pHuman->getTransform()->position.x + rand() % 300, m_pHuman->getTransform()->position.y + 200 };
+		m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+		m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+		m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+		addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+		SDL_Delay(200);
+	}
+
 	////////////// SHOOTING //////////////////////
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_SPACE))
 	{
@@ -419,6 +449,12 @@ void PlayScene::start()
 	//Life
 	m_HumanLife = new HumanLife();
 	addChild(m_HumanLife, 3, 0);
+
+	// Count Enemy
+	m_pCountEnemyT = IMG_LoadTexture(Renderer::Instance().getRenderer(), "../Assets/sprites/Enemy.png");
+	m_pCountEnemyLable = new Label("X ", "Consolas", 40, gainsboro, glm::vec2(850.0f, 40.0f));
+	m_pCountEnemyLable->setParent(this);
+	addChild(m_pCountEnemyLable,3,1);
 
 	// Time ** NEED TO BE FIXED **
 	playTime = PLAY_TIME; 
