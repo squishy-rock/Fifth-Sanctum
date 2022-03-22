@@ -406,6 +406,13 @@ void PlayScene::handleEvents()
 		SDL_Delay(200);
 	}
 
+	// To reload bullets for test
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_R))
+	{
+		m_pIndicatorB->setAmountBullets(8);
+		SDL_Delay(100);
+	}
+
 	////////////// SHOOTING //////////////////////
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_SPACE))
 	{
@@ -455,6 +462,10 @@ void PlayScene::start()
 	m_pCountEnemyLable = new Label("X ", "Consolas", 40, gainsboro, glm::vec2(850.0f, 40.0f));
 	m_pCountEnemyLable->setParent(this);
 	addChild(m_pCountEnemyLable,3,1);
+
+	// Indicator bullet
+	m_pIndicatorB = new IndicatorBullet();
+	addChild(m_pIndicatorB, 3, 0);
 
 	// Time ** NEED TO BE FIXED **
 	playTime = PLAY_TIME; 
@@ -667,7 +678,7 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 
 void PlayScene::Shooting()
 {
-	if (!firing)
+	if (!firing && m_pIndicatorB->getAmountBullets() > 0)
 	{
 		Mix_PlayChannel(-1, m_pGunSound, 0);
 		m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y) + 4, m_pHuman->getLastHumanDirection()));
@@ -675,6 +686,7 @@ void PlayScene::Shooting()
 		m_pPlayerFire.shrink_to_fit();
 		addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
 		firing = true;
+		m_pIndicatorB->setAmountBullets(m_pIndicatorB->getAmountBullets() - 1);
 	}
 }
 

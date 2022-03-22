@@ -18,6 +18,7 @@
 #include "Diamond.h"
 #include "Bed.h"
 #include "Death.h"
+#include "IndicatorBullet.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -113,6 +114,7 @@ private:
 	HumanLife* m_HumanLife;
 	Label* m_pCountEnemyLable;
 	SDL_Texture* m_pCountEnemyT;
+	IndicatorBullet* m_pIndicatorB;
 
 	Button* m_pPauseButton;
 

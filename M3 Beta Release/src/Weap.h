@@ -7,7 +7,7 @@
 
 #define SPEED 8.0f
 
-class Weap final : public DisplayObject
+class Weap : public DisplayObject
 {
 public:
 	Weap();
