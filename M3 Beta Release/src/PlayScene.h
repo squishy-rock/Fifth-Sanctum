@@ -93,6 +93,7 @@ private:
 	Level* m_pLevel;
 
 	bool firing = false;
+	bool isAlive;
 
 	bool m_playerFacingRight;
 

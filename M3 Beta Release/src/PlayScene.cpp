@@ -123,6 +123,7 @@ void PlayScene::update()
 		}
 	}
 
+	// Bullet VS Walls collision
 	if (m_pPlayerFire.size() > 0)
 	{
 		for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
@@ -133,6 +134,8 @@ void PlayScene::update()
 			{
 				if (CollisionManager::AABBCheck(&temp, r))
 				{
+					// TODO: add sound effect for bullet wall collision
+
 					removeChild(m_pPlayerFire[i]);
 					//delete m_pPlayerFire[i];  // this line causing error
 					m_pPlayerFire[i] = nullptr;
@@ -180,9 +183,14 @@ void PlayScene::update()
 			}
 		}
 	}
-	if (HumanLife::getHumanLife() <= 0)
+	if (isAlive && HumanLife::getHumanLife() <= 0)
 	{
-		TheGame::Instance().changeSceneState(END_SCENE);
+		//TODO: sound effect for player death
+
+		playTimeSec = 5000;
+		playTimeMint = 0;
+		isAlive = false;
+		//TheGame::Instance().changeSceneState(END_SCENE);
 	}
 
 	// PlayerFire VS Enemies
@@ -245,7 +253,7 @@ void PlayScene::update()
 		}
 	}
 
-	// Player VS Bullet
+	// Player VS BulletSpawn
 	if (m_pBullets.size() > 0)
 	{
 		for (unsigned i = 0; i < m_pBullets.size(); i++)
@@ -257,13 +265,15 @@ void PlayScene::update()
 
 			if (CollisionManager::AABBCheck(&tempH, &tempD))
 			{
-				// TODO: increment bullet counter
+				// add Bullet to player's Bullets  
 				sizeOfBulletArr = m_pBulletArray.size();
 				m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
 				m_pBulletArray.shrink_to_fit();
 				addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 
 				SoundManager::Instance().playSound("diamond", 0, -1);
+
+				// remove bullet spawn from level design
 				removeChild(m_pBullets[i]);
 				m_pBullets[i] = nullptr;
 				m_pBullets.erase(m_pBullets.begin() + i);
@@ -408,7 +418,6 @@ void PlayScene::handleEvents()
 	{
 		m_pHuman->setAnimationState(m_pHuman->getLastHumanDirection());
 	}
-
 	/////////////////////////////////////////////////////////////
 	
 	
@@ -565,7 +574,7 @@ void PlayScene::start()
 	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets5.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
-
+	isAlive = true;
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
 
@@ -788,32 +797,6 @@ bool PlayScene::checkUpSensor()
 			{
 				bed->setIsVisited(true);
 				spawn();
-				/*int randomAction = rand() % 2;
-				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
-				{
-					randomAction = 0;
-					numOfRandSpawn++;
-				}
-				if (randomAction == 0)
-				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
-					m_pDiamond.push_back(new Diamond(temp));
-					m_pDiamond.shrink_to_fit();
-					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
-				}
-				else if (randomAction == 1)
-				{
-					m_pEnemy.push_back(new Enemy());
-					m_pEnemy.shrink_to_fit();
-					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200};
-					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-					numOfRandSpawn++;
-				}*/
 			}
 			return true;
 		}
@@ -849,32 +832,6 @@ bool PlayScene::checkDownSensor()
 			{
 				bed->setIsVisited(true);
 				spawn();
-				/*int randomAction = rand() % 2;
-				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
-				{
-					randomAction = 0;
-					numOfRandSpawn++;
-				}
-				if (randomAction == 0)
-				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
-					m_pDiamond.push_back(new Diamond(temp));
-					m_pDiamond.shrink_to_fit();
-					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
-				}
-				else if (randomAction == 1)
-				{
-					m_pEnemy.push_back(new Enemy());
-					m_pEnemy.shrink_to_fit();
-					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200 };
-					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-					numOfRandSpawn++;
-				}*/
 			}
 			return true;
 		}
@@ -909,32 +866,6 @@ bool PlayScene::checkRightSensor()
 			{
 				bed->setIsVisited(true);
 				spawn();
-				/*int randomAction = rand() % 2;
-				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
-				{
-					randomAction = 0;
-					numOfRandSpawn++;
-				}
-				if (randomAction == 0)
-				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
-					m_pDiamond.push_back(new Diamond(temp));
-					m_pDiamond.shrink_to_fit();
-					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
-				}
-				else if (randomAction == 1)
-				{
-					m_pEnemy.push_back(new Enemy());
-					m_pEnemy.shrink_to_fit();
-					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200 };
-					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-					numOfRandSpawn++;
-				}*/
 			}
 			return true;
 		}
@@ -968,32 +899,6 @@ bool PlayScene::checkLeftSensor()
 			{
 				bed->setIsVisited(true);
 				spawn();
-				/*int randomAction = rand() % 2;
-				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
-				{
-					randomAction = 0;
-					numOfRandSpawn++;
-				}
-				if (randomAction == 0)
-				{
-					const SDL_Rect temp = { bed->getPosSize().x + rand() % 100, bed->getPosSize().y + 200, 32,32 };
-					m_pDiamond.push_back(new Diamond(temp));
-					m_pDiamond.shrink_to_fit();
-					addChild(m_pDiamond[m_pDiamond.size() - 1], 2, 1);
-				}
-				else if (randomAction == 1)
-				{
-					m_pEnemy.push_back(new Enemy());
-					m_pEnemy.shrink_to_fit();
-					m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
-					m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ bed->getPosSize().x + rand() % 300, bed->getPosSize().y + 200 };
-					m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
-					m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
-					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
-					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
-					numOfRandSpawn++;
-				}*/
 			}
 			return true;
 		}
@@ -1012,6 +917,8 @@ bool PlayScene::checkLeftSensor()
 
 void PlayScene::spawn()
 {
+	// TODO: add sound effect player bed collision
+
 	int randomAction = rand() % 2;
 	if (numOfEnemySpawn > 6 || numOfBulletSpawn == 0) // this to make sure first spawn is bullet and maximum 7 enemies spawn
 	{
