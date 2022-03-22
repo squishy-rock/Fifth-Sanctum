@@ -259,7 +259,7 @@ void PlayScene::update()
 			{
 				// TODO: increment bullet counter
 				sizeOfBulletArr = m_pBulletArray.size();
-				m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 100, 32,32 }));
+				m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
 				m_pBulletArray.shrink_to_fit();
 				addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 
@@ -351,6 +351,8 @@ void PlayScene::clean()
 	}
 	m_pBed.clear();
 	m_pBed.shrink_to_fit();
+
+	SDL_DestroyTexture(m_pCountEnemyT);
 }
 
 void PlayScene::handleEvents()
@@ -457,7 +459,10 @@ void PlayScene::handleEvents()
 	// To reload bullets for test
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_R))
 	{
-		m_pIndicatorB->setAmountBullets(8);
+		sizeOfBulletArr = m_pBulletArray.size();
+		m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
+		m_pBulletArray.shrink_to_fit();
+		addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 		SDL_Delay(100);
 	}
 
@@ -511,10 +516,6 @@ void PlayScene::start()
 	m_pCountEnemyLable->setParent(this);
 	addChild(m_pCountEnemyLable,3,1);
 
-	// Indicator bullet
-	m_pIndicatorB = new IndicatorBullet();
-	addChild(m_pIndicatorB, 3, 0);
-
 	// Time ** NEED TO BE FIXED **
 	//playTime = PLAY_TIME;
 	playTimeMint = 5;
@@ -531,7 +532,7 @@ void PlayScene::start()
 
 	// Bullet Available
 	sizeOfBulletArr = m_pBulletArray.size();
-	m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 100, 32,32 }));
+	m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
 	m_pBulletArray.shrink_to_fit();
 	addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 
@@ -765,7 +766,6 @@ void PlayScene::Shooting()
 		m_pPlayerFire.shrink_to_fit();
 		addChild(m_pPlayerFire[m_pPlayerFire.size() - 1], 1, 0);
 		firing = true;
-		m_pIndicatorB->setAmountBullets(m_pIndicatorB->getAmountBullets() - 1);
 	}
 }
 

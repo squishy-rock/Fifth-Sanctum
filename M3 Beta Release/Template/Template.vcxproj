@@ -177,7 +177,6 @@
     <ClCompile Include="..\src\Human.cpp" />
     <ClCompile Include="..\src\HumanLife.cpp" />
     <ClCompile Include="..\src\ImGuiWindowFrame.cpp" />
-    <ClCompile Include="..\src\IndicatorBullet.cpp" />
     <ClCompile Include="..\src\Level.cpp" />
     <ClCompile Include="..\src\Obstacle.cpp" />
     <ClCompile Include="..\src\PauseScene.cpp" />
@@ -233,7 +232,6 @@
     <ClInclude Include="..\src\Human.h" />
     <ClInclude Include="..\src\HumanLife.h" />
     <ClInclude Include="..\src\ImGuiWindowFrame.h" />
-    <ClInclude Include="..\src\IndicatorBullet.h" />
     <ClInclude Include="..\src\Level.h" />
     <ClInclude Include="..\src\Obstacle.h" />
     <ClInclude Include="..\src\PauseScene.h" />
