@@ -243,13 +243,30 @@ void PlayScene::update()
 	}
 
 	// CountDown 10 minutes until gameover.
-	playTime -= TheGame::Instance().getDeltaTime()*1000.0f;
+	//playTime -= TheGame::Instance().getDeltaTime()*1000.0f;
+	playTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 	//std::cout << playTime <<"\n";
-	int time = (int)(playTime * 0.001f);
-	m_pPlayTimeLabel->setText("Play Time: " + std::to_string(time));
-	if (playTime <= 0)
+	//int time = (int)(playTime * 0.001f);
+	int timeSec = (int)(playTimeSec * 0.001f);
+
+	if(timeSec < 10)
 	{
-		TheGame::Instance().changeSceneState(END_SCENE);
+		m_pPlayTimeLabel->setText("Play Time: 0" + std::to_string(playTimeMint) + ":0" + std::to_string(timeSec));
+	}
+	else
+	{
+		m_pPlayTimeLabel->setText("Play Time: 0" + std::to_string(playTimeMint) + ":" + std::to_string(timeSec));
+	}
+
+	if (playTimeSec <= 0)
+	{
+		playTimeSec = 60000;
+		playTimeMint -= 1;
+
+		if(playTimeMint < 0)
+		{
+			TheGame::Instance().changeSceneState(END_SCENE);
+		}
 	}
 
 	// For counting the amount of Enemies
@@ -468,7 +485,9 @@ void PlayScene::start()
 	addChild(m_pIndicatorB, 3, 0);
 
 	// Time ** NEED TO BE FIXED **
-	playTime = PLAY_TIME; 
+	//playTime = PLAY_TIME;
+	playTimeMint = 5;
+	playTimeSec = 60000;
 	float fontSize = 35.0f;
 	m_pPlayTimeLabel = new Label("Play Time", "Consolas", fontSize, gainsboro, glm::vec2(WIDTH * 0.5f, fontSize *0.5f + 20.0f));
 	m_pPlayTimeLabel->setParent(this);

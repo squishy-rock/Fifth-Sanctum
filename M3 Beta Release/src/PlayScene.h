@@ -119,7 +119,8 @@ private:
 	Button* m_pPauseButton;
 
 	// Time
-	float playTime;
+	float playTimeSec;
+	int playTimeMint;
 	float PLAY_TIME = 10 * 60 * 1000; // 10 * 60seconds * 1000ms
 	Label* m_pPlayTimeLabel;
 };
