@@ -104,6 +104,9 @@ void PlayScene::draw()
 		SDL_Rect dst = { 770,5,64,64 }, src = { 256,64,64,64 };
 		SDL_RenderCopy(Renderer::Instance().getRenderer(), m_pCountEnemyT, &src, &dst);
 	}
+
+	/*SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 0, 100, 0, 255);
+	SDL_RenderFillRectF(Renderer::Instance().getRenderer(), NULL);*/
 }
 
 void PlayScene::update()
@@ -220,7 +223,7 @@ void PlayScene::update()
 		}
 	}
 
-	// Human VS Diamond
+	// Player VS Diamond
 	if (m_pDiamond.size() > 0)
 	{
 		for (unsigned i = 0; i < m_pDiamond.size(); i++)
@@ -237,6 +240,34 @@ void PlayScene::update()
 				m_pDiamond[i] = nullptr;
 				m_pDiamond.erase(m_pDiamond.begin() + i);
 				m_pDiamond.shrink_to_fit();
+			}
+
+		}
+	}
+
+	// Player VS Bullet
+	if (m_pBullets.size() > 0)
+	{
+		for (unsigned i = 0; i < m_pBullets.size(); i++)
+		{
+			SDL_Rect tempH = { int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y),
+						m_pHuman->getWidth(), m_pHuman->getHeight() };
+			SDL_Rect tempD = { int(m_pBullets[i]->getTransform()->position.x) + 16, int(m_pBullets[i]->getTransform()->position.y) + 16,
+						m_pBullets[i]->getWidth(), m_pBullets[i]->getHeight() };
+
+			if (CollisionManager::AABBCheck(&tempH, &tempD))
+			{
+				// TODO: increment bullet counter
+				sizeOfBulletArr = m_pBulletArray.size();
+				m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 100, 32,32 }));
+				m_pBulletArray.shrink_to_fit();
+				addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
+
+				SoundManager::Instance().playSound("diamond", 0, -1);
+				removeChild(m_pBullets[i]);
+				m_pBullets[i] = nullptr;
+				m_pBullets.erase(m_pBullets.begin() + i);
+				m_pBullets.shrink_to_fit();
 			}
 
 		}
@@ -498,6 +529,12 @@ void PlayScene::start()
 	m_pDeath[0]->getTransform()->position = glm::vec2{ WIDTH / 2 - 50, HEIGHT / 2 - 50 };
 	addChild(m_pDeath[0], 6, 4);*/
 
+	// Bullet Available
+	sizeOfBulletArr = m_pBulletArray.size();
+	m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 100, 32,32 }));
+	m_pBulletArray.shrink_to_fit();
+	addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
+
 	// Pause Button
 	m_pPauseButton = new Button("../Assets/textures/pauseButton.png", "pauseButton", RESUME_BUTTON);
 	m_pPauseButton->getTransform()->position = glm::vec2(WIDTH - 50, 50);
@@ -581,6 +618,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.x += speed;
 			}
+			for (Bullet* b : m_pBullets)
+			{
+				b->getTransform()->position.x += speed;
+			}
 		}
 	}
 
@@ -616,6 +657,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			for (Death* d : m_pDeath)
 			{
 				d->getTransform()->position.x -= speed;
+			}
+			for (Bullet* b : m_pBullets)
+			{
+				b->getTransform()->position.x -= speed;
 			}
 		}
 	}
@@ -653,6 +698,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y += speed;
 			}
+			for (Bullet* b : m_pBullets)
+			{
+				b->getTransform()->position.y += speed;
+			}
 		}
 	}
 
@@ -689,6 +738,10 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 			{
 				d->getTransform()->position.y -= speed;
 			}
+			for (Bullet* b : m_pBullets)
+			{
+				b->getTransform()->position.y -= speed;
+			}
 		}
 	}
 
@@ -697,8 +750,15 @@ void PlayScene::CameraMovement(PlayerAnimationState p, bool isSprint)
 
 void PlayScene::Shooting()
 {
-	if (!firing && m_pIndicatorB->getAmountBullets() > 0)
+	//if (!firing && m_pIndicatorB->getAmountBullets() > 0)
+	if (!firing && m_pBulletArray.size() > 0)
 	{
+		removeChild(m_pBulletArray[m_pBulletArray.size() - 1]);
+		m_pBulletArray[m_pBulletArray.size() - 1] = nullptr;
+		m_pBulletArray.erase(m_pBulletArray.begin() + m_pBulletArray.size() - 1);
+		m_pBullets.shrink_to_fit();
+		
+
 		Mix_PlayChannel(-1, m_pGunSound, 0);
 		m_pPlayerFire.push_back(new Weap(int(m_pHuman->getTransform()->position.x), int(m_pHuman->getTransform()->position.y) + 4, m_pHuman->getLastHumanDirection()));
 		//m_pPlayerFire.push_back(new Weap(WIDTH / 2, HEIGHT / 2, m_pHuman->getLastHumanDirection()));
@@ -727,7 +787,8 @@ bool PlayScene::checkUpSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				int randomAction = rand() % 2;
+				spawn();
+				/*int randomAction = rand() % 2;
 				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
@@ -752,7 +813,7 @@ bool PlayScene::checkUpSensor()
 					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 					numOfRandSpawn++;
-				}
+				}*/
 			}
 			return true;
 		}
@@ -787,7 +848,8 @@ bool PlayScene::checkDownSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				int randomAction = rand() % 2;
+				spawn();
+				/*int randomAction = rand() % 2;
 				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
@@ -812,7 +874,7 @@ bool PlayScene::checkDownSensor()
 					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 					numOfRandSpawn++;
-				}
+				}*/
 			}
 			return true;
 		}
@@ -846,7 +908,8 @@ bool PlayScene::checkRightSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				int randomAction = rand() % 2;
+				spawn();
+				/*int randomAction = rand() % 2;
 				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
@@ -871,7 +934,7 @@ bool PlayScene::checkRightSensor()
 					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 					numOfRandSpawn++;
-				}
+				}*/
 			}
 			return true;
 		}
@@ -904,7 +967,8 @@ bool PlayScene::checkLeftSensor()
 			if (!bed->getIsVisited())
 			{
 				bed->setIsVisited(true);
-				int randomAction = rand() % 2;
+				spawn();
+				/*int randomAction = rand() % 2;
 				if (numOfRandSpawn > 7 || numOfRandSpawn == 0)
 				{
 					randomAction = 0;
@@ -929,7 +993,7 @@ bool PlayScene::checkLeftSensor()
 					m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
 					addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 					numOfRandSpawn++;
-				}
+				}*/
 			}
 			return true;
 		}
@@ -944,6 +1008,41 @@ bool PlayScene::checkLeftSensor()
 	}
 
 	return false;
+}
+
+void PlayScene::spawn()
+{
+	int randomAction = rand() % 2;
+	if (numOfEnemySpawn > 6 || numOfBulletSpawn == 0) // this to make sure first spawn is bullet and maximum 7 enemies spawn
+	{
+		randomAction = 0;
+	}
+	if(numOfBulletSpawn > 7) // Maximum 8 bullets spawn
+	{
+		randomAction = 1;
+	}
+	if (randomAction == 0)
+	{
+		numOfBulletSpawn++;
+		const SDL_Rect temp = { m_pHuman->getTransform()->position.x + rand() % 50, m_pHuman->getTransform()->position.y + 100, 32,32 };
+		m_pBullets.push_back(new Bullet(temp));
+		m_pBullets.shrink_to_fit();
+		addChild(m_pBullets[m_pBullets.size() - 1], 2, 1);
+	}
+	else if (randomAction == 1)
+	{
+		numOfEnemySpawn++;
+		m_pEnemy.push_back(new Enemy());
+		m_pEnemy.shrink_to_fit();
+		m_pEnemy[m_pEnemy.size() - 1]->setAnimationState(PLAYER_RUN_DOWN);
+		m_pEnemy[m_pEnemy.size() - 1]->setLastEnemyDirection(PLAYER_RUN_DOWN);
+		m_pEnemy[m_pEnemy.size() - 1]->getTransform()->position = glm::vec2{ m_pHuman->getTransform()->position.x + rand() % 300, m_pHuman->getTransform()->position.y + 200 };
+		m_pEnemy[m_pEnemy.size() - 1]->setTargetPosition(m_pHuman->getTransform()->position);
+		m_pEnemy[m_pEnemy.size() - 1]->getRigidBody()->acceleration = m_pEnemy[m_pEnemy.size() - 1]->getCurrentDirection() * m_pEnemy[m_pEnemy.size() - 1]->getAccelerationRate();
+		m_pEnemy[m_pEnemy.size() - 1]->setEnabled(true);
+		addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
+		
+	}
 }
 
 void PlayScene::initTileLocation()

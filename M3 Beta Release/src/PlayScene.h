@@ -18,6 +18,7 @@
 #include "Diamond.h"
 #include "Bed.h"
 #include "Death.h"
+#include "Bullet.h"
 #include "IndicatorBullet.h"
 #include <vector>
 #include <map>
@@ -44,6 +45,8 @@ public:
 	bool checkDownSensor();
 	bool checkRightSensor();
 	bool checkLeftSensor();
+
+	void spawn();
 
 	void initTileLocation();
 
@@ -105,16 +108,20 @@ private:
 
 	std::vector<Enemy*> m_pEnemy;
 	std::vector<Diamond*> m_pDiamond;
+	std::vector<Bullet*> m_pBullets;
 	std::vector<Bed*> m_pBed;
 	std::vector<Obstacle*> m_pObstacle;
 	std::vector<Death*> m_pDeath;
-	int numOfRandSpawn = 0;
-
+	int numOfEnemySpawn = 0;
+	int numOfBulletSpawn = 0;
 	// UI
 	HumanLife* m_HumanLife;
 	Label* m_pCountEnemyLable;
 	SDL_Texture* m_pCountEnemyT;
 	IndicatorBullet* m_pIndicatorB;
+
+	std::vector<Bullet*> m_pBulletArray;
+	int sizeOfBulletArr;
 
 	Button* m_pPauseButton;
 
