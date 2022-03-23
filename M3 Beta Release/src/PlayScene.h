@@ -119,6 +119,7 @@ private:
 	HumanLife* m_HumanLife;
 	Label* m_pCountEnemyLable;
 	SDL_Texture* m_pCountEnemyT;
+	int numOfEnemiesKilled = 0;
 
 	std::vector<Bullet*> m_pBulletArray;
 	int sizeOfBulletArr;

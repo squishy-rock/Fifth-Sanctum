@@ -99,11 +99,11 @@ void PlayScene::draw()
 	}
 
 	// For Enemy indicator
-	if (m_pEnemy.size() > 0)
-	{
+	//if (m_pEnemy.size() > 0)
+	//{
 		SDL_Rect dst = { 770,5,64,64 }, src = { 256,64,64,64 };
 		SDL_RenderCopy(Renderer::Instance().getRenderer(), m_pCountEnemyT, &src, &dst);
-	}
+	//}
 
 	/*SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 0, 100, 0, 255);
 	SDL_RenderFillRectF(Renderer::Instance().getRenderer(), NULL);*/
@@ -175,6 +175,7 @@ void PlayScene::update()
 				m_pEnemy.erase(m_pEnemy.begin() + i);
 				m_pEnemy.shrink_to_fit();
 
+				numOfEnemiesKilled++;
 				HumanLife::m_hit();
 			}
 			else
@@ -219,6 +220,8 @@ void PlayScene::update()
 					m_pPlayerFire[i] = nullptr;
 					m_pPlayerFire.erase(m_pPlayerFire.begin() + i);
 					m_pPlayerFire.shrink_to_fit();
+
+					numOfEnemiesKilled++;
 
 					break;
 				}
@@ -310,15 +313,15 @@ void PlayScene::update()
 	
 
 	// For counting the amount of Enemies
-	if (m_pEnemy.size() > 0)
-	{
-		m_pCountEnemyLable->setText("X " + std::to_string(m_pEnemy.size()));
-	}
-	else if (m_pEnemy.size() == 0)
-	{
-		m_pCountEnemyLable->setText(" ");
-	}
-
+	//if (m_pEnemy.size() > 0)
+	//{
+		//m_pCountEnemyLable->setText("X " + std::to_string(m_pEnemy.size()));
+	//}
+	//else if (m_pEnemy.size() == 0)
+	//{
+		//m_pCountEnemyLable->setText(" ");
+	//}
+	m_pCountEnemyLable->setText("X " + std::to_string(numOfEnemiesKilled));
 	updateDisplayList();
 
 }
