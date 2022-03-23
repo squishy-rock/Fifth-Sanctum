@@ -206,7 +206,7 @@ void PlayScene::update()
 				{
 					m_pDeath.push_back(new Death());
 					m_pDeath.shrink_to_fit();
-					m_pDeath[m_pDeath.size() - 1]->getTransform()->position = m_pEnemy[i]->getTransform()->position;
+					m_pDeath[m_pDeath.size() - 1]->getTransform()->position = m_pEnemy[j]->getTransform()->position;
 					addChild(m_pDeath[m_pDeath.size() - 1], 1, 4);
 
 					removeChild(m_pEnemy[j]);
