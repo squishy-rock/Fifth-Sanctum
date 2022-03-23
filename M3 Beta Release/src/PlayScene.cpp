@@ -311,6 +311,8 @@ void PlayScene::update()
 	}
 	///////////////////////////////////////////////////////////////////////
 	
+	// stamina
+	m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina < 0 ? 0 : stamina));
 
 	// For counting the amount of Enemies
 	//if (m_pEnemy.size() > 0)
@@ -396,7 +398,7 @@ void PlayScene::handleEvents()
 	}
 	else if (!(EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT))) // regen stamina
 	{
-		if (stamina < 120)
+		if (stamina < 100)
 		{
 			stamina++;
 		}
@@ -526,8 +528,9 @@ void PlayScene::handleEvents()
 void PlayScene::start()
 {
 	// Player
-	stamina = 120;
+	stamina = 100;
 	const SDL_Color gainsboro = { 220, 220, 220, 255 };
+	const SDL_Color yellow = { 255, 255, 0, 255 };
 	m_setGridColliderEnabled(false);
 
 	// Set GUI Title
@@ -563,7 +566,7 @@ void PlayScene::start()
 	m_pCountEnemyLable->setParent(this);
 	addChild(m_pCountEnemyLable,3,1);
 
-	// Time ** NEED TO BE FIXED **
+	// Time
 	//playTime = PLAY_TIME;
 	playTimeMint = 6;
 	playTimeSec = 0;
@@ -571,6 +574,11 @@ void PlayScene::start()
 	m_pPlayTimeLabel = new Label("Play Time", "Consolas", fontSize, gainsboro, glm::vec2(WIDTH * 0.5f, fontSize *0.5f + 20.0f));
 	m_pPlayTimeLabel->setParent(this);
 	addChild(m_pPlayTimeLabel, 3, 1);
+
+	// Stamina
+	m_pStaminaLabel = new Label("Stamina: ", "Consolas", 20, yellow, glm::vec2(WIDTH * 0.5f, 600.0f));
+	m_pStaminaLabel->setParent(this);
+	addChild(m_pStaminaLabel, 3, 1);
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());

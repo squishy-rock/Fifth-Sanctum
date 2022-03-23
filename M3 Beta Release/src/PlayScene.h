@@ -135,6 +135,7 @@ private:
 	// Player
 	int stamina;
 	bool isSprint;
+	Label* m_pStaminaLabel;
 
 };
 
