@@ -283,12 +283,24 @@ void PlayScene::update()
 		}
 	}
 
+	////////////////////// Timer /////////////////////////////
+	
 	// CountDown 10 minutes until gameover.
 	//playTime -= TheGame::Instance().getDeltaTime()*1000.0f;
 	playTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 	//std::cout << playTime <<"\n";
 	//int time = (int)(playTime * 0.001f);
 	int timeSec = (int)(playTimeSec * 0.001f);
+
+	if (timeSec < 1)
+	{
+		playTimeSec = 60000;
+		playTimeMint -= 1;
+		if (playTimeMint < 0)
+		{
+			TheGame::Instance().changeSceneState(END_SCENE);
+		}
+	}
 
 	if(timeSec < 10)
 	{
@@ -298,17 +310,8 @@ void PlayScene::update()
 	{
 		m_pPlayTimeLabel->setText("Play Time: 0" + std::to_string(playTimeMint) + ":" + std::to_string(timeSec));
 	}
-
-	if (playTimeSec <= 0)
-	{
-		playTimeSec = 60000;
-		playTimeMint -= 1;
-
-		if(playTimeMint < 0)
-		{
-			TheGame::Instance().changeSceneState(END_SCENE);
-		}
-	}
+	///////////////////////////////////////////////////////////////////////
+	
 
 	// For counting the amount of Enemies
 	if (m_pEnemy.size() > 0)
@@ -326,6 +329,8 @@ void PlayScene::update()
 
 void PlayScene::clean()
 {
+	std::cout << "clean scene called" << std::endl;
+
 	for (unsigned i = 0; i < m_pPlayerFire.size(); i++)
 	{
 		//delete m_pPlayerFire[i];
@@ -344,7 +349,7 @@ void PlayScene::clean()
 
 	Mix_FreeChunk(m_pGunSound);
 	Mix_FreeMusic(m_pPlaySceneMusic);
-	removeAllChildren();
+	
 
 	for (unsigned i = 0; i < tileLocation.size(); i++)
 	{
@@ -363,6 +368,8 @@ void PlayScene::clean()
 	m_pBed.shrink_to_fit();
 
 	SDL_DestroyTexture(m_pCountEnemyT);
+
+
 }
 
 void PlayScene::handleEvents()
@@ -527,8 +534,8 @@ void PlayScene::start()
 
 	// Time ** NEED TO BE FIXED **
 	//playTime = PLAY_TIME;
-	playTimeMint = 5;
-	playTimeSec = 60000;
+	playTimeMint = 6;
+	playTimeSec = 0;
 	float fontSize = 35.0f;
 	m_pPlayTimeLabel = new Label("Play Time", "Consolas", fontSize, gainsboro, glm::vec2(WIDTH * 0.5f, fontSize *0.5f + 20.0f));
 	m_pPlayTimeLabel->setParent(this);
