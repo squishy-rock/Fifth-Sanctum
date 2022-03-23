@@ -185,11 +185,7 @@ void PlayScene::update()
 	}
 	if (isAlive && HumanLife::getHumanLife() <= 0)
 	{
-		//TODO: sound effect for player death
-
-		playTimeSec = 5000;
-		playTimeMint = 0;
-		isAlive = false;
+		gameOver();
 		//TheGame::Instance().changeSceneState(END_SCENE);
 	}
 
@@ -377,53 +373,56 @@ void PlayScene::handleEvents()
 	EventManager::Instance().update();
 
 	////////////// Player Movement [WASD] //////////////////////
-	bool isSprint = EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT);
+	if (isAlive)
+	{
+		bool isSprint = EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT);
 
-	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_W))
-		if (CheckKeyList('W'))DeleteKeyList('W');
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
-		if (!CheckKeyList('W'))keyList.push_back('W');
-	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_S))
-		if (CheckKeyList('S'))DeleteKeyList('S');
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
-		if (!CheckKeyList('S'))keyList.push_back('S');
-	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_A))
-		if (CheckKeyList('A'))DeleteKeyList('A');
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
-		if (!CheckKeyList('A'))keyList.push_back('A');
-	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_D))
-		if (CheckKeyList('D'))DeleteKeyList('D');
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
-		if (!CheckKeyList('D'))keyList.push_back('D');
+		if (EventManager::Instance().isKeyUp(SDL_SCANCODE_W))
+			if (CheckKeyList('W'))DeleteKeyList('W');
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
+			if (!CheckKeyList('W'))keyList.push_back('W');
+		if (EventManager::Instance().isKeyUp(SDL_SCANCODE_S))
+			if (CheckKeyList('S'))DeleteKeyList('S');
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
+			if (!CheckKeyList('S'))keyList.push_back('S');
+		if (EventManager::Instance().isKeyUp(SDL_SCANCODE_A))
+			if (CheckKeyList('A'))DeleteKeyList('A');
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
+			if (!CheckKeyList('A'))keyList.push_back('A');
+		if (EventManager::Instance().isKeyUp(SDL_SCANCODE_D))
+			if (CheckKeyList('D'))DeleteKeyList('D');
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
+			if (!CheckKeyList('D'))keyList.push_back('D');
 
-	/* Debug
-	if (keyList.size() > 0)
-		std::cout << keyList.size() << (char)keyList[keyList.size() - 1] << std::endl;
-	else
-		std::cout << keyList.size() << std::endl;
-	*/
+		/* Debug
+		if (keyList.size() > 0)
+			std::cout << keyList.size() << (char)keyList[keyList.size() - 1] << std::endl;
+		else
+			std::cout << keyList.size() << std::endl;
+		*/
 
-	char key = keyList.size() > 0 ? ((char)keyList[keyList.size() - 1]) : 0;
+		char key = keyList.size() > 0 ? ((char)keyList[keyList.size() - 1]) : 0;
 
-	if (key == 'W')
-	{
-		CameraMovement(PLAYER_RUN_UP, isSprint);
-	}
-	else if (key == 'A')
-	{
-		CameraMovement(PLAYER_RUN_LEFT, isSprint);
-	}
-	else if (key == 'S')
-	{
-		CameraMovement(PLAYER_RUN_DOWN, isSprint);
-	}
-	else if (key == 'D')
-	{
-		CameraMovement(PLAYER_RUN_RIGHT, isSprint);
-	}
-	else
-	{
-		m_pHuman->setAnimationState(m_pHuman->getLastHumanDirection());
+		if (key == 'W')
+		{
+			CameraMovement(PLAYER_RUN_UP, isSprint);
+		}
+		else if (key == 'A')
+		{
+			CameraMovement(PLAYER_RUN_LEFT, isSprint);
+		}
+		else if (key == 'S')
+		{
+			CameraMovement(PLAYER_RUN_DOWN, isSprint);
+		}
+		else if (key == 'D')
+		{
+			CameraMovement(PLAYER_RUN_RIGHT, isSprint);
+		}
+		else
+		{
+			m_pHuman->setAnimationState(m_pHuman->getLastHumanDirection());
+		}
 	}
 	/////////////////////////////////////////////////////////////
 	
@@ -957,6 +956,22 @@ void PlayScene::spawn()
 		addChild(m_pEnemy[m_pEnemy.size() - 1], 1, 3);
 		
 	}
+}
+
+void PlayScene::gameOver()
+{
+	//TODO: sound effect for player death
+
+	playTimeSec = 5000;
+	playTimeMint = 0;
+	isAlive = false;
+	
+	m_pDeath.push_back(new Death());
+	m_pDeath.shrink_to_fit();
+	m_pDeath[m_pDeath.size() - 1]->getTransform()->position = m_pHuman->getTransform()->position;
+	addChild(m_pDeath[m_pDeath.size() - 1], 1, 4);
+
+	removeChild(m_pHuman);
 }
 
 void PlayScene::initTileLocation()
