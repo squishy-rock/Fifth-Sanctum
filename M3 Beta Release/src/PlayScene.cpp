@@ -10,6 +10,10 @@
 #include "imgui_sdl.h"
 #include "Renderer.h"
 #include "Util.h"
+#include <iostream>
+
+using namespace std;
+
 
 PlayScene::PlayScene()
 {
@@ -111,6 +115,7 @@ void PlayScene::draw()
 
 void PlayScene::update()
 {
+	
 
 	for (int i = 0 ; i < m_pDeath.size(); i++)
 	{
@@ -307,6 +312,59 @@ void PlayScene::update()
 		if(playTimeMint < 0)
 		{
 			TheGame::Instance().changeSceneState(END_SCENE);
+		}
+	}
+
+	// CountDown 10 seconds until instruction text disappears.
+	tutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+	int timeSecTutorial = (int)(tutorialSec * 0.001f);
+
+	if (timeSecTutorial < 10)
+	{
+		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot | :" + std::to_string(timeSecTutorial));
+	}
+	else
+	{
+		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot | :" + std::to_string(timeSecTutorial));
+	}
+
+	if (timeSecTutorial == 0)
+	{
+		cout << "deleting tutorial" << endl;
+	}
+
+	if (tutorialSec <= 0)
+	{
+		tutorialSec = 60000;
+		tutorialMint -= 1;
+		if (tutorialMint < 0)
+		{
+			delete m_pTutorialTimeLabel;
+			cout << "deleting" << endl;
+		}
+	}
+
+	// CountDown 15 seconds until bed instruction text disappears.
+	bedTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+	int bedTimeSecTutorial = (int)(bedTutorialSec * 0.001f);
+
+	if (timeSecTutorial < 10)
+	{
+		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...| :" + std::to_string(bedTimeSecTutorial));
+	}
+	else
+	{
+		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...| :" + std::to_string(bedTimeSecTutorial));
+	}
+
+	if (bedTutorialSec <= 0)
+	{
+		bedTutorialSec = 10000;
+		bedTutorialMint -= 1;
+		if (bedTutorialMint < 0)
+		{
+			delete m_pBedTutorialTimeLabel;
+			cout << "deleting" << endl;
 		}
 	}
 
@@ -533,6 +591,24 @@ void PlayScene::start()
 	m_pPlayTimeLabel = new Label("Play Time", "Consolas", fontSize, gainsboro, glm::vec2(WIDTH * 0.5f, fontSize *0.5f + 20.0f));
 	m_pPlayTimeLabel->setParent(this);
 	addChild(m_pPlayTimeLabel, 3, 1);
+
+	// time for movement tutorial
+	tutorialMint = 5;
+	tutorialSec = 1000;
+	float tutorialFontSize = 20.0f;
+	m_pTutorialTimeLabel = new Label("Use W,A,S,D to move, and press SPACE to shoot", "Consolas",
+		tutorialFontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 650.0f));
+	m_pTutorialTimeLabel->setParent(this);
+	addChild(m_pTutorialTimeLabel, 3, 1);
+
+	// time for bed feature tutorial
+	bedTutorialMint = 5;
+	bedTutorialSec = 1000;
+	float bedTutorialFontSize = 20.0f;
+	m_pBedTutorialTimeLabel = new Label("Approach the bed... something might just pop out", "Consolas",
+		bedTutorialFontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 700.0f));
+	m_pBedTutorialTimeLabel->setParent(this);
+	addChild(m_pBedTutorialTimeLabel, 3, 1);
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());
@@ -837,6 +913,7 @@ bool PlayScene::checkDownSensor()
 		}
 	}
 
+
 	for (Obstacle* o : m_pObstacle)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->downSenRect, &o->getPosSize()))
@@ -870,6 +947,7 @@ bool PlayScene::checkRightSensor()
 			return true;
 		}
 	}
+
 	for (Obstacle* o : m_pObstacle)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->rightSenRect, &o->getPosSize()))
@@ -904,6 +982,7 @@ bool PlayScene::checkLeftSensor()
 		}
 	}
 
+
 	for (Obstacle* o : m_pObstacle)
 	{
 		if (CollisionManager::AABBCheck(m_pHuman->leftSenRect, &o->getPosSize()))
@@ -918,7 +997,6 @@ bool PlayScene::checkLeftSensor()
 void PlayScene::spawn()
 {
 	// TODO: add sound effect player bed collision
-
 	int randomAction = rand() % 2;
 	if (numOfEnemySpawn > 6 || numOfBulletSpawn == 0) // this to make sure first spawn is bullet and maximum 7 enemies spawn
 	{

@@ -129,6 +129,18 @@ private:
 	int playTimeMint;
 	float PLAY_TIME = 10 * 60 * 1000; // 10 * 60seconds * 1000ms
 	Label* m_pPlayTimeLabel;
+
+	// Time for tutorial for movement
+	float tutorialSec;
+	int tutorialMint;
+	float TUTORIAL_TIME = 10 * 10 * 1000;
+	Label* m_pTutorialTimeLabel;
+
+	// Time for tutorial on bed features
+	float bedTutorialSec;
+	int bedTutorialMint;
+	float BEDTUTORIAL_TIME = 10 * 10 * 1000;
+	Label* m_pBedTutorialTimeLabel;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
