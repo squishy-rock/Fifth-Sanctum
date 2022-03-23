@@ -375,11 +375,38 @@ void PlayScene::handleEvents()
 {
 	EventManager::Instance().update();
 
+
+	////////////////////////// STAMINA CONTROL ////////////////////////
+	if	(EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT) &&
+		(EventManager::Instance().isKeyDown(SDL_SCANCODE_W) ||
+		EventManager::Instance().isKeyDown(SDL_SCANCODE_A) ||
+		EventManager::Instance().isKeyDown(SDL_SCANCODE_S) ||
+		EventManager::Instance().isKeyDown(SDL_SCANCODE_D)))
+	{
+		if (stamina > 0)
+		{
+			stamina--;
+			isSprint = true;
+		}
+		else
+		{
+			stamina = -60;
+			isSprint = false;
+		}
+	}
+	else if (!(EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT))) // regen stamina
+	{
+		if (stamina < 120)
+		{
+			stamina++;
+		}
+		isSprint = false;
+	}
+	////////////////////////// STAMINA CONTROL ////////////////////////
+
 	////////////// Player Movement [WASD] //////////////////////
 	if (isAlive)
 	{
-		bool isSprint = EventManager::Instance().isKeyDown(SDL_SCANCODE_LSHIFT);
-
 		if (EventManager::Instance().isKeyUp(SDL_SCANCODE_W))
 			if (CheckKeyList('W'))DeleteKeyList('W');
 		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
@@ -498,6 +525,8 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+	// Player
+	stamina = 120;
 	const SDL_Color gainsboro = { 220, 220, 220, 255 };
 	m_setGridColliderEnabled(false);
 

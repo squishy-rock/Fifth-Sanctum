@@ -132,6 +132,10 @@ private:
 	float PLAY_TIME = 10 * 60 * 1000; // 10 * 60seconds * 1000ms
 	Label* m_pPlayTimeLabel;
 
+	// Player
+	int stamina;
+	bool isSprint;
+
 };
 
 #endif /* defined (__PLAY_SCENE__) */
