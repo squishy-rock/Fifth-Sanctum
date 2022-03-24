@@ -14,6 +14,7 @@
 PlayScene::PlayScene()
 {
 	PlayScene::start();
+	
 }
 
 PlayScene::~PlayScene()
@@ -134,7 +135,8 @@ void PlayScene::update()
 			{
 				if (CollisionManager::AABBCheck(&temp, r))
 				{
-					// TODO: add sound effect for bullet wall collision
+					SoundManager::Instance().setSoundVolume(40);
+					SoundManager::Instance().playSound("collisionwall", 0, -1);
 
 					removeChild(m_pPlayerFire[i]);
 					//delete m_pPlayerFire[i];  // this line causing error
@@ -527,6 +529,7 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+	
 	// Player
 	stamina = 100;
 	const SDL_Color gainsboro = { 220, 220, 220, 255 };
@@ -614,9 +617,17 @@ void PlayScene::start()
 	// For event
 	TextureManager::Instance().load("../Assets/textures/box.png", "box");
 	SoundManager::Instance().load("../Assets/audio/coin3.wav", "diamond", SOUND_SFX);
-	SoundManager::Instance().load("../Assets/audio/collision.aiff", "collision", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/collision.wav", "collision", SOUND_SFX);
 	SoundManager::Instance().load("../Assets/audio/enemydeath.wav", "enemydeath", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/collisionwall.mp3", "collisionwall", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/gate.wav", "gate", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/collisionbed.wav", "collisionbed", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/gameover.mp3", "gameover", SOUND_SFX);
 
+	SoundManager::Instance().setSoundVolume(50);
+	SoundManager::Instance().playSound("gate", 0, -1);
+
+	SoundManager::Instance().setSoundVolume(40);
 	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets5.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
@@ -963,7 +974,7 @@ bool PlayScene::checkLeftSensor()
 
 void PlayScene::spawn()
 {
-	// TODO: add sound effect player bed collision
+	SoundManager::Instance().playSound("collisionbed", 0, -1);
 
 	int randomAction = rand() % 2;
 	if (numOfEnemySpawn > 6 || numOfBulletSpawn == 0) // this to make sure first spawn is bullet and maximum 7 enemies spawn
@@ -1001,6 +1012,8 @@ void PlayScene::spawn()
 void PlayScene::gameOver()
 {
 	//TODO: sound effect for player death
+	SoundManager::Instance().playSound("gameover", 0, -1);
+
 
 	playTimeSec = 5000;
 	playTimeMint = 0;

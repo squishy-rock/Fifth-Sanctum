@@ -154,12 +154,14 @@ void Game::changeSceneState(const SceneState new_state)
 		m_holdingScene = m_currentScene;
 		m_currentScene = nullptr;
 		m_currentScene = new PauseScene();
+		Mix_PauseMusic();
 
 	}
 	else if (new_state == PLAY_SCENE && m_currentSceneState == PAUSE_SCENE)
 	{
 		m_currentScene = m_holdingScene;
 		m_currentSceneState = PLAY_SCENE;
+		Mix_ResumeMusic();
 	}
 	else if (new_state != m_currentSceneState) 
 	{
