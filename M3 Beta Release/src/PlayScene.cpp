@@ -1065,7 +1065,7 @@ void PlayScene::spawn()
 	if (randomAction == 0)
 	{
 		numOfBulletSpawn++;
-		const SDL_Rect temp = { m_pHuman->getTransform()->position.x + rand() % 50, m_pHuman->getTransform()->position.y + 100, 32,32 };
+		SDL_Rect temp = { m_pHuman->getTransform()->position.x + rand() % 50, m_pHuman->getTransform()->position.y + 50, 32,32 };
 		m_pBullets.push_back(new Bullet(temp));
 		m_pBullets.shrink_to_fit();
 		addChild(m_pBullets[m_pBullets.size() - 1], 2, 1);
