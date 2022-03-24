@@ -135,7 +135,7 @@ void PlayScene::update()
 			{
 				if (CollisionManager::AABBCheck(&temp, r))
 				{
-					SoundManager::Instance().setSoundVolume(40);
+					SoundManager::Instance().setSoundVolume(80);
 					SoundManager::Instance().playSound("collisionwall", 0, -1);
 
 					removeChild(m_pPlayerFire[i]);
@@ -216,6 +216,7 @@ void PlayScene::update()
 					m_pEnemy.erase(m_pEnemy.begin() + j);
 					m_pEnemy.shrink_to_fit();
 
+					SoundManager::Instance().setSoundVolume(80);
 					SoundManager::Instance().playSound("enemydeath", 0, -1);
 
 					removeChild(m_pPlayerFire[i]);
@@ -691,13 +692,14 @@ void PlayScene::start()
 	TextureManager::Instance().load("../Assets/textures/box.png", "box");
 	SoundManager::Instance().load("../Assets/audio/coin3.wav", "diamond", SOUND_SFX);
 	SoundManager::Instance().load("../Assets/audio/collision.wav", "collision", SOUND_SFX);
-	SoundManager::Instance().load("../Assets/audio/enemydeath.wav", "enemydeath", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/death.ogg", "enemydeath", SOUND_SFX);
 	SoundManager::Instance().load("../Assets/audio/collisionwall.mp3", "collisionwall", SOUND_SFX);
 	SoundManager::Instance().load("../Assets/audio/gate.wav", "gate", SOUND_SFX);
-	SoundManager::Instance().load("../Assets/audio/collisionbed.wav", "collisionbed", SOUND_SFX);
-	SoundManager::Instance().load("../Assets/audio/gameover.mp3", "gameover", SOUND_SFX);
 
-	SoundManager::Instance().setSoundVolume(50);
+	SoundManager::Instance().load("../Assets/audio/gameover.mp3", "gameover", SOUND_SFX);
+	SoundManager::Instance().load("../Assets/audio/enemyspawn.wav", "enemyspawn", SOUND_SFX);
+
+	
 	SoundManager::Instance().playSound("gate", 0, -1);
 
 	SoundManager::Instance().setSoundVolume(40);
@@ -1047,7 +1049,7 @@ bool PlayScene::checkLeftSensor()
 
 void PlayScene::spawn()
 {
-	SoundManager::Instance().playSound("collisionbed", 0, -1);
+	SoundManager::Instance().playSound("enemyspawn", 0, -1);
 
 	int randomAction = rand() % 2;
 	if (numOfEnemySpawn > 6 || numOfBulletSpawn == 0) // this to make sure first spawn is bullet and maximum 7 enemies spawn
