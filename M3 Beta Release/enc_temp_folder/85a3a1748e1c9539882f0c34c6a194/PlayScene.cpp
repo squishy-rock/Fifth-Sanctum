@@ -703,7 +703,7 @@ void PlayScene::start()
 	
 	SoundManager::Instance().playSound("gate", 0, -1);
 
-	SoundManager::Instance().setSoundVolume(12);
+	SoundManager::Instance().setSoundVolume(13);
 	m_pPlaySceneMusic = Mix_LoadMUS("../Assets/Audio/Night of the Streets5.mp3");
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
