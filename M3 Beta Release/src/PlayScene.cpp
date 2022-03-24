@@ -313,6 +313,61 @@ void PlayScene::update()
 	}
 	///////////////////////////////////////////////////////////////////////
 	
+
+	// CountDown 10 seconds until instruction text disappears.
+	tutorialTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+	int timeSecTutorial = (int)(tutorialTimeSec * 0.001f);
+
+	if (timeSecTutorial < 10)
+	{
+		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot |");
+	}
+	else
+	{
+		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot |");
+	}
+
+	if (timeSecTutorial == 0)
+	{
+	//	cout << "deleting tutorial" << endl;
+	}
+
+	if (tutorialTimeSec <= 0)
+	{
+		tutorialTimeSec = 60000;
+		tutorialMint -= 1;
+		if (tutorialMint < 0)
+		{
+			delete m_pTutorialTimeLabel;
+		//	cout << "deleting" << endl;
+		}
+	}
+
+	// CountDown 15 seconds until bed instruction text disappears.
+	tutorialTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+	int bedTimeSecTutorial = (int)(tutorialTimeSec * 0.001f);
+
+	if (timeSecTutorial < 10)
+	{
+		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
+	}
+	else
+	{
+		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
+	}
+
+	if (tutorialTimeSec <= 0)
+	{
+		tutorialTimeSec = 10000;
+		tutorialMint -= 1;
+		if (tutorialMint < 0)
+		{
+			delete m_pBedTutorialTimeLabel;
+		//	cout << "deleting" << endl;
+		}
+	}
+
+
 	// stamina
 	m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina < 0 ? 0 : stamina));
 
@@ -577,6 +632,24 @@ void PlayScene::start()
 	m_pPlayTimeLabel = new Label("Play Time", "Consolas", fontSize, gainsboro, glm::vec2(WIDTH * 0.5f, fontSize *0.5f + 20.0f));
 	m_pPlayTimeLabel->setParent(this);
 	addChild(m_pPlayTimeLabel, 3, 1);
+
+
+	// Instruction label
+	tutorialMint = 6;
+	tutorialTimeSec = 0;
+	float startfontSize = 20.0f;
+	m_pTutorialTimeLabel = new Label("| W,A,S,D to move | SPACE to shoot |",
+		"Consolas", startfontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 650.0f));
+	m_pTutorialTimeLabel->setParent(this);
+	addChild(m_pTutorialTimeLabel, 3, 1);
+
+	// time for bed feature tutorial
+	float bedTutorialFontSize = 20.0f;
+	m_pBedTutorialTimeLabel = new Label("| Approach the bed... something might just pop out |", "Consolas",
+		bedTutorialFontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 700.0f));
+	m_pBedTutorialTimeLabel->setParent(this);
+	addChild(m_pBedTutorialTimeLabel, 3, 1);
+
 
 	// Stamina
 	m_pStaminaLabel = new Label("Stamina: ", "Consolas", 20, yellow, glm::vec2(WIDTH * 0.5f, 600.0f));

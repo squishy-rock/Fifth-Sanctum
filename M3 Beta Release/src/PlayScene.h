@@ -132,6 +132,15 @@ private:
 	float PLAY_TIME = 10 * 60 * 1000; // 10 * 60seconds * 1000ms
 	Label* m_pPlayTimeLabel;
 
+	// Tutorial for movement
+	float tutorialTimeSec;
+	int tutorialMint;
+	float TUTORIAL_TIME = 10 * 10 * 1000;
+	Label* m_pTutorialTimeLabel;
+
+	// Time for tutorial on bed feature
+	Label* m_pBedTutorialTimeLabel;
+
 	// Player
 	int stamina;
 	bool isSprint;
