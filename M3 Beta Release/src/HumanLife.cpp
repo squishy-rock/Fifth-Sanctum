@@ -19,7 +19,7 @@ HumanLife::HumanLife()
 	setHeight(size.y);
 	getTransform()->position = glm::vec2(30.0f, 30.0f);
 
-	setHumanLife(4);
+	setHumanLife(3);
 
 	setType(LIFE);
 }

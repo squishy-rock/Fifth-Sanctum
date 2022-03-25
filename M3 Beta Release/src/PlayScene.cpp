@@ -191,11 +191,11 @@ void PlayScene::update()
 			}
 		}
 	}
-	if (isAlive && HumanLife::getHumanLife() <= 0)
+	/*if (isAlive && HumanLife::getHumanLife() <= 0)
 	{
 		gameOver();
 		TheGame::Instance().changeSceneState(LOSE_SCENE);
-	}
+	}*/
 
 	// PlayerFire VS Enemies
 	if (m_pEnemy.size() > 0 && m_pPlayerFire.size() > 0)
@@ -305,7 +305,14 @@ void PlayScene::update()
 		playTimeMint -= 1;
 		if (playTimeMint < 0)
 		{
-			TheGame::Instance().changeSceneState(LOSE_SCENE);
+			if (isLosing)
+			{
+				TheGame::Instance().changeSceneState(LOSE_SCENE);
+			}
+			if (isWinning)
+			{
+				TheGame::Instance().changeSceneState(WIN_SCENE);
+			}
 		}
 	}
 
@@ -368,6 +375,23 @@ void PlayScene::update()
 		//m_pCountEnemyLable->setText(" ");
 	//}
 	m_pCountEnemyLable->setText("X " + std::to_string(numOfEnemiesKilled));
+
+	// winning condition
+	if(isAlive && numOfEnemiesKilled >= 7)
+	{
+		isAlive = false;
+		isWinning = true;
+		playTimeMint = 0;
+		playTimeSec = 5000;
+		removeChild(m_pGhost);
+	}
+
+	// losing condition
+	if(isAlive && m_HumanLife->getHumanLife() <= 0)
+	{
+		gameOver();
+	}
+
 	updateDisplayList();
 
 }
@@ -698,6 +722,8 @@ void PlayScene::start()
 	m_pGunSound = Mix_LoadWAV("../Assets/Audio/LaserSFX.mp3");
 	Mix_PlayMusic(m_pPlaySceneMusic,-1);
 	isAlive = true;
+	isWinning = false;
+	isLosing = false;
 	ImGuiWindowFrame::Instance().setGUIFunction(std::bind(&PlayScene::GUI_Function, this));
 }
 
@@ -1085,7 +1111,7 @@ void PlayScene::gameOver()
 	//TODO: sound effect for player death
 	SoundManager::Instance().playSound("gameover", 0, -1);
 
-
+	isLosing = true;
 	playTimeSec = 5000;
 	playTimeMint = 0;
 	isAlive = false;

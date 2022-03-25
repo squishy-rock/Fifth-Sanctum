@@ -145,6 +145,9 @@ private:
 	bool isSprint;
 	Label* m_pStaminaLabel;
 
+	bool isWinning;
+	bool isLosing;
+
 };
 
 #endif /* defined (__PLAY_SCENE__) */
