@@ -18,6 +18,8 @@
 #include "PlayScene.h"
 #include "EndScene.h"
 #include "PauseScene.h"
+#include "LoseScene.h"
+#include "WinScene.h"
 
 #include "Config.h"
 

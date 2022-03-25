@@ -305,7 +305,7 @@ void PlayScene::update()
 		playTimeMint -= 1;
 		if (playTimeMint < 0)
 		{
-			TheGame::Instance().changeSceneState(END_SCENE);
+			TheGame::Instance().changeSceneState(LOSE_SCENE);
 		}
 	}
 
@@ -517,7 +517,7 @@ void PlayScene::handleEvents()
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_2))
 	{
-		TheGame::Instance().changeSceneState(END_SCENE);
+		TheGame::Instance().changeSceneState(LOSE_SCENE);
 	}
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_P))
@@ -525,6 +525,11 @@ void PlayScene::handleEvents()
 		TheGame::Instance().changeSceneState(PAUSE_SCENE);
 	}
 
+	//For Checking if Win Scene Works
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_4))
+	{
+		TheGame::Instance().changeSceneState(WIN_SCENE);
+	}
 	// To check Human lives
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_L))
 	{

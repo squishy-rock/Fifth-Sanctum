@@ -178,6 +178,7 @@
     <ClCompile Include="..\src\HumanLife.cpp" />
     <ClCompile Include="..\src\ImGuiWindowFrame.cpp" />
     <ClCompile Include="..\src\Level.cpp" />
+    <ClCompile Include="..\src\LoseScene.cpp" />
     <ClCompile Include="..\src\Obstacle.cpp" />
     <ClCompile Include="..\src\PauseScene.cpp" />
     <ClCompile Include="..\src\Sprite.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="..\src\Weap.cpp" />
     <ClCompile Include="..\src\Weapon.cpp" />
     <ClCompile Include="..\src\Weapon1.cpp" />
+    <ClCompile Include="..\src\WinScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\IMGUI\imconfig.h" />
@@ -234,6 +236,7 @@
     <ClInclude Include="..\src\HumanLife.h" />
     <ClInclude Include="..\src\ImGuiWindowFrame.h" />
     <ClInclude Include="..\src\Level.h" />
+    <ClInclude Include="..\src\LoseScene.h" />
     <ClInclude Include="..\src\Obstacle.h" />
     <ClInclude Include="..\src\PauseScene.h" />
     <ClInclude Include="..\src\SoundType.h" />
@@ -272,6 +275,7 @@
     <ClInclude Include="..\src\Weap.h" />
     <ClInclude Include="..\src\Weapon.h" />
     <ClInclude Include="..\src\Weapon1.h" />
+    <ClInclude Include="..\src\WinScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
