@@ -194,7 +194,7 @@ void PlayScene::update()
 	if (isAlive && HumanLife::getHumanLife() <= 0)
 	{
 		gameOver();
-		//TheGame::Instance().changeSceneState(END_SCENE);
+		TheGame::Instance().changeSceneState(LOSE_SCENE);
 	}
 
 	// PlayerFire VS Enemies
