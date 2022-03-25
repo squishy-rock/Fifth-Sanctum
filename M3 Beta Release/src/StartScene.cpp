@@ -41,11 +41,6 @@ void StartScene::handleEvents()
 		TheGame::Instance().quit();
 	}
 
-	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
-	{
-		Mix_PlayChannel(-1, m_startButtonSFX, 0);
-		TheGame::Instance().changeSceneState(PLAY_SCENE);
-	}
 
 	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_W))
 		if (CheckKeyList('W'))DeleteKeyList('W');
@@ -64,12 +59,6 @@ void StartScene::handleEvents()
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 		if (!CheckKeyList('D'))keyList.push_back('D');
 
-	/* Debug
-	if (keyList.size() > 0)
-		std::cout << keyList.size() << (char)keyList[keyList.size() - 1] << std::endl;
-	else
-		std::cout << keyList.size() << std::endl;
-	*/
 
 	char key = keyList.size() > 0 ? ((char)keyList[keyList.size() - 1]) : 0;
 
@@ -97,7 +86,17 @@ void StartScene::handleEvents()
 	{
 		m_pHuman->setAnimationState(PLAYER_RUN_RIGHT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_RIGHT);
-		m_pHuman->getTransform()->position.x += PLAYERSPEED;
+		
+		int humanX = m_pHuman->getTransform()->position.x;
+		if (humanX + PLAYERSPEED <= 870) //to make sure sprite doesnt go off screen, but 0,0 is middle of sprite so this clamps it to half sprite's width
+		{
+			m_pHuman->getTransform()->position.x += PLAYERSPEED;
+		}
+		else
+		{
+			Mix_PlayChannel(-1, m_startButtonSFX, 0);
+			TheGame::Instance().changeSceneState(PLAY_SCENE);
+		}
 	}
 	else
 	{
