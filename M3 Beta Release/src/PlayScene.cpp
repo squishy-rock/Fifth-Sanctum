@@ -315,6 +315,9 @@ void PlayScene::update()
 		}
 	}
 
+	
+	
+	
 	// CountDown 10 seconds until instruction text disappears.
 	tutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 	int timeSecTutorial = (int)(tutorialSec * 0.001f);
@@ -335,7 +338,7 @@ void PlayScene::update()
 
 	if (tutorialSec <= 0)
 	{
-		tutorialSec = 60000;
+		tutorialSec = 10000;
 		tutorialMint -= 1;
 		if (tutorialMint < 0)
 		{
@@ -344,7 +347,10 @@ void PlayScene::update()
 		}
 	}
 
-	// CountDown 15 seconds until bed instruction text disappears.
+	
+	
+	
+	// CountDown 10 seconds until bed instruction text disappears.
 	bedTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 	int bedTimeSecTutorial = (int)(bedTutorialSec * 0.001f);
 
@@ -365,8 +371,34 @@ void PlayScene::update()
 		{
 			delete m_pBedTutorialTimeLabel;
 			cout << "deleting" << endl;
+			// Countdown till sprint instruction text disappears
+			sprintTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+			int sprintingTutorial = (int)(sprintTutorialSec * 0.001f);
+
+			if (timeSecTutorial < 10)
+			{
+				m_pSprintTutorialTimeLabel->setText("| LEFT-SHIFT to sprint...You're gonna need it |");
+			}
+			else
+			{
+				m_pSprintTutorialTimeLabel->setText("| LEFT-SHIFT to sprint...You're gonna need it |");
+
+			}
+
+			if (sprintTutorialSec <= 0)
+			{
+				sprintTutorialSec = 10000;
+				sprintTutorialMint -= 1;
+				if (sprintTutorialMint < 0)
+				{
+					delete m_pSprintTutorialTimeLabel;
+					cout << "deleting" << endl;
+				}
+			}
 		}
 	}
+
+
 
 	// For counting the amount of Enemies
 	if (m_pEnemy.size() > 0)
@@ -593,7 +625,7 @@ void PlayScene::start()
 	addChild(m_pPlayTimeLabel, 3, 1);
 
 	// time for movement tutorial
-	tutorialMint = 5;
+	tutorialMint = 1;
 	tutorialSec = 1000;
 	float tutorialFontSize = 20.0f;
 	m_pTutorialTimeLabel = new Label("Use W,A,S,D to move, and press SPACE to shoot", "Consolas",
@@ -602,13 +634,22 @@ void PlayScene::start()
 	addChild(m_pTutorialTimeLabel, 3, 1);
 
 	// time for bed feature tutorial
-	bedTutorialMint = 5;
+	bedTutorialMint = 1;
 	bedTutorialSec = 1000;
 	float bedTutorialFontSize = 20.0f;
 	m_pBedTutorialTimeLabel = new Label("Approach the bed... something might just pop out", "Consolas",
 		bedTutorialFontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 700.0f));
 	m_pBedTutorialTimeLabel->setParent(this);
 	addChild(m_pBedTutorialTimeLabel, 3, 1);
+
+	// time for sprint tutorial 
+	//sprintTutorialMint = 1;
+	//sprintTutorialSec = 1000;
+	//float sprintTutorialFontSize = 20.0f;
+	//m_pSprintTutorialTimeLabel = new Label(" LEFT-SHIFT to sprint... You're gonna need it...", "Consolas",
+	//	sprintTutorialFontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 700.0f));
+	//m_pSprintTutorialTimeLabel->setParent(this);
+	//addChild(m_pSprintTutorialTimeLabel, 3, 1);
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());

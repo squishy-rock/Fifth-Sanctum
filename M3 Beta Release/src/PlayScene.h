@@ -141,6 +141,12 @@ private:
 	int bedTutorialMint;
 	float BEDTUTORIAL_TIME = 10 * 10 * 1000;
 	Label* m_pBedTutorialTimeLabel;
+
+	// Time for tutorial on sprinting
+	float sprintTutorialSec;
+	int sprintTutorialMint;
+	float SPRINTTUTORIAL_TIME = 10 * 10 * 1000;
+	Label* m_pSprintTutorialTimeLabel;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
