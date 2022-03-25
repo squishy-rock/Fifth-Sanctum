@@ -58,30 +58,10 @@ void StartScene::start()
 	m_pInstructionsLabel->setParent(this);
 	addChild(m_pInstructionsLabel);
 
-	//m_pStartBackground = new Background();
-	//addChild(m_pStartBackground, 0, 0);
+	m_pStartBackground = new StartBackground();
+	addChild(m_pStartBackground, 0, 0);
 
 
-	// Start Button
-	m_pStartButton = new Button();
-	m_pStartButton->getTransform()->position = glm::vec2(500.0f, 400.0f);
-
-	m_pStartButton->addEventListener(CLICK, [&]()-> void
-	{
-		m_pStartButton->setActive(false);
-		TheGame::Instance().changeSceneState(PLAY_SCENE);
-	});
-	
-	m_pStartButton->addEventListener(MOUSE_OVER, [&]()->void
-	{
-		m_pStartButton->setAlpha(128);
-	});
-
-	m_pStartButton->addEventListener(MOUSE_OUT, [&]()->void
-	{
-		m_pStartButton->setAlpha(255);
-	});
-	addChild(m_pStartButton);
 
 	m_titleTheme = Mix_LoadMUS("../Assets/audio/DarkTheme.ogg");
 	m_startButtonSFX = Mix_LoadWAV("../Assets/audio/Menu1A.wav");

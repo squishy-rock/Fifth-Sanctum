@@ -4,9 +4,11 @@
 
 #include "Scene.h"
 #include "Label.h"
-#include "ship.h"
-#include "Button.h"
 #include "SoundManager.h"
+#include "Player.h"
+#include "Human.h"
+#include "StartBackground.h"
+
 
 
 
@@ -28,10 +30,10 @@ private:
 	Label* m_pStartLabel{};
 	Label* m_pInstructionsLabel{};
 
+	Player* m_pPlayer;
+	Human* m_pHuman;
+	StartBackground* m_pStartBackground;
 
-	Ship* m_pShip{};
-	
-	Button* m_pStartButton;
 
 	Mix_Chunk* m_startButtonSFX;
 	Mix_Music* m_titleTheme;
