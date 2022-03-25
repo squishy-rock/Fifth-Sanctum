@@ -34,8 +34,8 @@ void PlayScene::draw()
 
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
 
-	// Draw speed bar
-	Util::DrawRect(glm::vec2{ WIDTH * 0.5f + 80, HEIGHT - 25 }, stamina, 10, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
+	// Draw stamina bar
+	Util::DrawFilledRect(glm::vec2{ WIDTH * 0.5f - 12.5, HEIGHT * 0.5f + 20 }, ((stamina <= 0) ? 0 : stamina) * 0.25f, 5, glm::vec4(1.0f, 1.0f, 0.0f, 0.0f));
 
 	
 	/*Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);*/
@@ -355,8 +355,8 @@ void PlayScene::update()
 	//}
 
 
-	// stamina
-	m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina <= 0 ? 0 : stamina));
+	// stamina label
+	//m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina <= 0 ? 0 : stamina));
 
 	// For counting the amount of Enemies
 	//if (m_pEnemy.size() > 0)
@@ -436,7 +436,7 @@ void PlayScene::handleEvents()
 		}
 		else
 		{
-			stamina = -1;
+			stamina = -60;
 			isSprint = false;
 		}
 	}
@@ -517,7 +517,7 @@ void PlayScene::handleEvents()
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_2))
 	{
-		TheGame::Instance().changeSceneState(LOSE_SCENE);
+		TheGame::Instance().changeSceneState(SceneState::LOSE_SCENE);
 	}
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_P))
@@ -643,9 +643,9 @@ void PlayScene::start()
 
 
 	// Stamina
-	m_pStaminaLabel = new Label("Stamina: ", "Consolas", 20, yellow, glm::vec2(WIDTH * 0.5f, HEIGHT - 20));
-	m_pStaminaLabel->setParent(this);
-	addChild(m_pStaminaLabel, 3, 1);
+	//m_pStaminaLabel = new Label("Stamina: ", "Consolas", 18, yellow, glm::vec2(WIDTH * 0.5f, 600.0f));
+	//m_pStaminaLabel->setParent(this);
+	//addChild(m_pStaminaLabel, 3, 1);
 
 	//Death Animation
 	/*m_pDeath.push_back(new Death());
