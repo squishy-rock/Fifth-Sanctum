@@ -14,10 +14,6 @@ public:
 	virtual void update() override;
 	virtual void clean() override;
 
-private:
-	void m_move();
-	void m_checkBounds();
-	void m_reset();
 };
 
 
