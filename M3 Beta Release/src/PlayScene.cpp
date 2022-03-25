@@ -324,16 +324,11 @@ void PlayScene::update()
 
 	if (timeSecTutorial < 10)
 	{
-		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot | :" + std::to_string(timeSecTutorial));
+		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot |");
 	}
 	else
 	{
-		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot | :" + std::to_string(timeSecTutorial));
-	}
-
-	if (timeSecTutorial == 0)
-	{
-		cout << "deleting tutorial" << endl;
+		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot |");
 	}
 
 	if (tutorialSec <= 0)
@@ -342,8 +337,7 @@ void PlayScene::update()
 		tutorialMint -= 1;
 		if (tutorialMint < 0)
 		{
-			delete []m_pTutorialTimeLabel;
-			cout << "deleting" << endl;
+			m_pTutorialTimeLabel->setText(" ");
 		}
 	}
 
@@ -356,11 +350,11 @@ void PlayScene::update()
 
 	if (timeSecTutorial < 10)
 	{
-		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...| :" + std::to_string(bedTimeSecTutorial));
+		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
 	}
 	else
 	{
-		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...| :" + std::to_string(bedTimeSecTutorial));
+		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
 	}
 
 	if (bedTutorialSec <= 0)
@@ -369,11 +363,10 @@ void PlayScene::update()
 		bedTutorialMint -= 1;
 		if (bedTutorialMint < 0)
 		{
-			delete []m_pBedTutorialTimeLabel;
-			cout << "deleting" << endl;
+			m_pBedTutorialTimeLabel->setText(" ");
 			//////////////////////////
 			// Countdown till sprint instruction text disappears
-			/*sprintTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+			sprintTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 			int sprintingTutorial = (int)(sprintTutorialSec * 0.001f);
 
 			if (timeSecTutorial < 10)
@@ -392,10 +385,9 @@ void PlayScene::update()
 				sprintTutorialMint -= 1;
 				if (sprintTutorialMint < 0)
 				{
-					delete m_pSprintTutorialTimeLabel;
-					cout << "deleting" << endl;
+					m_pSprintTutorialTimeLabel->setText(" ");
 				}
-			}*/
+			}
 		}
 	}
 
