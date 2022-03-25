@@ -342,7 +342,7 @@ void PlayScene::update()
 		tutorialMint -= 1;
 		if (tutorialMint < 0)
 		{
-			delete m_pTutorialTimeLabel;
+			delete []m_pTutorialTimeLabel;
 			cout << "deleting" << endl;
 		}
 	}
@@ -369,10 +369,11 @@ void PlayScene::update()
 		bedTutorialMint -= 1;
 		if (bedTutorialMint < 0)
 		{
-			delete m_pBedTutorialTimeLabel;
+			delete []m_pBedTutorialTimeLabel;
 			cout << "deleting" << endl;
+			//////////////////////////
 			// Countdown till sprint instruction text disappears
-			sprintTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+			/*sprintTutorialSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 			int sprintingTutorial = (int)(sprintTutorialSec * 0.001f);
 
 			if (timeSecTutorial < 10)
@@ -394,7 +395,7 @@ void PlayScene::update()
 					delete m_pSprintTutorialTimeLabel;
 					cout << "deleting" << endl;
 				}
-			}
+			}*/
 		}
 	}
 
