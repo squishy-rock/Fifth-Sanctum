@@ -134,8 +134,7 @@ private:
 
 	// Tutorial for movement
 	float tutorialTimeSec;
-	int tutorialMint;
-	float TUTORIAL_TIME = 10 * 10 * 1000;
+	//float TUTORIAL_TIME = 10 * 10 * 1000;
 	Label* m_pTutorialTimeLabel;
 
 	// Time for tutorial on bed feature

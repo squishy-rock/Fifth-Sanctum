@@ -33,6 +33,11 @@ void PlayScene::draw()
 	TextureManager::Instance().draw("box", tileLocation[1]->x, tileLocation[1]->y, 0, 255, false);*/
 
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
+
+	// Draw speed bar
+	Util::DrawRect(glm::vec2{ WIDTH * 0.5f + 80, HEIGHT - 25 }, stamina, 10, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
+
+	
 	/*Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);*/
 	if (m_getGridColliderEnabled())
 	{
@@ -269,7 +274,7 @@ void PlayScene::update()
 			{
 				// add Bullet to player's Bullets  
 				sizeOfBulletArr = m_pBulletArray.size();
-				m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
+				m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, HEIGHT - 40, 32,32 }));
 				m_pBulletArray.shrink_to_fit();
 				addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 
@@ -319,58 +324,39 @@ void PlayScene::update()
 	tutorialTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
 	int timeSecTutorial = (int)(tutorialTimeSec * 0.001f);
 
-	if (timeSecTutorial < 10)
+	if (timeSecTutorial <= 0)
 	{
-		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot |");
-	}
-	else
-	{
-		m_pTutorialTimeLabel->setText("| W,A,S,D to move | SPACE to shoot |");
+		m_pTutorialTimeLabel->setText("");
+		m_pBedTutorialTimeLabel->setText("");
 	}
 
-	if (timeSecTutorial == 0)
-	{
-	//	cout << "deleting tutorial" << endl;
-	}
+	//// CountDown 15 seconds until bed instruction text disappears.
+	//tutorialTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
+	//int bedTimeSecTutorial = (int)(tutorialTimeSec * 0.001f);
 
-	if (tutorialTimeSec <= 0)
-	{
-		tutorialTimeSec = 60000;
-		tutorialMint -= 1;
-		if (tutorialMint < 0)
-		{
-			delete m_pTutorialTimeLabel;
-		//	cout << "deleting" << endl;
-		}
-	}
+	//if (timeSecTutorial < 10)
+	//{
+	//	m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
+	//}
+	//else
+	//{
+	//	m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
+	//}
 
-	// CountDown 15 seconds until bed instruction text disappears.
-	tutorialTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
-	int bedTimeSecTutorial = (int)(tutorialTimeSec * 0.001f);
-
-	if (timeSecTutorial < 10)
-	{
-		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
-	}
-	else
-	{
-		m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
-	}
-
-	if (tutorialTimeSec <= 0)
-	{
-		tutorialTimeSec = 10000;
-		tutorialMint -= 1;
-		if (tutorialMint < 0)
-		{
-			delete m_pBedTutorialTimeLabel;
-		//	cout << "deleting" << endl;
-		}
-	}
+	//if (tutorialTimeSec <= 0)
+	//{
+	//	tutorialTimeSec = 10000;
+	//	tutorialMint -= 1;
+	//	if (tutorialMint < 0)
+	//	{
+	//		delete m_pBedTutorialTimeLabel;
+	//	//	cout << "deleting" << endl;
+	//	}
+	//}
 
 
 	// stamina
-	m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina < 0 ? 0 : stamina));
+	m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina <= 0 ? 0 : stamina));
 
 	// For counting the amount of Enemies
 	//if (m_pEnemy.size() > 0)
@@ -450,7 +436,7 @@ void PlayScene::handleEvents()
 		}
 		else
 		{
-			stamina = -60;
+			stamina = -1;
 			isSprint = false;
 		}
 	}
@@ -565,7 +551,7 @@ void PlayScene::handleEvents()
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_R))
 	{
 		sizeOfBulletArr = m_pBulletArray.size();
-		m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
+		m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, HEIGHT - 40, 32,32 }));
 		m_pBulletArray.shrink_to_fit();
 		addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 		SDL_Delay(100);
@@ -636,12 +622,11 @@ void PlayScene::start()
 
 
 	// Instruction label
-	tutorialMint = 6;
-	tutorialTimeSec = 0;
+	tutorialTimeSec = 10000;
 	float startfontSize = 20.0f;
 	m_pTutorialTimeLabel = new Label("| W,A,S,D to move | SPACE to shoot |",
 		"Consolas", startfontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 650.0f));
-	m_pTutorialTimeLabel->setParent(this);
+	//m_pTutorialTimeLabel->setParent(this);
 	addChild(m_pTutorialTimeLabel, 3, 1);
 
 	// time for bed feature tutorial
@@ -653,7 +638,7 @@ void PlayScene::start()
 
 
 	// Stamina
-	m_pStaminaLabel = new Label("Stamina: ", "Consolas", 20, yellow, glm::vec2(WIDTH * 0.5f, 600.0f));
+	m_pStaminaLabel = new Label("Stamina: ", "Consolas", 20, yellow, glm::vec2(WIDTH * 0.5f, HEIGHT - 20));
 	m_pStaminaLabel->setParent(this);
 	addChild(m_pStaminaLabel, 3, 1);
 
@@ -664,7 +649,7 @@ void PlayScene::start()
 
 	// Bullet Available
 	sizeOfBulletArr = m_pBulletArray.size();
-	m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, 65, 32,32 }));
+	m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, HEIGHT - 40, 32,32 }));
 	m_pBulletArray.shrink_to_fit();
 	addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 
