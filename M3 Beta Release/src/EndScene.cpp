@@ -49,6 +49,9 @@ void EndScene::handleEvents()
 void EndScene::start()
 {	
 
+	//Soundmanager
+	SoundManager::Instance().load("../Assets/audio/Endforgame.mp3", "Endforgame", SOUND_SFX);
+	SoundManager::Instance().playSound("Endforgame", 0, -1);
 
 
 	const SDL_Color blue = { 0, 0, 255, 255 };
