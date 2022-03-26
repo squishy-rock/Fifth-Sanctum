@@ -35,7 +35,7 @@ void PlayScene::draw()
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 255, 255, 255, 255);
 
 	// Draw stamina bar
-	Util::DrawFilledRect(glm::vec2{ WIDTH * 0.5f - 12.5, HEIGHT * 0.5f + 20 }, ((stamina <= 0) ? 0 : stamina) * 0.25f, 5, glm::vec4(1.0f, 1.0f, 0.0f, 0.0f));
+	Util::DrawFilledRect(glm::vec2{ WIDTH * 0.5f - 12.5, HEIGHT * 0.5f + 20 }, ((stamina <= 0) ? 0 : stamina) * 0.25f, 3, glm::vec4(1.0f, 1.0f, 0.0f, 0.0f));
 
 	
 	/*Util::DrawRect(glm::vec2{ tileLocation[1]->x, tileLocation[1]->y }, 32, 32);*/
@@ -374,7 +374,7 @@ void PlayScene::update()
 	//{
 		//m_pCountEnemyLable->setText(" ");
 	//}
-	m_pCountEnemyLable->setText("X " + std::to_string(numOfEnemiesKilled));
+	m_pCountEnemyLable->setText("X " + std::to_string(MAX_Enemies - numOfEnemiesKilled));
 
 	// winning condition
 	if(isAlive && numOfEnemiesKilled >= 7)

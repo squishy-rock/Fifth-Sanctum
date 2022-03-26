@@ -23,6 +23,7 @@
 #include <map>
 #include <string>
 
+#define MAX_Enemies 7
 
 class PlayScene : public Scene
 {
