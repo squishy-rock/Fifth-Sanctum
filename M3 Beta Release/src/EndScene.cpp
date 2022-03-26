@@ -47,7 +47,10 @@ void EndScene::handleEvents()
 }
 
 void EndScene::start()
-{
+{	
+
+
+
 	const SDL_Color blue = { 0, 0, 255, 255 };
 	m_label = new Label("GAME OVER", "Dock51", 80, blue, glm::vec2(500.0f, 40.0f));
 	m_label->setParent(this);

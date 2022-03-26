@@ -41,6 +41,13 @@ void LoseScene::handleEvents()
 void LoseScene::start()
 {
 
+	//Soundmanager
+	SoundManager::Instance().load("../Assets/audio/Endforgame.mp3", "Endforgame", SOUND_SFX);
+	SoundManager::Instance().playSound("Endforgame", 0, -1);
+
+
+	
+
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 0, 0, 0, 255);
 
 	SDL_Color red = { 255,0,0,255 };

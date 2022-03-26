@@ -43,6 +43,9 @@ void WinScene::handleEvents()
 void WinScene::start()
 {
 
+
+
+
 	SDL_SetRenderDrawColor(Renderer::Instance().getRenderer(), 0, 120,120, 255);
 	m_pCongratulationMessage = new Label("Congrats! You Won! :)", "Dock51", 90, { 0,255,0,255 },
 		glm::vec2(500.0f, 120.0f));
@@ -53,6 +56,13 @@ void WinScene::start()
 		glm::vec2(500.0f, 400.0f));
 	m_pQuitInstruction->setParent(this);
 	addChild(m_pQuitInstruction);
+
+
+	//Soundmanager
+	SoundManager::Instance().load("../Assets/audio/winningstage.mp3", "winningstage", SOUND_SFX);
+	SoundManager::Instance().playSound("winningstage", 0, -1);
+
+
 
 	ImGuiWindowFrame::Instance().setDefaultGUIFunction();
 
