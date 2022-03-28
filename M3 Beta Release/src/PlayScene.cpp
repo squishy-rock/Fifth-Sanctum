@@ -653,7 +653,7 @@ void PlayScene::start()
 	// Instruction label
 	tutorialTimeSec = 10000;
 	float startfontSize = 20.0f;
-	m_pTutorialTimeLabel = new Label("| W,A,S,D to move | SPACE to shoot |",
+	m_pTutorialTimeLabel = new Label("| W A S D to move | SPACE to shoot | SHIFT TO RUN |",
 		"Consolas", startfontSize, gainsboro, glm::vec2(WIDTH * 0.5f, 650.0f));
 	//m_pTutorialTimeLabel->setParent(this);
 	addChild(m_pTutorialTimeLabel, 3, 1);
