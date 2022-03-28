@@ -42,14 +42,7 @@ void StartScene::handleEvents()
 	}
 
 
-	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_W))
-		if (CheckKeyList('W'))DeleteKeyList('W');
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
-		if (!CheckKeyList('W'))keyList.push_back('W');
-	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_S))
-		if (CheckKeyList('S'))DeleteKeyList('S');
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
-		if (!CheckKeyList('S'))keyList.push_back('S');
+
 	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_A))
 		if (CheckKeyList('A'))DeleteKeyList('A');
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_A))
@@ -62,12 +55,7 @@ void StartScene::handleEvents()
 
 	char key = keyList.size() > 0 ? ((char)keyList[keyList.size() - 1]) : 0;
 
-	if (key == 'W')
-	{
-		m_pHuman->setAnimationState(PLAYER_RUN_UP);
-		m_pHuman->setLastHumanDirection(PLAYER_RUN_UP);
-	}
-	else if (key == 'A')
+ if (key == 'A')
 	{
 		m_pHuman->setAnimationState(PLAYER_RUN_LEFT);
 		m_pHuman->setLastHumanDirection(PLAYER_RUN_LEFT);
@@ -76,11 +64,6 @@ void StartScene::handleEvents()
 		{
 			m_pHuman->getTransform()->position.x -= PLAYERSPEED;
 		}
-	}
-	else if (key == 'S')
-	{
-		m_pHuman->setAnimationState(PLAYER_RUN_DOWN);
-		m_pHuman->setLastHumanDirection(PLAYER_RUN_DOWN);
 	}
 	else if (key == 'D')
 	{

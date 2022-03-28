@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Label.h"
 #include "Button.h"
+#include "backgroundscene.h"
 
 class PauseScene final : public Scene
 {
@@ -24,7 +25,7 @@ private:
 	Button* m_pResumeButton;
 	Button* m_pRestartButton;
 	Button* m_pQuitButton;
-
+	BackgroundScene* m_pBackgroundScene;
 };
 
 #endif /* defined (__PAUSE_SCENE__)*/

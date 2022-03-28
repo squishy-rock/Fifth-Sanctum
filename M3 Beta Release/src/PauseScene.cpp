@@ -59,6 +59,7 @@ void PauseScene::handleEvents()
 
 void PauseScene::start()
 {
+
 	Util::DrawFilledRect(glm::vec2{ 0,0 }, WIDTH, HEIGHT, glm::vec4(115, 115, 115, 255), Renderer::Instance().getRenderer());
 
 	const SDL_Color blue = { 0, 0, 255, 255 };
@@ -106,6 +107,9 @@ void PauseScene::start()
 			m_pRestartButton->setAlpha(255);
 		});
 	addChild(m_pRestartButton);
+
+	m_pBackgroundScene = new BackgroundScene();
+	addChild(m_pBackgroundScene, 0, 0);
 
 	// Quit Button
 	m_pQuitButton = new Button("../Assets/textures/quitButton2.png", "quitButton", QUIT_BUTTON);
