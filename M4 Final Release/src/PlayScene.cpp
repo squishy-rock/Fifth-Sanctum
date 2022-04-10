@@ -636,7 +636,7 @@ void PlayScene::start()
 
 	// Count Enemy
 	m_pCountEnemyT = IMG_LoadTexture(Renderer::Instance().getRenderer(), "../Assets/sprites/Enemy.png");
-	m_pCountEnemyLable = new Label("X ", "Consolas", 40, gainsboro, glm::vec2(850.0f, 40.0f));
+	m_pCountEnemyLable = new Label(" ", "Consolas", 30, gainsboro, glm::vec2(800.0f, 40.0f));
 	m_pCountEnemyLable->setParent(this);
 	addChild(m_pCountEnemyLable,3,1);
 
@@ -649,6 +649,14 @@ void PlayScene::start()
 	m_pPlayTimeLabel->setParent(this);
 	addChild(m_pPlayTimeLabel, 3, 1);
 
+	// initially spawn 5 bullets in random location
+	int xLoc = m_pLevel->getTransform()->position.x - m_pLevel->getWidth() / 2;
+	int yLoc = m_pLevel->getTransform()->position.y - m_pLevel->getHeight() / 2;
+	initSpawnBullets({ 79, 89 });
+	initSpawnBullets({ 69, 71 });
+	initSpawnBullets({ 10, 34 });
+	initSpawnBullets({ 89, 52 });
+	initSpawnBullets({ 12, 54 });
 
 	// Instruction label
 	tutorialTimeSec = 10000;
@@ -665,17 +673,6 @@ void PlayScene::start()
 	m_pBedTutorialTimeLabel->setParent(this);
 	addChild(m_pBedTutorialTimeLabel, 3, 1);
 
-
-	// Stamina
-	//m_pStaminaLabel = new Label("Stamina: ", "Consolas", 18, yellow, glm::vec2(WIDTH * 0.5f, 600.0f));
-	//m_pStaminaLabel->setParent(this);
-	//addChild(m_pStaminaLabel, 3, 1);
-
-	//Death Animation
-	/*m_pDeath.push_back(new Death());
-	m_pDeath[0]->getTransform()->position = glm::vec2{ WIDTH / 2 - 50, HEIGHT / 2 - 50 };
-	addChild(m_pDeath[0], 6, 4);*/
-
 	// Bullet Available
 	sizeOfBulletArr = m_pBulletArray.size();
 	m_pBulletArray.push_back(new Bullet(SDL_Rect{ sizeOfBulletArr * 32 + 10, HEIGHT - 40, 32,32 }));
@@ -683,8 +680,8 @@ void PlayScene::start()
 	addChild(m_pBulletArray[m_pBulletArray.size() - 1], 5, 1);
 
 	// Pause Button
-	m_pPauseButton = new Button("../Assets/textures/pauseButton.png", "pauseButton", RESUME_BUTTON);
-	m_pPauseButton->getTransform()->position = glm::vec2(WIDTH - 50, 50);
+	m_pPauseButton = new Button("../Assets/textures/pauseButton3.png", "pauseButton", RESUME_BUTTON);
+	m_pPauseButton->getTransform()->position = glm::vec2(WIDTH - 80, 35);
 	m_pPauseButton->addEventListener(CLICK, [&]()-> void
 		{
 			m_pPauseButton->setActive(false);
@@ -1122,6 +1119,16 @@ void PlayScene::gameOver()
 	addChild(m_pDeath[m_pDeath.size() - 1], 1, 4);
 
 	removeChild(m_pHuman);
+}
+
+void PlayScene::initSpawnBullets(SDL_Point r)
+{
+	int xLoc = m_pLevel->getTransform()->position.x - m_pLevel->getWidth() / 2;
+	int yLoc = m_pLevel->getTransform()->position.y - m_pLevel->getHeight() / 2;
+	SDL_Rect n = { r.x * 32 - xLoc, r.y * 32 + yLoc, 32, 32 };
+	m_pBullets.push_back(new Bullet(n));
+	m_pBullets.shrink_to_fit();
+	addChild(m_pBullets[m_pBullets.size() - 1], 2, 1);
 }
 
 void PlayScene::initTileLocation()

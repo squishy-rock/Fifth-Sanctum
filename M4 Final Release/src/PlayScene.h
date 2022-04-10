@@ -48,6 +48,7 @@ public:
 
 	void spawn();
 	void gameOver();
+	void initSpawnBullets(SDL_Point r);
 
 	void initTileLocation();
 
