@@ -65,49 +65,13 @@ void PlayScene::draw()
 		Util::DrawRect(glm::vec2{ m_pHuman->rightSenRect->x, m_pHuman->rightSenRect->y }, m_pHuman->rightSenRect->w, m_pHuman->rightSenRect->h);
 		Util::DrawRect(glm::vec2{ m_pHuman->leftSenRect->x, m_pHuman->leftSenRect->y }, m_pHuman->leftSenRect->w, m_pHuman->leftSenRect->h);
 
-		//////////// this is to draw rect for all bed collider
-		/*for (SDL_Rect* bed: bedLocation)
-		{
-			Util::DrawRect(glm::vec2{ bed->x, bed->y }, bed->w, bed->h);
-		}*/
-
-		//for (Enemy* e : m_pEnemy)
-		//{
-		//	for (SDL_Rect* box : tileLocation)
-		//	{
-		//		// Draw Whiskers
-		//		Util::DrawLine(e->getTransform()->position, e->getLeftLOSEndPoint(), e->getLineColour(0));
-		//		Util::DrawLine(e->getTransform()->position, e->getMiddleLOSEndPoint(), e->getLineColour(1));
-		//		Util::DrawLine(e->getTransform()->position, e->getRightLOSEndPoint(), e->getLineColour(2));
-		//		Util::DrawLine(e->getTransform()->position, e->getLeft2LOSEndPoint(), e->getLineColour(3));
-		//		Util::DrawLine(e->getTransform()->position, e->getRight2LOSEndPoint(), e->getLineColour(4));
-
-		//		// obstacle dimention information / aliases
-		//		const auto boxWidth = box->w;
-		//		const int halfBoxWidth = boxWidth;// *0.5f;
-		//		const auto boxHeight = box->h;
-		//		const int halfBoxHeight = boxHeight;// *0.5f;
-		//		const auto boxStart = glm::vec2{ box->x, box->y };// -glm::vec2(halfBoxWidth, halfBoxHeight);
-
-		//		// check every whisker to see if it is colliding with the obstacle
-		//		e->getCollisionWhisker()[0] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeftLOSEndPoint(), glm::vec2{box->x, box->y}, box->w, box->h);
-		//		e->getCollisionWhisker()[1] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getMiddleLOSEndPoint(), boxStart, boxWidth, boxHeight);
-		//		e->getCollisionWhisker()[2] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRightLOSEndPoint(), boxStart, boxWidth, boxHeight);
-		//		e->getCollisionWhisker()[3] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getLeft2LOSEndPoint(), boxStart, boxWidth, boxHeight);
-		//		e->getCollisionWhisker()[4] = CollisionManager::lineRectCheck(e->getTransform()->position, e->getRight2LOSEndPoint(), boxStart, boxWidth, boxHeight);
-		//		//std::cout << e->getCollisionWhisker()[0] << std::endl;
-		//		for (int i = 0; i < 5; ++i)
-		//		{
-		//			e->setLineColour(i, (e->getCollisionWhisker()[i]) ? glm::vec4(1, 0, 0, 1) : glm::vec4(0, 1, 0, 1));
-		//		}
-		//	}
-		//}
+		
 	}
 
 	// For Enemy indicator
 	//if (m_pEnemy.size() > 0)
 	//{
-		SDL_Rect dst = { 770,5,64,64 }, src = { 256,64,64,64 };
+		SDL_Rect dst = { 750,5,64,64 }, src = { 256,64,64,64 };
 		SDL_RenderCopy(Renderer::Instance().getRenderer(), m_pCountEnemyT, &src, &dst);
 	//}
 
@@ -191,11 +155,6 @@ void PlayScene::update()
 			}
 		}
 	}
-	/*if (isAlive && HumanLife::getHumanLife() <= 0)
-	{
-		gameOver();
-		TheGame::Instance().changeSceneState(LOSE_SCENE);
-	}*/
 
 	// PlayerFire VS Enemies
 	if (m_pEnemy.size() > 0 && m_pPlayerFire.size() > 0)
@@ -291,12 +250,8 @@ void PlayScene::update()
 	}
 
 	////////////////////// Timer /////////////////////////////
-	
-	// CountDown 10 minutes until gameover.
-	//playTime -= TheGame::Instance().getDeltaTime()*1000.0f;
+
 	playTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
-	//std::cout << playTime <<"\n";
-	//int time = (int)(playTime * 0.001f);
 	int timeSec = (int)(playTimeSec * 0.001f);
 
 	if (timeSec < 1)
@@ -309,10 +264,10 @@ void PlayScene::update()
 			{
 				TheGame::Instance().changeSceneState(LOSE_SCENE);
 			}
-			if (isWinning)
+			/*if (isWinning)
 			{
 				TheGame::Instance().changeSceneState(WIN_SCENE);
-			}
+			}*/
 		}
 	}
 
@@ -337,53 +292,17 @@ void PlayScene::update()
 		m_pBedTutorialTimeLabel->setText("");
 	}
 
-	//// CountDown 15 seconds until bed instruction text disappears.
-	//tutorialTimeSec -= TheGame::Instance().getDeltaTime() * 1000.0f;
-	//int bedTimeSecTutorial = (int)(tutorialTimeSec * 0.001f);
-
-	//if (timeSecTutorial < 10)
-	//{
-	//	m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
-	//}
-	//else
-	//{
-	//	m_pBedTutorialTimeLabel->setText("| Approach the bed... see what happens...|");
-	//}
-
-	//if (tutorialTimeSec <= 0)
-	//{
-	//	tutorialTimeSec = 10000;
-	//	tutorialMint -= 1;
-	//	if (tutorialMint < 0)
-	//	{
-	//		delete m_pBedTutorialTimeLabel;
-	//	//	cout << "deleting" << endl;
-	//	}
-	//}
-
-
-	// stamina label
-	//m_pStaminaLabel->setText("Stamina: " + std::to_string(stamina <= 0 ? 0 : stamina));
-
-	// For counting the amount of Enemies
-	//if (m_pEnemy.size() > 0)
-	//{
-		//m_pCountEnemyLable->setText("X " + std::to_string(m_pEnemy.size()));
-	//}
-	//else if (m_pEnemy.size() == 0)
-	//{
-		//m_pCountEnemyLable->setText(" ");
-	//}
-	m_pCountEnemyLable->setText("X " + std::to_string(MAX_Enemies - numOfEnemiesKilled));
+	m_pCountEnemyLable->setText(" " + std::to_string(MAX_Enemies - numOfEnemiesKilled));
 
 	// winning condition
-	if(isAlive && numOfEnemiesKilled >= 7)
+	if(isAlive && numOfEnemiesKilled >= 7 && !(isWinning))
 	{
-		isAlive = false;
+		//isAlive = false;
 		isWinning = true;
 		playTimeMint = 0;
-		playTimeSec = 5000;
+		playTimeSec = 0;
 		removeChild(m_pGhost);
+		addChild(m_pLeaveButton, 5, 0);
 	}
 
 	// losing condition
@@ -698,6 +617,25 @@ void PlayScene::start()
 			m_pPauseButton->setAlpha(255);
 		});
 	addChild(m_pPauseButton, 5, 0);
+
+	// Leave Button
+	m_pLeaveButton = new Button("../Assets/textures/leaveButton.png", "leaveButton", LEAVE_BUTTON);
+	m_pLeaveButton->getTransform()->position = glm::vec2(WIDTH/2, HEIGHT - 50);
+	m_pLeaveButton->addEventListener(CLICK, [&]()-> void
+		{
+			m_pLeaveButton->setActive(false);
+			TheGame::Instance().changeSceneState(WIN_SCENE);
+		});
+
+	m_pLeaveButton->addEventListener(MOUSE_OVER, [&]()->void
+		{
+			m_pLeaveButton->setAlpha(128);
+		});
+
+	m_pLeaveButton->addEventListener(MOUSE_OUT, [&]()->void
+		{
+			m_pLeaveButton->setAlpha(255);
+		});
 
 	// For event
 	TextureManager::Instance().load("../Assets/textures/box.png", "box");

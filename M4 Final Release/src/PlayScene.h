@@ -127,6 +127,7 @@ private:
 	int sizeOfBulletArr;
 
 	Button* m_pPauseButton;
+	Button* m_pLeaveButton;
 
 	// Time
 	float playTimeSec;
